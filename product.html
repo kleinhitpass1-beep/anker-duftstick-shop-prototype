@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ankerstick Calm | Produkt</title>
+  <meta name="description" content="Produktdetailseite für Ankerstick Calm. Blau Weiß Design, klare Struktur, Prototyp Checkout." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Zur Startseite">
+          <span class="mark" aria-hidden="true"></span>
+          <span>
+            Ankerstick
+            <small>Produktdetails</small>
+          </span>
+        </a>
+
+        <nav class="links" aria-label="Navigation">
+          <a class="link" href="index.html#produkte">Produkte</a>
+          <a class="link" href="#details">Details</a>
+          <a class="link" href="#faq">FAQ</a>
+          <a class="btn btnPrimary" href="#warenkorb">
+            Warenkorb <span class="badge" id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="productGrid">
+          <div class="card shadowBig">
+            <div class="mediaTop">
+              <div>
+                <strong>Galerie</strong><br />
+                <span>Klicke auf ein Thumbnail</span>
+              </div>
+              <span class="kicker" style="margin:0">Blaue Linie</span>
+            </div>
+            <div class="pad">
+              <img id="mainImage" class="galleryMain" src="anker8.jpg" alt="Ankerstick Produkt" />
+
+              <div class="thumbs" aria-label="Thumbnails">
+                <img class="thumb" src="anker3.jpg" alt="Packshot" data-src="anker3.jpg" />
+                <img class="thumb" src="anker4.jpg" alt="Regal Foto" data-src="anker4.jpg" />
+                <img class="thumb" src="anker5.jpg" alt="Blister Verpackung" data-src="anker5.jpg" />
+                <img class="thumb" src="anker6.jpg" alt="Lifestyle Wasser" data-src="anker6.jpg" />
+                <img class="thumb" src="anker8.jpg" alt="Freisteller" data-src="anker8.jpg" />
+                <img class="thumb" src="anker9.jpg" alt="Set Bild" data-src="anker9.jpg" />
+              </div>
+
+              <div class="fineprint">
+                Hinweis: Produktdarstellung im Prototyp. Aussagen sind auf Wohlbefinden und Entspannung ausgerichtet.
+                Keine medizinischen Versprechen.
+              </div>
+            </div>
+          </div>
+
+          <aside class="card shadowBig" id="details">
+            <div class="padLg">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Ankerstick Calm</div>
+              <h1 style="margin-bottom:8px">Dein Moment der Ruhe</h1>
+
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+                <div class="price" style="font-size:14px">19,90 EUR</div>
+                <div style="color:var(--muted); font-size:13.5px">Lieferzeit Prototyp</div>
+              </div>
+
+              <p class="lead" style="margin-top:12px">
+                Ein Duftritual für Übergänge: vor Terminen, nach Reizüberflutung, am Abend.
+                Diskret und ohne Aufwand.
+              </p>
+
+              <div class="tagRow">
+                <span class="tag">Lavendel</span>
+                <span class="tag">Bergamotte</span>
+                <span class="tag">Vetiver</span>
+                <span class="tag">Zeder</span>
+              </div>
+
+              <div class="field">
+                <label for="variant">Variante</label>
+                <select id="variant">
+                  <option value="calm" selected>Calm weich und ruhig</option>
+                  <option value="focus">Focus klar und frisch</option>
+                  <option value="balance">Balance warm und rund</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="qty">Menge</label>
+                <input id="qty" type="number" min="1" value="1" />
+              </div>
+
+              <div class="ctaRow" style="margin-top:14px">
+                <button class="btn btnPrimary" type="button" id="addBtn">In den Warenkorb</button>
+                <button class="btn" type="button" id="buyBtn">Checkout Prototyp</button>
+              </div>
+
+              <div class="fineprint">
+                Sicherheit: Nicht in die Augen bringen. Außer Reichweite von Kindern.
+                Bei Allergien, Schwangerschaft oder Asthma bitte fachlich abklären.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="warenkorb">
+      <div class="container">
+        <div class="sectionHeader">
+          <div>
+            <h2>Warenkorb</h2>
+            <p>Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.</p>
+          </div>
+        </div>
+
+        <div class="card shadowBig">
+          <div class="pad">
+            <div id="miniCart"></div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:12px; flex-wrap:wrap">
+              <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
+              <div class="price" id="miniCartTotal">0,00 EUR</div>
+            </div>
+
+            <div class="ctaRow" style="margin-top:12px">
+              <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
+              <button class="btn" type="button" id="clear">Warenkorb leeren</button>
+            </div>
+
+            <div class="fineprint" id="success" style="display:none">
+              Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="sectionHeader">
+          <div>
+            <h2>FAQ</h2>
+            <p>Saubere Erwartungshaltung, klare Sprache, hohe Seriosität.</p>
+          </div>
+        </div>
+
+        <details>
+          <summary>Wofür ist der Ankerstick gedacht</summary>
+          <p>Als Duftritual zur Unterstützung von Entspannung und Fokus im Alltag. Er ersetzt keine Behandlung.</p>
+        </details>
+        <details>
+          <summary>Kann ich das als echtes Produkt verkaufen</summary>
+          <p>Ja, perspektivisch. Dafür braucht es rechtliche Prüfung, saubere Claims, Kennzeichnung und ein echtes Checkout System.</p>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <strong style="color:var(--text)">Ankerstick</strong><br />
+            <span>Prototyp Produktdetailseite</span>
+          </div>
+          <div>
+            <a class="link" href="index.html">Zur Startseite</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const variantMap = {
+      calm:   { name:"Ankerstick Calm",   note:"Lavendel Bergamotte Vetiver", price:19.90 },
+      focus:  { name:"Ankerstick Focus",  note:"Zitrus Rosmarin Zeder",       price:19.90 },
+      balance:{ name:"Ankerstick Balance",note:"Orange Vanille Sandelholz",    price:19.90 }
+    };
+
+    document.querySelectorAll(".thumb").forEach(t => {
+      t.addEventListener("click", () => {
+        const src = t.getAttribute("data-src");
+        document.getElementById("mainImage").src = src;
+      });
+    });
+
+    document.getElementById("addBtn").addEventListener("click", () => {
+      const v = document.getElementById("variant").value;
+      const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
+      const data = variantMap[v];
+
+      addToCart({
+        id: "ankerstick_" + v,
+        name: data.name,
+        note: data.note,
+        price: data.price,
+        qty
+      });
+
+      renderMiniCart();
+      alert("Im Prototyp hinzugefügt.");
+    });
+
+    document.getElementById("buyBtn").addEventListener("click", () => {
+      const el = document.getElementById("warenkorb");
+      el.scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("fakePay").addEventListener("click", () => {
+      const cart = loadCart();
+      if(cart.length === 0){
+        alert("Warenkorb ist leer.");
+        return;
+      }
+      clearCart();
+      renderMiniCart();
+      document.getElementById("success").style.display = "block";
+    });
+
+    document.getElementById("clear").addEventListener("click", () => {
+      clearCart();
+      renderMiniCart();
+      document.getElementById("success").style.display = "none";
+    });
+  </script>
+</body>
+</html>
