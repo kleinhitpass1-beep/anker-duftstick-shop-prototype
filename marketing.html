@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ankerstick Marketing</title>
+  <meta name="description" content="Marketing Bereich: Influencer Videos und Social Media Kampagnen." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Start">
+          <span class="mark" aria-hidden="true"></span>
+          <span>
+            Ankerstick
+            <small>Marketing</small>
+          </span>
+        </a>
+
+        <nav class="links" aria-label="Navigation">
+          <a class="link" href="index.html">Shop</a>
+          <a class="link" href="product.html">Produkt</a>
+          <a class="link" href="community.html">Community</a>
+          <a class="link" href="podcast.html">Podcast</a>
+          <a class="btn btnPrimary" href="marketing.html">
+            Marketing <span class="badge" id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="card shadowBig">
+          <div class="padLg">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Inhalte und Kampagnen</div>
+            <h1 style="margin-bottom:10px">Marketing</h1>
+            <p class="lead" style="margin-bottom:0">
+              Influencer Inhalte, Social Media Formate und Kampagnen Ideen. Ruhig, klar und glaubwuerdig.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="sectionHeader">
+          <div>
+            <h2>Influencer Videos</h2>
+            <p>Wähle ein Video und spiele es im Player ab.</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end">
+            <button class="btn btnSmall" type="button" id="play1">Influencer Video 1</button>
+            <button class="btn btnSmall" type="button" id="play2">Influencer Video 2</button>
+            <button class="btn btnSmall btnGhost" type="button" id="stop">Stop</button>
+          </div>
+        </div>
+
+        <div class="card shadowBig">
+          <div class="padLg">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Player</div>
+            <div style="font-weight:900; font-size:16px; margin-top:10px" id="vTitle">Kein Video ausgewählt</div>
+            <div style="color:var(--muted); margin-top:6px" id="vMeta">Wähle oben ein Video.</div>
+
+            <div style="margin-top:14px">
+              <video id="player" controls preload="metadata" style="width:100%; border-radius:18px; border:1px solid var(--line); box-shadow: var(--shadow2);"></video>
+            </div>
+
+            <div class="fineprint" style="margin-top:12px">
+              Hinweis: Bei echten Kampagnen Kennzeichnung, Rechte und Claims sauber prüfen.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="sectionHeader">
+          <div>
+            <h2>Social Media Kampagnen</h2>
+            <p>Drei Formate, die du schnell testen kannst.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <div class="pad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Format 1</div>
+              <div style="font-weight:900; font-size:16px; margin-top:10px">Zwei Minuten Reset</div>
+              <div class="sub">Situation, Duft, Atmung, nächster Schritt. Ruhig, wiederholbar, seriös.</div>
+              <div class="tagRow">
+                <span class="tag">Reels</span>
+                <span class="tag">Routine</span>
+                <span class="tag">Alltag</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="pad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Format 2</div>
+              <div style="font-weight:900; font-size:16px; margin-top:10px">Creator Experience</div>
+              <div class="sub">Echte Alltagssituationen ohne Uebertreibung. Fokus auf Ritual und Moment.</div>
+              <div class="tagRow">
+                <span class="tag">UGC</span>
+                <span class="tag">Authentisch</span>
+                <span class="tag">Testimonial</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="pad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Format 3</div>
+              <div style="font-weight:900; font-size:16px; margin-top:10px">Produkt in 30 Sekunden</div>
+              <div class="sub">Was es ist, wie man es nutzt, wann es passt. Klarer Aufbau, keine leeren Versprechen.</div>
+              <div class="tagRow">
+                <span class="tag">Brand</span>
+                <span class="tag">Erklaerung</span>
+                <span class="tag">Conversion</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <strong style="color:var(--text)">Ankerstick Marketing</strong><br />
+            <span>Prototype Seite</span>
+          </div>
+          <div>
+            <a class="link" href="index.html">Zurueck zum Shop</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const VIDEOS = {
+      v1: { title: "Influencer Video 1", meta: "Alltag und Anwendung", src: "video-influencer-1.mp4" },
+      v2: { title: "Influencer Video 2", meta: "Kurzformat fuer Social Media", src: "video-influencer-2.mp4" }
+    };
+
+    function play(key){
+      const v = VIDEOS[key];
+      if(!v) return;
+
+      document.getElementById("vTitle").textContent = v.title;
+      document.getElementById("vMeta").textContent = v.meta;
+
+      const p = document.getElementById("player");
+      p.src = v.src;
+      p.play().catch(() => {});
+    }
+
+    document.getElementById("play1").addEventListener("click", () => play("v1"));
+    document.getElementById("play2").addEventListener("click", () => play("v2"));
+
+    document.getElementById("stop").addEventListener("click", () => {
+      const p = document.getElementById("player");
+      p.pause();
+      p.currentTime = 0;
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if(typeof setCartBadge === "function") setCartBadge();
+    });
+  </script>
+</body>
+</html>
