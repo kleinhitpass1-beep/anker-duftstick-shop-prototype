@@ -339,3 +339,15 @@ select, input{
   font-size:14px;
   box-shadow: 0 6px 16px rgba(11,27,58,.04);
 }
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:24px;
+}
+
+@media (max-width: 900px){
+  .grid2{
+    grid-template-columns:1fr;
+  }
+}
+
