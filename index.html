@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anker Duftstick Prototype Shop</title>
+  <meta name="description" content="Fiktiver Prototyp Shop für einen Duftstick mit aromatischen Ölen für Entspannung und innere Ruhe." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a2e;
+      --card2:#0c1526;
+      --text:#e9eefc;
+      --muted:#b8c3df;
+      --line:rgba(255,255,255,.10);
+      --accent:#7bd7ff;
+      --accent2:#9bffcc;
+      --warn:#ffd27b;
+      --ok:#9bffcc;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:24px;
+      --max:1140px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1100px 600px at 20% -10%, rgba(123,215,255,.22), transparent 60%),
+        radial-gradient(900px 560px at 95% 10%, rgba(155,255,204,.14), transparent 60%),
+        radial-gradient(700px 500px at 50% 110%, rgba(123,215,255,.10), transparent 60%),
+        linear-gradient(180deg, #070b14, var(--bg) 40%, #050813);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(7,11,20,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .navinner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(123,215,255,.9), rgba(123,215,255,.15) 55%, rgba(255,255,255,.06)),
+        linear-gradient(135deg, rgba(155,255,204,.25), rgba(123,215,255,.08));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 180deg, rgba(123,215,255,.0), rgba(123,215,255,.35), rgba(155,255,204,.25), rgba(123,215,255,.0));
+      animation: spin 7s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .brandtext{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brandtext strong{font-size:14px; letter-spacing:.2px}
+    .brandtext span{font-size:12px; color:var(--muted)}
+    .navlinks{
+      display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+      text-decoration:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.07);
+      border-color: rgba(123,215,255,.25);
+      color: var(--text);
+    }
+    .cartbtn{
+      display:flex; align-items:center; gap:10px;
+      border:1px solid rgba(123,215,255,.35);
+      background:linear-gradient(135deg, rgba(123,215,255,.18), rgba(155,255,204,.10));
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      transition: transform .12s ease, filter .12s ease;
+      font-size:13px;
+    }
+    .cartbtn:hover{transform: translateY(-1px); filter:brightness(1.05)}
+    .badge{
+      min-width:20px; height:20px;
+      padding:0 6px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:999px;
+      background:rgba(123,215,255,.25);
+      border:1px solid rgba(123,215,255,.55);
+      font-size:12px;
+      color:var(--text);
+    }
+
+    .hero{padding:44px 0 22px}
+    .herogrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .herogrid{grid-template-columns:1fr; gap:14px}
+    }
+    .panel{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panelpad{padding:24px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      padding:8px 12px;
+      border-radius:999px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:99px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(123,215,255,.12);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:42px;
+      letter-spacing:-.6px;
+      line-height:1.05;
+    }
+    @media (max-width: 520px){
+      h1{font-size:34px}
+    }
+    .lead{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      margin:0 0 16px;
+      max-width: 60ch;
+    }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:18px}
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      padding:12px 16px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-size:14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.08);
+      border-color: rgba(123,215,255,.25);
+    }
+    .btnPrimary{
+      border-color: rgba(123,215,255,.55);
+      background: linear-gradient(135deg, rgba(123,215,255,.24), rgba(155,255,204,.10));
+    }
+    .btnPrimary:hover{border-color: rgba(123,215,255,.75)}
+    .mini{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    @media (max-width: 520px){
+      .mini{grid-template-columns:1fr}
+    }
+    .miniCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.18);
+      padding:14px;
+    }
+    .miniCard strong{display:block; font-size:14px; margin-bottom:6px}
+    .miniCard span{color:var(--muted); font-size:13px; line-height:1.45}
+
+    .imagePanel{
+      display:grid;
+      grid-template-rows: auto 1fr;
+      background: linear-gradient(180deg, rgba(123,215,255,.08), rgba(0,0,0,.10));
+    }
+    .imageTop{
+      padding:16px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      border-bottom:1px solid var(--line);
+    }
+    .imageTop .hint{color:var(--muted); font-size:12px}
+    .imageWrap{
+      padding:16px;
+      display:grid;
+      gap:14px;
+      grid-template-columns: 1fr;
+    }
+    .img{
+      width:100%;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .section{padding:18px 0}
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){.grid2{grid-template-columns:1fr}}
+
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 14px 50px rgba(0,0,0,.32);
+      overflow:hidden;
+    }
+    .cardHeader{
+      padding:18px 18px 0;
+      display:flex; justify-content:space-between; align-items:flex-start; gap:14px;
+    }
+    .cardHeader h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .cardHeader p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .price{
+      font-family:var(--mono);
+      font-size:16px;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .cardBody{padding:16px 18px 18px}
+    .pillRow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 14px}
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .columns{
+      display:grid; gap:12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 520px){.columns{grid-template-columns:1fr}}
+    .list{
+      margin:0; padding-left:18px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .note{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,210,123,.06);
+      padding:12px 12px;
+      border-radius: 16px;
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .faq{padding:8px 0 24px}
+    details{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding:12px 14px;
+      margin:10px 0;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:600;
+      font-size:14px;
+    }
+    details p{color:var(--muted); margin:10px 0 0; font-size:13px; line-height:1.6}
+
+    footer{
+      padding:22px 0 34px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .footgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      align-items:start;
+    }
+    @media (max-width: 980px){.footgrid{grid-template-columns:1fr}}
+    .smalllink{color:var(--muted); text-decoration:none}
+    .smalllink:hover{color:var(--text)}
+
+    /* Drawer cart */
+    .drawerOverlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      z-index:80;
+    }
+    .drawer{
+      position:fixed;
+      top:0; right:0;
+      height:100%;
+      width:min(420px, 92vw);
+      background: linear-gradient(180deg, rgba(15,26,46,.98), rgba(8,14,26,.98));
+      border-left:1px solid rgba(255,255,255,.10);
+      box-shadow: -20px 0 70px rgba(0,0,0,.55);
+      transform: translateX(110%);
+      transition: transform .18s ease;
+      z-index:90;
+      display:flex;
+      flex-direction:column;
+    }
+    .drawer.open{transform: translateX(0)}
+    .drawerHeader{
+      padding:16px 16px 12px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .drawerHeader strong{font-size:14px}
+    .xbtn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      border-radius: 14px;
+      padding:8px 10px;
+      cursor:pointer;
+    }
+    .drawerBody{padding:14px 16px; flex:1; overflow:auto}
+    .lineItem{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      border-radius: 18px;
+      padding:12px;
+      display:grid;
+      grid-template-columns: 56px 1fr auto;
+      gap:12px;
+      align-items:center;
+      margin-bottom:12px;
+    }
+    .thumb{
+      width:56px; height:56px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      object-fit:cover;
+      background: rgba(255,255,255,.03);
+    }
+    .liTitle{font-size:13px; margin:0}
+    .liMeta{color:var(--muted); font-size:12px; margin-top:4px}
+    .qty{
+      display:flex; align-items:center; gap:8px;
+      justify-content:flex-end;
+    }
+    .qty button{
+      width:32px; height:32px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      cursor:pointer;
+      font-size:16px;
+      line-height:1;
+    }
+    .qty span{min-width:18px; text-align:center; font-family:var(--mono); font-size:13px}
+    .drawerFooter{
+      border-top:1px solid var(--line);
+      padding:14px 16px;
+      background: rgba(0,0,0,.12);
+    }
+    .totals{
+      display:flex; align-items:center; justify-content:space-between;
+      color: var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    .totals strong{color:var(--text); font-family:var(--mono)}
+    .checkoutNote{
+      margin-top:10px;
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.45;
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius: 16px;
+      padding:10px 10px;
+    }
+
+    /* Modal checkout */
+    .modalOverlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.62);
+      display:none;
+      z-index:120;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .modal{
+      width:min(720px, 96vw);
+      border-radius: 24px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(15,26,46,.98), rgba(8,14,26,.98));
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      overflow:hidden;
+    }
+    .modalHeader{
+      padding:16px 18px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .modalHeader strong{font-size:14px}
+    .modalBody{padding:16px 18px}
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 720px){.formGrid{grid-template-columns:1fr}}
+    label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px}
+    input, select{
+      width:100%;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding:12px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    input::placeholder{color: rgba(233,238,252,.45)}
+    .modalActions{
+      margin-top:14px;
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .success{
+      border:1px solid rgba(155,255,204,.30);
+      background: rgba(155,255,204,.06);
+      padding:12px;
+      border-radius: 18px;
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      display:none;
+      margin-top:12px;
+    }
+
+    .srOnly{
+      position:absolute; width:1px; height:1px;
+      padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container">
+      <div class="navinner">
+        <a class="brand" href="#top">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="brandtext">
+            <strong>Anker</strong>
+            <span>Duftstick Prototype Shop</span>
+          </div>
+        </a>
+
+        <nav class="navlinks" aria-label="Navigation">
+          <a class="chip" href="#produkt">Produkt</a>
+          <a class="chip" href="#wirkung">Ritual</a>
+          <a class="chip" href="#faq">FAQ</a>
+          <button class="cartbtn" id="openCart" type="button" aria-haspopup="dialog" aria-controls="cartDrawer">
+            Warenkorb <span class="badge" id="cartCount">0</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="herogrid">
+          <div class="panel">
+            <div class="panelpad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Fiktiver Prototyp. Kein echter Verkauf.</div>
+              <h1>Ein kleiner Anker für Ruhe im Alltag</h1>
+              <p class="lead">
+                Ein Duftstick mit ausgewählten aromatischen Ölen für Momente, in denen du bewusst durchatmen willst.
+                Als Prototyp gedacht, um Marke, Tonalität und Shop Erlebnis zu testen.
+              </p>
+
+              <div class="ctaRow">
+                <a class="btn btnPrimary" href="#produkt">Zum Produkt</a>
+                <button class="btn" type="button" id="addHero">In den Warenkorb legen</button>
+                <a class="btn" href="#wirkung">So nutzt du ihn</a>
+              </div>
+
+              <div class="mini">
+                <div class="miniCard">
+                  <strong>Diskret und mobil</strong>
+                  <span>Für unterwegs, vor Meetings, im Zug oder vor dem Schlafen.</span>
+                </div>
+                <div class="miniCard">
+                  <strong>Einfaches Ritual</strong>
+                  <span>Riechen. Atmen. Fokus finden. In unter zwei Minuten.</span>
+                </div>
+              </div>
+
+              <div class="note">
+                Hinweis: Dieses Produkt ist ein Lifestyle Prototyp und ersetzt keine medizinische oder psychotherapeutische Behandlung.
+                Bei starken oder anhaltenden Beschwerden suche bitte professionelle Unterstützung.
+              </div>
+            </div>
+          </div>
+
+          <aside class="panel imagePanel" aria-label="Produktbilder">
+            <div class="imageTop">
+              <div>
+                <strong style="font-size:14px">Produktansicht</strong>
+                <div class="hint">Lege deine Bilder in den Ordner und benenne sie als anker1.png und anker2.png</div>
+              </div>
+              <span class="pill">Mockup</span>
+            </div>
+            <div class="imageWrap">
+              <img class="img" src="anker1.png" alt="Anker Duftstick Nahaufnahme an der Nase" />
+              <img class="img" src="anker2.png" alt="Anker Duftstick auf Stoff mit Blüten" />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produkt">
+      <div class="container">
+        <div class="grid2">
+          <article class="card">
+            <div class="cardHeader">
+              <div>
+                <h2>Anker Duftstick</h2>
+                <p>Duftprofil: weich, klar, beruhigend. Für tägliche Mikro Pausen.</p>
+                <div class="pillRow">
+                  <span class="pill">0,0 Prozent Nikotin</span>
+                  <span class="pill">Kein Inhalieren</span>
+                  <span class="pill">Aromatische Öle</span>
+                  <span class="pill">Für Erwachsene</span>
+                </div>
+              </div>
+              <div class="price" aria-label="Preis">19,90 EUR</div>
+            </div>
+
+            <div class="cardBody">
+              <div class="columns">
+                <div>
+                  <strong style="font-size:13px">Inhalt im Prototyp</strong>
+                  <ul class="list">
+                    <li>Duftstick, 1 Stück</li>
+                    <li>Duftmischung: Lavendel, Bergamotte, Vetiver, Zeder, Vanille</li>
+                    <li>Nutzungsdauer: ca. 4 bis 6 Wochen je nach Anwendung</li>
+                  </ul>
+                </div>
+                <div>
+                  <strong style="font-size:13px">Für welche Momente</strong>
+                  <ul class="list">
+                    <li>Unruhe vor Terminen</li>
+                    <li>Reizüberflutung unterwegs</li>
+                    <li>Abendroutine zum Runterfahren</li>
+                    <li>Fokus vor Deep Work</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="ctaRow" style="margin-top:16px">
+                <button class="btn btnPrimary" type="button" id="addProduct">In den Warenkorb legen</button>
+                <button class="btn" type="button" id="buyNow">Jetzt testen im Checkout</button>
+              </div>
+
+              <div class="note">
+                Sicherheit: Ätherische Öle können sensibel machen. Nicht in die Augen bringen. Außer Reichweite von Kindern.
+                Bei Schwangerschaft oder bekannten Allergien vorher fachlich abklären.
+              </div>
+            </div>
+          </article>
+
+          <article class="card" id="wirkung">
+            <div class="cardHeader">
+              <div>
+                <h2>Das Zwei Minuten Ritual</h2>
+                <p>Klare Schritte, damit das Produkt nicht nur gut aussieht, sondern auch genutzt wird.</p>
+              </div>
+              <div class="price" style="border-color: rgba(155,255,204,.25)">01 bis 04</div>
+            </div>
+
+            <div class="cardBody">
+              <div class="columns">
+                <div class="miniCard">
+                  <strong>01. Pause setzen</strong>
+                  <span>Stopp. Schultern lösen. Blick weich werden lassen.</span>
+                </div>
+                <div class="miniCard">
+                  <strong>02. Duft wählen</strong>
+                  <span>Stick öffnen und 2 bis 3 Sekunden riechen.</span>
+                </div>
+                <div class="miniCard">
+                  <strong>03. Atmung führen</strong>
+                  <span>4 Sekunden einatmen. 6 Sekunden ausatmen. Drei Runden.</span>
+                </div>
+                <div class="miniCard">
+                  <strong>04. Rückkehr</strong>
+                  <span>Eine klare Mini Entscheidung treffen. Zum nächsten Schritt gehen.</span>
+                </div>
+              </div>
+
+              <div class="note">
+                Das Ritual ist eine Unterstützung für Selbstregulation. Es ist keine Therapie und ersetzt keine Behandlung.
+                Wenn du akute Angst oder Panik erlebst, hole dir bitte Hilfe durch medizinische oder psychologische Fachstellen.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <h2 style="margin:0 0 8px; font-size:18px">FAQ</h2>
+        <details>
+          <summary>Ist das ein echter Shop</summary>
+          <p>Nein. Diese Seite ist ein Prototyp, um Design, Texte und User Flow zu testen. Bestellungen sind fiktiv und werden nicht verarbeitet.</p>
+        </details>
+        <details>
+          <summary>Wie vermeiden wir medizinische Versprechen</summary>
+          <p>Wir sprechen über Entspannung, Wohlbefinden und Rituale. Wir vermeiden Heilung, Behandlung oder Diagnosen. Zusätzlich gibt es klare Hinweise, dass dies keine Therapie ersetzt.</p>
+        </details>
+        <details>
+          <summary>Kann ich weitere Produkte ergänzen</summary>
+          <p>Ja. Das Datenmodell im Script ist vorbereitet. Du kannst Duftvarianten, Bundles und Abo Modelle ergänzen.</p>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footgrid">
+          <div>
+            <strong style="color:var(--text)">Anker Prototype</strong><br />
+            <span>Fiktive Marke für Konzepttests, Nutzerfeedback und Pitch Material.</span>
+          </div>
+          <div style="text-align:right">
+            <a class="smalllink" href="#top">Nach oben</a><br />
+            <span>Impressum und Datenschutz: Platzhalter im Prototyp</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Warenkorb">
+    <div class="drawerHeader">
+      <strong>Warenkorb</strong>
+      <button class="xbtn" type="button" id="closeCart" aria-label="Schließen">Schließen</button>
+    </div>
+    <div class="drawerBody" id="cartItems">
+      <p style="color:var(--muted); font-size:13px; margin:6px 0">Noch nichts im Warenkorb. Lege den Duftstick hinzu.</p>
+    </div>
+    <div class="drawerFooter">
+      <div class="totals">
+        <span>Zwischensumme</span>
+        <strong id="subtotal">0,00 EUR</strong>
+      </div>
+      <button class="btn btnPrimary" type="button" id="checkoutBtn" style="width:100%; justify-content:center">
+        Fiktiver Checkout
+      </button>
+      <div class="checkoutNote">
+        Demo Hinweis: Es werden keine echten Zahlungen verarbeitet. Diese Oberfläche dient nur als Prototyp.
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Checkout">
+    <div class="modal">
+      <div class="modalHeader">
+        <strong>Checkout Prototype</strong>
+        <button class="xbtn" type="button" id="closeModal" aria-label="Schließen">Schließen</button>
+      </div>
+      <div class="modalBody">
+        <div class="formGrid">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" placeholder="Max Mustermann" autocomplete="name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" placeholder="max@example.com" autocomplete="email" />
+          </div>
+          <div>
+            <label for="address">Adresse</label>
+            <input id="address" placeholder="Musterstraße 1" autocomplete="street-address" />
+          </div>
+          <div>
+            <label for="city">Ort</label>
+            <input id="city" placeholder="Düsseldorf" autocomplete="address-level2" />
+          </div>
+          <div>
+            <label for="shipping">Versand</label>
+            <select id="shipping">
+              <option value="4.90">Standard 4,90 EUR</option>
+              <option value="7.90">Express 7,90 EUR</option>
+            </select>
+          </div>
+          <div>
+            <label for="payment">Zahlart</label>
+            <select id="payment">
+              <option>Kreditkarte Prototype</option>
+              <option>PayPal Prototype</option>
+              <option>Rechnung Prototype</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:12px">
+          Hinweis: Dieser Checkout ist fiktiv. Er speichert keine Daten dauerhaft und führt keine echte Zahlung aus.
+        </div>
+
+        <div class="modalActions">
+          <button class="btn" type="button" id="prefill">Beispieldaten einsetzen</button>
+          <button class="btn btnPrimary" type="button" id="placeOrder">Fiktive Bestellung auslösen</button>
+        </div>
+
+        <div class="success" id="successBox">
+          <strong style="color:var(--text)">Erfolg im Prototyp</strong><br />
+          Deine fiktive Bestellung wurde ausgelöst. Perfekt, um den Flow zu testen und Feedback zu sammeln.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const product = {
+      id: "anker-duftstick",
+      name: "Anker Duftstick",
+      variant: "Lavendel Bergamotte Vetiver",
+      price: 19.90,
+      image: "anker2.png"
+    };
+
+    const state = {
+      cart: []
+    };
+
+    const fmtEUR = (n) => {
+      const fixed = (Math.round(n * 100) / 100).toFixed(2);
+      return fixed.replace(".", ",") + " EUR";
+    };
+
+    const el = (id) => document.getElementById(id);
+
+    const cartCount = el("cartCount");
+    const cartItems = el("cartItems");
+    const subtotalEl = el("subtotal");
+
+    const drawer = el("cartDrawer");
+    const overlay = el("drawerOverlay");
+    const modalOverlay = el("modalOverlay");
+
+    function openDrawer(){
+      overlay.style.display = "block";
+      drawer.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      renderCart();
+    }
+
+    function closeDrawer(){
+      drawer.classList.remove("open");
+      overlay.style.display = "none";
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    function openModal(){
+      modalOverlay.style.display = "flex";
+      el("successBox").style.display = "none";
+    }
+
+    function closeModal(){
+      modalOverlay.style.display = "none";
+    }
+
+    function addToCart(){
+      const existing = state.cart.find(i => i.id === product.id);
+      if(existing){
+        existing.qty += 1;
+      } else {
+        state.cart.push({ ...product, qty: 1 });
+      }
+      renderCart();
+      openDrawer();
+    }
+
+    function changeQty(id, delta){
+      const item = state.cart.find(i => i.id === id);
+      if(!item) return;
+      item.qty += delta;
+      if(item.qty <= 0){
+        state.cart = state.cart.filter(i => i.id !== id);
+      }
+      renderCart();
+    }
+
+    function calcSubtotal(){
+      return state.cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    }
+
+    function renderCart(){
+      const count = state.cart.reduce((sum, i) => sum + i.qty, 0);
+      cartCount.textContent = String(count);
+
+      const sub = calcSubtotal();
+      subtotalEl.textContent = fmtEUR(sub);
+
+      if(state.cart.length === 0){
+        cartItems.innerHTML = '<p style="color:var(--muted); font-size:13px; margin:6px 0">Noch nichts im Warenkorb. Lege den Duftstick hinzu.</p>';
+        return;
+      }
+
+      cartItems.innerHTML = state.cart.map(i => `
+        <div class="lineItem">
+          <img class="thumb" src="${i.image}" alt="Vorschaubild ${i.name}" />
+          <div>
+            <p class="liTitle">${i.name}</p>
+            <div class="liMeta">${i.variant} · ${fmtEUR(i.price)}</div>
+          </div>
+          <div class="qty" aria-label="Menge">
+            <button type="button" aria-label="Minus" onclick="window.__qty('${i.id}', -1)">−</button>
+            <span>${i.qty}</span>
+            <button type="button" aria-label="Plus" onclick="window.__qty('${i.id}', 1)">+</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // Expose for inline handlers
+    window.__qty = (id, delta) => changeQty(id, delta);
+
+    // Bindings
+    el("openCart").addEventListener("click", openDrawer);
+    el("closeCart").addEventListener("click", closeDrawer);
+    overlay.addEventListener("click", closeDrawer);
+
+    el("addHero").addEventListener("click", addToCart);
+    el("addProduct").addEventListener("click", addToCart);
+
+    el("buyNow").addEventListener("click", () => {
+      if(state.cart.length === 0) addToCart();
+      closeDrawer();
+      openModal();
+    });
+
+    el("checkoutBtn").addEventListener("click", () => {
+      if(state.cart.length === 0){
+        addToCart();
+      } else {
+        closeDrawer();
+        openModal();
+      }
+    });
+
+    el("closeModal").addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", (e) => {
+      if(e.target === modalOverlay) closeModal();
+    });
+
+    el("prefill").addEventListener("click", () => {
+      el("name").value = "Max Mustermann";
+      el("email").value = "max@example.com";
+      el("address").value = "Musterstraße 1";
+      el("city").value = "Düsseldorf";
+    });
+
+    el("placeOrder").addEventListener("click", () => {
+      if(state.cart.length === 0){
+        alert("Warenkorb ist leer. Lege zuerst ein Produkt hinzu.");
+        return;
+      }
+      el("successBox").style.display = "block";
+      state.cart = [];
+      renderCart();
+    });
+
+    // Initial render
+    renderCart();
+  </script>
+</body>
+</html>
