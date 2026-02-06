@@ -1,0 +1,117 @@
+const COMMUNITY_KEY = "anker_community_v1";
+const PODCAST_KEY = "anker_podcast_v1";
+
+function loadCommunityPosts(){
+  try{
+    return JSON.parse(localStorage.getItem(COMMUNITY_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveCommunityPosts(posts){
+  localStorage.setItem(COMMUNITY_KEY, JSON.stringify(posts));
+}
+
+function seedCommunityPosts(){
+  const existing = loadCommunityPosts();
+  if(existing.length > 0) return;
+
+  const now = Date.now();
+  const demo = [
+    {
+      id: "p1",
+      author: "Team Anker",
+      topic: "rituale",
+      title: "Mein Zwei Minuten Reset vor Meetings",
+      body: "Kurz riechen, 4 6 Atmung, dann eine klare nächste Aktion. Hilft mir, nicht zu hetzen.",
+      likes: 3,
+      comments: [{ author: "Maurice", text: "Sehr gut. Genau so simpel muss es sein.", createdAt: now - 20000 }],
+      createdAt: now - 86400000
+    },
+    {
+      id: "p2",
+      author: "Anonym",
+      topic: "schlaf",
+      title: "Abendroutine ohne Druck",
+      body: "Ich mache nur zwei Dinge: Licht runter und einen ruhigen Moment. Alles andere ist Bonus.",
+      likes: 5,
+      comments: [],
+      createdAt: now - 3600000
+    },
+    {
+      id: "p3",
+      author: "Community",
+      topic: "fragen",
+      title: "Welche Situationen sind für euch am schwierigsten",
+      body: "Ich suche konkrete Ideen: morgens, unterwegs, vor Gesprächen. Was triggert euch am meisten",
+      likes: 1,
+      comments: [],
+      createdAt: now - 120000
+    }
+  ];
+
+  saveCommunityPosts(demo);
+}
+
+function loadPodcastEpisodes(){
+  try{
+    return JSON.parse(localStorage.getItem(PODCAST_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function savePodcastEpisodes(eps){
+  localStorage.setItem(PODCAST_KEY, JSON.stringify(eps));
+}
+
+function seedPodcastEpisodes(){
+  const existing = loadPodcastEpisodes();
+  if(existing.length > 0) return;
+
+  const now = Date.now();
+  const demo = [
+    {
+      id: "e1",
+      number: "01",
+      title: "Zurück in den Moment in 120 Sekunden",
+      teaser: "Ein kurzer Ablauf, um aus dem Kopf in den Körper zu kommen.",
+      duration: "6 min",
+      publishedAt: now - 10 * 86400000,
+      description: "Eine kompakte Episode mit einem klaren Schritt für Schritt Ritual. Ziel: mehr Ruhe und Orientierung im Alltag.",
+      audioUrl: "",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    },
+    {
+      id: "e2",
+      number: "02",
+      title: "Unruhe verstehen, ohne sie zu bekämpfen",
+      teaser: "Warum Kontrolle oft Druck erzeugt und was besser funktioniert.",
+      duration: "12 min",
+      publishedAt: now - 6 * 86400000,
+      description: "Du bekommst eine ruhige Perspektive und zwei praktische Mikro Impulse, die sich leicht umsetzen lassen.",
+      audioUrl: "",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    },
+    {
+      id: "e3",
+      number: "03",
+      title: "Fokus starten: die erste Minute zählt",
+      teaser: "Eine kleine Startsequenz für Deep Work und saubere Übergänge.",
+      duration: "9 min",
+      publishedAt: now - 2 * 86400000,
+      description: "Wir bauen eine kurze Startsequenz, die dich in Handlung bringt. Kein Perfektionismus, nur Richtung.",
+      audioUrl: "",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    }
+  ];
+
+  savePodcastEpisodes(demo);
+}
