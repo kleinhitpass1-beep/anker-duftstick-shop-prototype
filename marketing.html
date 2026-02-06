@@ -48,37 +48,75 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="sectionHeader">
-          <div>
-            <h2>Influencer Videos</h2>
-            <p>Wähle ein Video und spiele es im Player ab.</p>
+<section class="section">
+  <div class="container">
+    <div class="sectionHeader">
+      <div>
+        <h2>Influencer Videos</h2>
+        <p>Echte Anwendungssituationen. Ruhig, glaubwürdig, ohne Inszenierung.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <!-- Influencer 1 -->
+      <div class="card shadowBig">
+        <div class="padLg">
+          <div class="kicker">
+            <span class="dot" aria-hidden="true"></span>
+            Influencer 01
           </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end">
-            <button class="btn btnSmall" type="button" id="play1">Influencer Video 1</button>
-            <button class="btn btnSmall" type="button" id="play2">Influencer Video 2</button>
-            <button class="btn btnSmall btnGhost" type="button" id="stop">Stop</button>
-          </div>
-        </div>
 
-        <div class="card shadowBig">
-          <div class="padLg">
-            <div class="kicker"><span class="dot" aria-hidden="true"></span> Player</div>
-            <div style="font-weight:900; font-size:16px; margin-top:10px" id="vTitle">Kein Video ausgewählt</div>
-            <div style="color:var(--muted); margin-top:6px" id="vMeta">Wähle oben ein Video.</div>
+          <h3 style="margin:10px 0 6px">
+            Ankerstick vor einer Yoga oder Meditationssession
+          </h3>
 
-            <div style="margin-top:14px">
-              <video id="player" controls preload="metadata" style="width:100%; border-radius:18px; border:1px solid var(--line); box-shadow: var(--shadow2);"></video>
-            </div>
+          <p class="sub" style="margin-bottom:12px">
+            Der Ankerstick als bewusster Übergang in die Praxis.
+            Ein Moment des Ankommens, bevor die Session beginnt.
+          </p>
 
-            <div class="fineprint" style="margin-top:12px">
-              Hinweis: Bei echten Kampagnen Kennzeichnung, Rechte und Claims sauber prüfen.
-            </div>
+          <video controls preload="metadata" style="width:100%; border-radius:18px; border:1px solid var(--line); box-shadow: var(--shadow2);">
+            <source src="video-influencer-1.mp4" type="video/mp4" />
+            Dein Browser unterstützt dieses Video nicht.
+          </video>
+
+          <div class="fineprint" style="margin-top:10px">
+            Kontext: Vorbereitung · Achtsamkeit · Körperwahrnehmung
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Influencer 2 -->
+      <div class="card shadowBig">
+        <div class="padLg">
+          <div class="kicker">
+            <span class="dot" aria-hidden="true"></span>
+            Influencer 02
+          </div>
+
+          <h3 style="margin:10px 0 6px">
+            Ankerstick vor einem Bühnenauftritt
+          </h3>
+
+          <p class="sub" style="margin-bottom:12px">
+            Ein kurzer Moment der Zentrierung vor dem Auftritt.
+            Fokus sammeln, Nervosität regulieren, präsent werden.
+          </p>
+
+          <video controls preload="metadata" style="width:100%; border-radius:18px; border:1px solid var(--line); box-shadow: var(--shadow2);">
+            <source src="video-influencer-2.mp4" type="video/mp4" />
+            Dein Browser unterstützt dieses Video nicht.
+          </video>
+
+          <div class="fineprint" style="margin-top:10px">
+            Kontext: Auftritt · Fokus · innere Stabilität
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <section class="section">
       <div class="container">
@@ -149,32 +187,6 @@
 
   <script src="app.js"></script>
   <script>
-    const VIDEOS = {
-      v1: { title: "Influencer Video 1", meta: "Alltag und Anwendung", src: "video-influencer-1.mp4" },
-      v2: { title: "Influencer Video 2", meta: "Kurzformat fuer Social Media", src: "video-influencer-2.mp4" }
-    };
-
-    function play(key){
-      const v = VIDEOS[key];
-      if(!v) return;
-
-      document.getElementById("vTitle").textContent = v.title;
-      document.getElementById("vMeta").textContent = v.meta;
-
-      const p = document.getElementById("player");
-      p.src = v.src;
-      p.play().catch(() => {});
-    }
-
-    document.getElementById("play1").addEventListener("click", () => play("v1"));
-    document.getElementById("play2").addEventListener("click", () => play("v2"));
-
-    document.getElementById("stop").addEventListener("click", () => {
-      const p = document.getElementById("player");
-      p.pause();
-      p.currentTime = 0;
-    });
-
     document.addEventListener("DOMContentLoaded", () => {
       if(typeof setCartBadge === "function") setCartBadge();
     });
