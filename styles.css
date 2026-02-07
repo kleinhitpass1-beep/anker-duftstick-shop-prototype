@@ -486,12 +486,7 @@ select, input{
   box-shadow:0 30px 60px rgba(11,27,58,.12);
   object-fit:cover;
 }
-.influencerGrid video{
-  width:100%;
-  aspect-ratio:16 / 9;
-  object-fit:cover;
-  border-radius:20px;
-}
+
 .influencerGrid{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
@@ -500,6 +495,7 @@ select, input{
 }
 
 .influencerCard{
+  height:100%;
   display:flex;
   flex-direction:column;
 }
@@ -516,6 +512,9 @@ select, input{
   height:100%;
   object-fit:cover;
   display:block;
+}
+.influencerBottom{
+  margin-top:auto;
 }
 
 
