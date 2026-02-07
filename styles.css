@@ -449,5 +449,15 @@ select, input{
 .heroProduct{
   transition: transform .18s ease, box-shadow .18s ease;
 }
+.ctaRight{
+  margin-top: 14px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 980px){
+  .ctaRight{
+    justify-content: center;
+  }
+}
 
 
