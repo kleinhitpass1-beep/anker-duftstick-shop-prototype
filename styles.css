@@ -348,24 +348,29 @@ h1{
 
 /* bottom packaging: full width like top image, with air top/bottom, no tiny look */
 .packShot{
+  margin-top:10px;
   width:100%;
-  border-radius:18px;
+  border-radius:22px;
   overflow:hidden;
   border:1px solid var(--line);
-  background: rgba(255,255,255,.75);
+  background:#f3f6fb;
   box-shadow: var(--shadow2);
+  height:280px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:12px;
-  height:100%;
 }
+
 .packShot img{
-  width:100%;
-  height:100%;
+  width:115%;
+  height:auto;
+  max-height:240px;
+  object-fit:contain;
+  object-position:center center;
   display:block;
-  object-fit: contain;
+  transform:translateY(4px);
 }
+
 
 /* CTA under images (clean placement) */
 .rightCta{
