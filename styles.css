@@ -73,13 +73,13 @@ header{
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .logo{
-  width:44px;
-  height:44px;
-  border-radius:14px;
+  width:58px;
+  height:58px;
   object-fit:cover;
-  border:1px solid var(--line);
-  box-shadow: 0 14px 28px rgba(11,27,58,.12);
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(11,27,58,.15);
 }
+
 
 /* Navigation */
 .links{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
