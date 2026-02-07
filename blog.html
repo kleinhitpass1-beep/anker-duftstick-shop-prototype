@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>an:care Blog</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Start">
+          <img class="logo" src="logo.png" alt="an:care Logo" />
+          <span>
+            an:care
+            <small>Blog</small>
+          </span>
+        </a>
+
+        <nav class="links" aria-label="Navigation">
+          <a class="link" href="shop.html">Shop</a>
+          <a class="link" href="index.html#so-funktionierts">Ritual</a>
+          <a class="link" href="community.html">Community</a>
+          <a class="link" href="marketing.html">Marketing</a>
+          <a class="link" href="podcast.html">Podcast</a>
+          <a class="link" href="blog.html">Blog</a>
+          <a class="btn btnPrimary" href="product.html">
+            Zum Produkt <span class="badge" id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="card shadowBig">
+          <div class="padLg">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Blog</div>
+            <h1 style="margin:10px 0">Impulse für Ruhe und Klarheit</h1>
+            <p class="lead" style="margin:0">
+              Kurze Artikel, konkrete Übungen, klare Sprache.
+            </p>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="grid3">
+          <article class="card">
+            <div class="pad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Ritual</div>
+              <div style="font-weight:900; font-size:16px; margin-top:10px">Zwei Minuten Reset im Alltag</div>
+              <div class="sub">Wie du mit einem kurzen Übergang wieder in den Moment kommst.</div>
+              <div class="ctaRow" style="margin-top:14px">
+                <a class="btn btnPrimary" href="#">Lesen</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="pad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Fokus</div>
+              <div style="font-weight:900; font-size:16px; margin-top:10px">Vor Terminen ruhig bleiben</div>
+              <div class="sub">Ein kurzer Ablauf für Meetings, Gespräche und Entscheidungen.</div>
+              <div class="ctaRow" style="margin-top:14px">
+                <a class="btn btnPrimary" href="#">Lesen</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="pad">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Schlaf</div>
+              <div style="font-weight:900; font-size:16px; margin-top:10px">Abendroutinen ohne Druck</div>
+              <div class="sub">Kleine Schritte, die du wirklich durchhältst.</div>
+              <div class="ctaRow" style="margin-top:14px">
+                <a class="btn btnPrimary" href="#">Lesen</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if(typeof setCartBadge === "function") setCartBadge();
+    });
+  </script>
+</body>
+</html>
