@@ -438,5 +438,16 @@ select, input{
   border: 1px solid var(--line);
   box-shadow: 0 10px 24px rgba(11,27,58,.08);
 }
+.productLink{
+  display:block;
+  border-radius: 20px;
+}
+.productLink:hover .heroProduct{
+  transform: translateY(-2px);
+  box-shadow: 0 28px 70px rgba(11,95,255,.18);
+}
+.heroProduct{
+  transition: transform .18s ease, box-shadow .18s ease;
+}
 
 
