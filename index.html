@@ -11,6 +11,27 @@
   <meta name="description" content="Shop Prototyp für an:care. Ein Duftstick für mehr Ruhe im Alltag." />
   <link rel="stylesheet" href="styles.css" />
 </head>
+  
+<!-- Newsletter Modal -->
+<div class="nlOverlay" id="nlOverlay" aria-hidden="true">
+  <div class="nlModal" role="dialog" aria-modal="true" aria-labelledby="nlTitle">
+    <button class="nlClose" id="nlClose" aria-label="Schließen">×</button>
+
+    <div class="kicker"><span class="dot" aria-hidden="true"></span> Newsletter</div>
+    <h2 id="nlTitle" class="nlTitle">Neue Updates zu an:care</h2>
+    <p class="nlSub">Erhalte Launch Infos, Produkt Updates und neue Inhalte. Kein Spam, jederzeit abmeldbar.</p>
+
+    <form class="nlForm" id="nlForm">
+      <label for="nlEmail">E Mail</label>
+      <input id="nlEmail" name="email" type="email" placeholder="name@email.de" required />
+
+      <button class="btn btnPrimary" type="submit">Eintragen</button>
+      <button class="btn" type="button" id="nlLater">Später</button>
+
+      <div class="nlFine">Mit dem Eintragen stimmst du dem Erhalt des Newsletters zu. Abmeldung jederzeit möglich.</div>
+    </form>
+  </div>
+</div>
 
 <body>
   <header>
@@ -213,6 +234,51 @@
         alert("Im Prototyp hinzugefügt. Öffne jetzt die Produktseite für Details.");
       });
     }
+      // Newsletter Pop up (einmalig)
+  (function(){
+    const KEY = "ancare_newsletter_seen_v1";
+    const overlay = document.getElementById("nlOverlay");
+    const closeBtn = document.getElementById("nlClose");
+    const laterBtn = document.getElementById("nlLater");
+    const form = document.getElementById("nlForm");
+
+    if(!overlay || localStorage.getItem(KEY)) return;
+
+    function open(){
+      overlay.classList.add("isOpen");
+      overlay.setAttribute("aria-hidden","false");
+      const email = document.getElementById("nlEmail");
+      if(email) setTimeout(() => email.focus(), 150);
+    }
+    function close(){
+      overlay.classList.remove("isOpen");
+      overlay.setAttribute("aria-hidden","true");
+      localStorage.setItem(KEY, "1");
+    }
+
+    // leicht verzögert öffnen (wirkt hochwertiger)
+    setTimeout(open, 1200);
+
+    closeBtn.addEventListener("click", close);
+    laterBtn.addEventListener("click", close);
+
+    // Klick auf Hintergrund schließt
+    overlay.addEventListener("click", (e) => {
+      if(e.target === overlay) close();
+    });
+
+    // ESC schließt
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && overlay.classList.contains("isOpen")) close();
+    });
+
+    // Submit: im Prototyp nur bestätigen und schließen
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      close();
+      alert("Danke. Du bist im Prototyp eingetragen.");
+    });
+  })();
   </script>
 </body>
 </html>
