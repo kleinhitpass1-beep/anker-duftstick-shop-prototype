@@ -39,12 +39,13 @@
   <main>
     <section class="section">
       <div class="container">
+
         <div class="card shadowBig">
           <div class="padLg">
             <div class="kicker"><span class="dot" aria-hidden="true"></span> Produkte</div>
             <h1 style="margin:10px 0">an:care im Shop</h1>
             <p class="lead" style="margin:0">
-              Klarer Einstieg. Eine Hauptvariante jetzt, Varianten später.
+              Klarer Einstieg. Calm ist verfügbar. Weitere Sorten sind in Vorbereitung.
             </p>
           </div>
         </div>
@@ -52,15 +53,15 @@
         <div style="height:18px"></div>
 
         <div class="grid3">
+          <!-- Verfügbar: Calm -->
           <div class="card">
             <div class="pad">
               <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
-                <div style="font-weight:900; font-size:16px">an:care Calm</div>
-                <div class="tag">13,99 EUR</div>
-              </div>
-
-              <div class="sub" style="margin-top:8px">
-                Diskret. Schnell. Für Übergänge und Reset Momente.
+                <div>
+                  <div style="font-weight:900; font-size:16px">an:care Calm</div>
+                  <div class="sub" style="margin-top:6px">Weich und ruhig. Für Übergänge und Reset Momente.</div>
+                </div>
+                <div class="price">13,99 EUR</div>
               </div>
 
               <div class="tagRow" style="margin-top:12px">
@@ -70,10 +71,105 @@
               </div>
 
               <div class="ctaRow" style="margin-top:14px">
-                <a class="btn btnPrimary" href="product.html">Details</a>
-                <button class="btn" type="button" onclick="addToCart('an:care Calm')">In den Warenkorb</button>
+                <a class="btn" href="product.html">Details</a>
+                <button class="btn btnPrimary" type="button"
+                  onclick="addToCart({ id:'ancare_calm', name:'an:care Calm', note:'Lavendel Bergamotte Vetiver', price:13.99, qty:1 }); alert('Im Prototyp in den Warenkorb gelegt.');">
+                  In den Warenkorb
+                </button>
               </div>
             </div>
+          </div>
+
+          <!-- In Vorbereitung: Focus -->
+          <div class="card">
+            <div class="pad">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
+                <div>
+                  <div style="font-weight:900; font-size:16px">an:care Focus</div>
+                  <div class="sub" style="margin-top:6px">Klar und frisch. Für Fokus und Startmomente.</div>
+                </div>
+                <span class="soonBadge">In Vorbereitung</span>
+              </div>
+
+              <div class="tagRow" style="margin-top:12px">
+                <span class="tag">Zitrus</span>
+                <span class="tag">Minze</span>
+                <span class="tag">Holz</span>
+              </div>
+
+              <div class="ctaRow" style="margin-top:14px">
+                <button class="btn" type="button" onclick="openInterest('an:care Focus')">Interesse zeigen</button>
+              </div>
+
+              <div class="fineprint" style="margin-top:12px">
+                Kein Verkauf im Prototyp. Wir sammeln Nachfrage.
+              </div>
+            </div>
+          </div>
+
+          <!-- In Vorbereitung: Balance -->
+          <div class="card">
+            <div class="pad">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
+                <div>
+                  <div style="font-weight:900; font-size:16px">an:care Balance</div>
+                  <div class="sub" style="margin-top:6px">Warm und rund. Für Ausgleich und Abendroutine.</div>
+                </div>
+                <span class="soonBadge">In Vorbereitung</span>
+              </div>
+
+              <div class="tagRow" style="margin-top:12px">
+                <span class="tag">Vanille</span>
+                <span class="tag">Amber</span>
+                <span class="tag">Sandelholz</span>
+              </div>
+
+              <div class="ctaRow" style="margin-top:14px">
+                <button class="btn" type="button" onclick="openInterest('an:care Balance')">Interesse zeigen</button>
+              </div>
+
+              <div class="fineprint" style="margin-top:12px">
+                Kein Verkauf im Prototyp. Wir sammeln Nachfrage.
+              </div>
+            </div>
+          </div>
+
+          <!-- In Vorbereitung: Sleep -->
+          <div class="card">
+            <div class="pad">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
+                <div>
+                  <div style="font-weight:900; font-size:16px">an:care Sleep</div>
+                  <div class="sub" style="margin-top:6px">Sanft und beruhigend. Für Runterfahren und Schlafritual.</div>
+                </div>
+                <span class="soonBadge">In Vorbereitung</span>
+              </div>
+
+              <div class="tagRow" style="margin-top:12px">
+                <span class="tag">Lavendel</span>
+                <span class="tag">Tonka</span>
+                <span class="tag">Moschus</span>
+              </div>
+
+              <div class="ctaRow" style="margin-top:14px">
+                <button class="btn" type="button" onclick="openInterest('an:care Sleep')">Interesse zeigen</button>
+              </div>
+
+              <div class="fineprint" style="margin-top:12px">
+                Kein Verkauf im Prototyp. Wir sammeln Nachfrage.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nachfrage Übersicht -->
+        <div class="card" style="margin-top:14px">
+          <div class="pad" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+            <div>
+              <div style="font-weight:900">Nachfrage Übersicht</div>
+              <div class="sub">Nur für dich sichtbar im Browser. Klick zeigt aktuelle Zähler. Details in der Console.</div>
+            </div>
+            <button class="btn" type="button" onclick="showInterestSummary()">Interesse anzeigen</button>
           </div>
         </div>
 
@@ -81,11 +177,109 @@
     </section>
   </main>
 
+  <!-- Interesse Modal -->
+  <div class="modal" id="interestModal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="interestTitle">
+      <div class="modalTop">
+        <div>
+          <div class="kicker"><span class="dot" aria-hidden="true"></span> Nachfrage</div>
+          <div id="interestTitle" style="font-weight:900; font-size:18px; margin-top:8px">Interesse</div>
+          <div class="sub" id="interestSub" style="margin-top:6px">Sag uns kurz Bescheid, dass du diese Sorte willst.</div>
+        </div>
+        <button class="btn btnSmall" type="button" onclick="closeInterest()">Schließen</button>
+      </div>
+
+      <div class="padLg" style="padding-top:16px">
+        <div class="field">
+          <label for="interestEmail">Email optional</label>
+          <input id="interestEmail" type="email" placeholder="name@mail.de" />
+        </div>
+
+        <div class="field">
+          <label for="interestNote">Notiz optional</label>
+          <input id="interestNote" type="text" placeholder="Zum Beispiel: Bitte als erstes bringen" />
+        </div>
+
+        <div class="ctaRow" style="margin-top:14px">
+          <button class="btn btnPrimary" type="button" onclick="submitInterest()">Interesse senden</button>
+          <button class="btn" type="button" onclick="closeInterest()">Abbrechen</button>
+        </div>
+
+        <div class="fineprint" style="margin-top:12px">
+          Hinweis: Im Prototyp wird die Nachfrage lokal gespeichert. Später kann das an ein echtes Formular angebunden werden.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if(typeof setCartBadge === "function") setCartBadge();
     });
+
+    let __interestVariant = "";
+
+    function openInterest(variantName){
+      __interestVariant = variantName;
+      const m = document.getElementById("interestModal");
+      document.getElementById("interestTitle").textContent = "Interesse: " + variantName;
+      document.getElementById("interestSub").textContent = "Trage dich ein, damit wir sehen, welche Sorte Priorität hat.";
+      document.getElementById("interestEmail").value = "";
+      document.getElementById("interestNote").value = "";
+      m.setAttribute("aria-hidden", "false");
+      m.classList.add("open");
+    }
+
+    function closeInterest(){
+      const m = document.getElementById("interestModal");
+      m.setAttribute("aria-hidden", "true");
+      m.classList.remove("open");
+    }
+
+    function submitInterest(){
+      const email = (document.getElementById("interestEmail").value || "").trim();
+      const note = (document.getElementById("interestNote").value || "").trim();
+
+      const key = "ancare_interest";
+      const raw = localStorage.getItem(key);
+      const data = raw ? JSON.parse(raw) : { items: [], counts: {} };
+
+      data.counts[__interestVariant] = (data.counts[__interestVariant] || 0) + 1;
+      data.items.push({
+        variant: __interestVariant,
+        email,
+        note,
+        ts: new Date().toISOString()
+      });
+
+      localStorage.setItem(key, JSON.stringify(data));
+
+      closeInterest();
+      alert("Danke. Interesse für " + __interestVariant + " wurde gespeichert.");
+    }
+
+    function showInterestSummary(){
+      const key = "ancare_interest";
+      const raw = localStorage.getItem(key);
+      const data = raw ? JSON.parse(raw) : { items: [], counts: {} };
+
+      const lines = Object.keys(data.counts)
+        .sort((a,b) => data.counts[b] - data.counts[a])
+        .map(k => k + ": " + data.counts[k]);
+
+      alert(lines.length ? lines.join("\n") : "Noch keine Nachfrage gespeichert.");
+      console.log("an:care Interesse Details", data);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeInterest();
+    });
+
+    document.getElementById("interestModal")?.addEventListener("click", (e) => {
+      if(e.target && e.target.id === "interestModal") closeInterest();
+    });
   </script>
 </body>
 </html>
+
