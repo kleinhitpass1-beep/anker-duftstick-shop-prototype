@@ -566,19 +566,26 @@ select, input{
   }
 }
 .packShot{
-  margin-top:14px;
+  margin-top:12px;
   border-radius:18px;
   overflow:hidden;
   border:1px solid var(--line);
   background:rgba(255,255,255,.55);
   box-shadow: var(--shadow2);
+  max-height:260px;
 }
 
-.packShot img{
+.productImage{
+  max-height:260px;
+  overflow:hidden;
+  border-radius:18px;
+}
+
+.productImage img{
   width:100%;
-  height:auto;
-  display:block;
+  height:100%;
   object-fit:cover;
+  display:block;
 }
 
 
