@@ -516,5 +516,54 @@ select, input{
 .influencerBottom{
   margin-top:auto;
 }
+.influencerGrid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:28px;
+  align-items:stretch;
+}
+
+.influencerCard{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.influencerInner{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.influencerMedia{
+  height:420px;
+  overflow:hidden;
+  border-radius:22px;
+  display:flex;
+}
+
+.influencerMedia video,
+.influencerMedia img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  flex:1;
+  border-radius:0;
+}
+
+/* Kontext immer unten, Cards dadurch exakt gleich */
+.influencerBottom{
+  margin-top:auto;
+}
+
+@media (max-width: 980px){
+  .influencerGrid{
+    grid-template-columns:1fr;
+  }
+  .influencerMedia{
+    height:300px;
+  }
+}
 
 
