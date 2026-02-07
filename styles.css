@@ -430,5 +430,13 @@ select, input{
   border: 1px solid var(--line);
   box-shadow: 0 22px 55px rgba(11,95,255,.14);
 }
+.logo{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px rgba(11,27,58,.08);
+}
 
 
