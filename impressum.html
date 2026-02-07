@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impressum | an:care</title>
+  <meta name="description" content="Impressum der an:care GmbH" />
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Start">
+          <img class="logo" src="logo.png" alt="an:care Logo" />
+          <span>
+            an:care
+            <small>Shop Prototyp</small>
+          </span>
+        </a>
+
+        <nav class="links" aria-label="Navigation">
+          <a class="link" href="shop.html">Shop</a>
+          <a class="link" href="community.html">Community</a>
+          <a class="link" href="marketing.html">Marketing</a>
+          <a class="link" href="podcast.html">Podcast</a>
+          <a class="link" href="blog.html">Blog</a>
+          <a class="link" href="index.html#faq">FAQ</a>
+          <a class="btn btnPrimary" href="product.html">
+            Zum Produkt <span class="badge" id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="card shadowBig">
+          <div class="padLg">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Rechtliches</div>
+            <h1 style="margin:12px 0 6px">Impressum</h1>
+            <p class="lead" style="margin-bottom:0">
+              Angaben gemäß den gesetzlichen Vorgaben. Bitte ergänze die Platzhalter mit den finalen Unternehmensdaten.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card">
+          <div class="padLg">
+            <h2 style="margin:0 0 10px">an:care GmbH</h2>
+
+            <div class="sub" style="margin:0 0 14px">
+              <strong>Vertreten durch die Geschäftsführer</strong><br />
+              Milan Schildbach, Sarah Rieger, Nick Schorp, Maurice Klein Hitpaß
+            </div>
+
+            <div class="sub" style="margin:0 0 14px">
+              <strong>Anschrift</strong><br />
+              Straße Hausnummer<br />
+              PLZ Ort<br />
+              Deutschland
+            </div>
+
+            <div class="sub" style="margin:0 0 14px">
+              <strong>Kontakt</strong><br />
+              Telefon: +49<br />
+              E Mail: kontakt@deine domain.de
+            </div>
+
+            <div class="sub" style="margin:0 0 14px">
+              <strong>Registerangaben</strong><br />
+              Handelsregister: Amtsgericht Ort<br />
+              Registernummer: HRB XXXXX
+            </div>
+
+            <div class="sub" style="margin:0 0 14px">
+              <strong>Umsatzsteuer</strong><br />
+              Umsatzsteuer Identifikationsnummer gemäß § 27 a UStG: DE XXXXXXXX
+            </div>
+
+            <div class="sub" style="margin:0 0 14px">
+              <strong>Verantwortlich für den Inhalt</strong><br />
+              an:care GmbH, Anschrift wie oben
+            </div>
+
+            <div class="fineprint" style="margin-top:14px">
+              Hinweis: Diese Seite ist eine Vorlage. Für eine rechtskonforme Fassung müssen die tatsächlichen Unternehmensdaten vollständig und korrekt eingetragen werden.
+            </div>
+
+            <div class="ctaRow" style="margin-top:16px">
+              <a class="btn" href="datenschutz.html">Zum Datenschutz</a>
+              <a class="btn btnPrimary" href="index.html">Zurück zur Startseite</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <strong style="color:var(--text)">an:care</strong><br />
+            <span>Prototyp für Konzepttests und Feedback</span>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <a class="link" href="impressum.html">Impressum</a>
+            <a class="link" href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if(typeof setCartBadge === "function") setCartBadge();
+    });
+  </script>
+</body>
+</html>
