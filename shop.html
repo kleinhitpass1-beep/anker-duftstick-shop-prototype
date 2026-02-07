@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>an:care Shop</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Start">
+          <img class="logo" src="logo.png" alt="an:care Logo" />
+          <span>
+            an:care
+            <small>Shop</small>
+          </span>
+        </a>
+
+        <nav class="links" aria-label="Navigation">
+          <a class="link" href="shop.html">Shop</a>
+          <a class="link" href="index.html#so-funktionierts">Ritual</a>
+          <a class="link" href="community.html">Community</a>
+          <a class="link" href="marketing.html">Marketing</a>
+          <a class="link" href="podcast.html">Podcast</a>
+          <a class="link" href="blog.html">Blog</a>
+          <a class="btn btnPrimary" href="product.html">
+            Zum Produkt <span class="badge" id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="card shadowBig">
+          <div class="padLg">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Produkte</div>
+            <h1 style="margin:10px 0">an:care im Shop</h1>
+            <p class="lead" style="margin:0">
+              Klarer Einstieg. Eine Hauptvariante jetzt, Varianten später.
+            </p>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="grid3">
+          <div class="card">
+            <div class="pad">
+              <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
+                <div style="font-weight:900; font-size:16px">an:care Calm</div>
+                <div class="tag">19,90 EUR</div>
+              </div>
+
+              <div class="sub" style="margin-top:8px">
+                Diskret. Schnell. Für Übergänge und Reset Momente.
+              </div>
+
+              <div class="tagRow" style="margin-top:12px">
+                <span class="tag">Lavendel</span>
+                <span class="tag">Bergamotte</span>
+                <span class="tag">Vetiver</span>
+              </div>
+
+              <div class="ctaRow" style="margin-top:14px">
+                <a class="btn btnPrimary" href="product.html">Details</a>
+                <button class="btn" type="button" onclick="addToCart('an:care Calm')">In den Warenkorb</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if(typeof setCartBadge === "function") setCartBadge();
+    });
+  </script>
+</body>
+</html>
