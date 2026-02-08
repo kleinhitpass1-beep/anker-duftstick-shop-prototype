@@ -1170,7 +1170,7 @@ input:not([type="radio"]):not([type="checkbox"]){
   display: block;
 
   margin-top: 10px;     /* Abstand zum Preis */
-  margin-right: +60px;  /* weiter nach rechts */
+  margin-right: +45px;  /* weiter nach rechts */
   
   background: transparent;
   border-radius: 0;
