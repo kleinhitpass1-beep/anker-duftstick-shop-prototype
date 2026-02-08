@@ -1116,46 +1116,9 @@ input:not([type="radio"]):not([type="checkbox"]){
   overflow: hidden;
 }
 
-.shopCard{
-  position: relative;
-  overflow: hidden;
-}
-
-.shopCardTop{
-  display:flex;
-  justify-content:space-between;
-  gap:18px;
-  align-items:flex-start;
-}
-
-.shopCardLeft{
-  flex:1;
-  min-width:0;
-}
-
-/* rechter Bereich: Preis oben, Bild darunter, rechts ausgerichtet */
-.shopCardRight{
-  min-width:140px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-}
-
-/* Bild exakt wie eingezeichnet: unter Preis, aber mit Luft */
-.shopCardImage{
-  margin-top:14px;        /* Abstand zum Preis */
-  width:120px;            /* Breite wie im Screenshot */
-  height:170px;           /* fixe Höhe damit es nicht "zu lang" wird */
-  object-fit:contain;
-  display:block;
-  background:transparent; /* kein weißer Kasten */
-  border-radius:0;        /* kein Rahmen */
-  box-shadow:none;        /* kein Schatten */
-  pointer-events:none;
-}
 /* Shop Karte kompakter machen */
 .shopCard .pad{
-  padding-bottom: 18px; /* vorher war hier viel Platz reserviert */
+  padding-bottom: 18px;
 }
 
 /* Abstand bei Tags und CTA reduzieren */
@@ -1167,20 +1130,41 @@ input:not([type="radio"]):not([type="checkbox"]){
   margin-top: 10px !important;
 }
 
-/* rechte Spalte etwas weiter nach rechts schieben */
-.shopCardRight{
-  min-width: 170px;      /* mehr Platz rechts -> Stick rutscht nach rechts */
-  padding-left: 10px;    /* kleiner Push nach rechts */
+/* Layout für Kopfbereich in der Calm Karte */
+.shopCardTop{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
 }
 
-/* Stick Position feinjustieren */
-.shopCardImage{
-  margin-top: 10px;      /* näher an den Preis, macht Karte kompakter */
-  margin-right: -6px;    /* optisch etwas weiter nach rechts */
-  width: 120px;
-  height: 170px;
-  object-fit: contain;
+.shopCardLeft{
+  flex:1;
+  min-width:0;
 }
+
+/* rechte Spalte: Preis oben, Bild darunter, rechts ausgerichtet */
+.shopCardRight{
+  min-width:160px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+}
+
+/* Produktbild: kompakt, nicht zu lang */
+.shopCardImage{
+  margin-top: 8px;
+  width: 100px;
+  height: 140px;
+  object-fit: contain;
+  display:block;
+
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  pointer-events: none;
+}
+
 
 
 
