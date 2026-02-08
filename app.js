@@ -46,26 +46,23 @@ function saveCart(cart) {
 function clearCart() {
   localStorage.removeItem(CART_KEY);
   setCartBadge();
-  // falls auf Produktseite vorhanden
   renderMiniCart();
 }
 
 /**
  * addToCart kann:
- * - addToCart("an:care Stick Calm")
- * - addToCart({ id, name, note, price, qty })
+ * addToCart("an:care Stick Calm")
+ * addToCart({ id, name, note, price, qty })
  */
 function addToCart(itemOrName) {
   const cart = loadCart();
 
-  // Schutz vor undefined / null
   const isString = typeof itemOrName === "string";
   const isObject = itemOrName && typeof itemOrName === "object";
 
   let item;
 
   if (isString) {
-    // String-Fallback: sinnvoller Default statt price:0
     const name = itemOrName.trim();
     item = {
       id: "ancare_" + slugify(name || "item"),
@@ -75,7 +72,6 @@ function addToCart(itemOrName) {
       qty: 1
     };
 
-    // Wenn Calm irgendwo im Namen vorkommt, setzen wir die definierte ID
     if (name.toLowerCase().includes("calm")) {
       item.id = "ancare_stick_calm";
       item.name = "an:care Stick Calm";
@@ -83,23 +79,20 @@ function addToCart(itemOrName) {
       item.price = 13.99;
     }
   } else if (isObject) {
-    // Objekt: Defaults + Validierung
-    const name = (itemOrName.name || "an:care").trim();
+    const name = String(itemOrName.name || "an:care").trim();
     item = {
       id: itemOrName.id || ("ancare_" + slugify(name || "item")),
       name,
-      note: (itemOrName.note || "").trim(),
+      note: String(itemOrName.note || "").trim(),
       price: typeof itemOrName.price === "number"
         ? itemOrName.price
         : parseFloat(itemOrName.price || "0"),
       qty: Math.max(1, parseInt(itemOrName.qty || "1", 10))
     };
 
-    // Preis nicht valide oder 0 -> Default, damit es nicht "kaputt" wirkt
     if (!Number.isFinite(item.price) || item.price <= 0) item.price = 13.99;
   } else {
-    // Unbekannter Aufruf: nicht crashen, einfach abbrechen
-    console.warn("[an:care] addToCart: ungültiger Parameter", itemOrName);
+    console.warn("[an:care] addToCart: ungueltiger Parameter", itemOrName);
     return;
   }
 
@@ -111,12 +104,10 @@ function addToCart(itemOrName) {
   }
 
   saveCart(cart);
-
-  // UI Updates
   setCartBadge();
   renderMiniCart();
 
-  console.log("[an:care] addToCart OK:", item);
+  return item;
 }
 
 function cartCount() {
@@ -142,31 +133,30 @@ function renderMiniCart() {
   if (!host) return;
 
   const cart = loadCart();
+
   if (cart.length === 0) {
     host.innerHTML = `<div class="sub">Dein Warenkorb ist aktuell leer.</div>`;
     if (totalEl) totalEl.textContent = euro(0);
     return;
   }
 
-  const rows = cart
-    .map((x, idx) => {
-      const title = x.name || "an:care";
-      const note = x.note ? `<div class="sub" style="margin-top:4px">${x.note}</div>` : "";
-      return `
-        <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line)">
-          <div style="min-width:0">
-            <div style="font-weight:800">${title}</div>
-            ${note}
-            <div class="sub" style="margin-top:6px">Menge: ${x.qty}</div>
-          </div>
-          <div style="text-align:right">
-            <div class="price">${euro(Number(x.price || 0) * Number(x.qty || 0))}</div>
-            <button class="btn btnSmall" type="button" data-remove-index="${idx}" style="margin-top:8px">Entfernen</button>
-          </div>
+  const rows = cart.map((x, idx) => {
+    const title = x.name || "an:care";
+    const note = x.note ? `<div class="sub" style="margin-top:4px">${x.note}</div>` : "";
+    return `
+      <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line)">
+        <div style="min-width:0">
+          <div style="font-weight:800">${title}</div>
+          ${note}
+          <div class="sub" style="margin-top:6px">Menge: ${x.qty}</div>
         </div>
-      `;
-    })
-    .join("");
+        <div style="text-align:right">
+          <div class="price">${euro(Number(x.price || 0) * Number(x.qty || 0))}</div>
+          <button class="btn btnSmall" type="button" data-remove-index="${idx}" style="margin-top:8px">Entfernen</button>
+        </div>
+      </div>
+    `;
+  }).join("");
 
   host.innerHTML = rows;
 
@@ -185,10 +175,7 @@ function renderMiniCart() {
 
 /* ---------- Interest Tracking ---------- */
 function loadInterest() {
-  return safeJsonParse(localStorage.getItem(INTEREST_KEY), {
-    events: [],
-    totals: {},
-  });
+  return safeJsonParse(localStorage.getItem(INTEREST_KEY), { events: [], totals: {} });
 }
 
 function saveInterest(data) {
@@ -204,6 +191,7 @@ function trackInterest(payload) {
     name: payload.name || "an:care",
     source: payload.source || "shop",
     note: payload.note || "",
+    email: payload.email || ""
   };
 
   data.events.push(event);
@@ -213,36 +201,7 @@ function trackInterest(payload) {
   return data;
 }
 
-function exportInterestCsv() {
-  const data = loadInterest();
-  const header = ["timestamp", "variant", "name", "source", "note"];
-  const lines = [header.join(";")];
-
-  for (const e of data.events) {
-    const row = [
-      e.ts,
-      e.variant,
-      e.name,
-      e.source,
-      (e.note || "").replaceAll(";", ","),
-    ];
-    lines.push(row.join(";"));
-  }
-
-  const csv = lines.join("\n");
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "ancare_nachfrage.csv";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-
-  URL.revokeObjectURL(url);
-}
-
+/* Optional Panel auf shop.html (div id="interestPanel") */
 function renderInterestPanel() {
   const host = document.getElementById("interestPanel");
   if (!host) return;
@@ -252,10 +211,12 @@ function renderInterestPanel() {
 
   const items = Object.keys(totals)
     .sort((a, b) => totals[b] - totals[a])
-    .map((k) => `<div style="display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid var(--line)">
-      <div style="font-weight:800">${k}</div>
-      <div class="price">${totals[k]}</div>
-    </div>`)
+    .map((k) => `
+      <div style="display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid var(--line)">
+        <div style="font-weight:800">${k}</div>
+        <div class="price">${totals[k]}</div>
+      </div>
+    `)
     .join("");
 
   host.innerHTML = `
@@ -263,38 +224,50 @@ function renderInterestPanel() {
       <div class="padLg">
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Nachfrage Tracking</div>
         <h2 style="margin:12px 0 6px; font-size:20px">Interesse an Varianten</h2>
-        <p class="sub" style="margin:0 0 12px">Zählt Klicks auf Interesse Buttons. Alles lokal im Browser gespeichert.</p>
+        <p class="sub" style="margin:0 0 12px">Alles lokal im Browser gespeichert.</p>
 
         <div style="border:1px solid var(--line); border-radius:18px; padding:14px; background:rgba(255,255,255,.65)">
           ${items || `<div class="sub">Noch keine Nachfrage erfasst.</div>`}
         </div>
 
         <div class="ctaRow" style="margin-top:14px">
-          <button class="btn btnPrimary" type="button" id="exportInterest">CSV Export</button>
-          <button class="btn" type="button" id="clearInterest">Zurücksetzen</button>
+          <button class="btn" type="button" id="clearInterest">Zuruecksetzen</button>
         </div>
       </div>
     </div>
   `;
 
-  const exportBtn = document.getElementById("exportInterest");
   const clearBtn = document.getElementById("clearInterest");
-
-  if (exportBtn) exportBtn.addEventListener("click", exportInterestCsv);
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       localStorage.removeItem(INTEREST_KEY);
       renderInterestPanel();
-      alert("Nachfrage im Prototyp zurückgesetzt.");
+      alert("Nachfrage im Prototyp zurueckgesetzt.");
     });
   }
 }
 
-/* ---------- Auto wiring for Shop buttons ---------- */
+/* ---------- Auto wiring ---------- */
+/* Warenkorb Buttons: <button data-add-to-cart data-id="" data-name="" data-note="" data-price="13.99" data-qty="1"> */
+function wireCartButtons() {
+  const buttons = document.querySelectorAll("[data-add-to-cart]");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id") || ("ancare_" + slugify(btn.getAttribute("data-name") || "item"));
+      const name = btn.getAttribute("data-name") || "an:care";
+      const note = btn.getAttribute("data-note") || "";
+      const price = parseFloat(btn.getAttribute("data-price") || "0");
+      const qty = parseInt(btn.getAttribute("data-qty") || "1", 10);
+
+      addToCart({ id, name, note, price, qty });
+      alert("Im Prototyp in den Warenkorb gelegt.");
+    });
+  });
+}
+
+/* Interesse Buttons: <button data-interest="focus" data-name="an:care Stick Focus"> */
 function wireInterestButtons() {
   const buttons = document.querySelectorAll("[data-interest]");
-  if (!buttons.length) return;
-
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const variant = btn.getAttribute("data-interest") || "unknown";
@@ -302,13 +275,11 @@ function wireInterestButtons() {
       const source = btn.getAttribute("data-source") || "shop";
       const note = btn.getAttribute("data-note") || "";
 
-      const data = trackInterest({ variant, name, source, note });
+      trackInterest({ variant, name, source, note });
+      renderInterestPanel();
 
       btn.textContent = "Interesse gespeichert";
       btn.disabled = true;
-
-      renderInterestPanel();
-      console.log("[an:care] Nachfrage gespeichert:", variant, data.totals);
     });
   });
 }
@@ -316,8 +287,18 @@ function wireInterestButtons() {
 /* ---------- Init ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   setCartBadge();
-  renderMiniCart(); // macht nichts, wenn miniCart nicht existiert
-  wireInterestButtons();
-  renderInterestPanel();
+  renderMiniCart();       // macht nichts, wenn es die Elemente nicht gibt
+  wireCartButtons();      // optional, falls du data Attribute nutzt
+  wireInterestButtons();  // optional, falls du data Attribute nutzt
+  renderInterestPanel();  // optional, falls interestPanel existiert
 });
+
+/* Global verfügbar lassen (falls inline onclick genutzt wird) */
+window.addToCart = addToCart;
+window.clearCart = clearCart;
+window.loadCart = loadCart;
+window.renderMiniCart = renderMiniCart;
+window.setCartBadge = setCartBadge;
+window.trackInterest = trackInterest;
+window.renderInterestPanel = renderInterestPanel;
 
