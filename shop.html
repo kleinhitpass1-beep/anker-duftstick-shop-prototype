@@ -72,8 +72,16 @@
 
               <div class="ctaRow" style="margin-top:14px">
                 <a class="btn" href="product.html">Details</a>
-                <button class="btn btnPrimary" type="button"
-                  onclick="addToCart({ id:'ancare_stick_calm', name:'an:care Stick Calm', note:'Lavendel Bergamotte Vetiver', price:13.99, qty:1 }); alert('Im Prototyp in den Warenkorb gelegt.');">
+                <button
+                  class="btn btnPrimary"
+                  type="button"
+                  data-add-to-cart
+                  data-id="ancare_stick_calm"
+                  data-name="an:care Stick Calm"
+                  data-note="Lavendel Bergamotte Vetiver"
+                  data-price="13.99"
+                  data-qty="1"
+                >
                   In den Warenkorb
                 </button>
               </div>
@@ -183,7 +191,6 @@
           </div>
         </div>
 
-        <!-- Nachfrage Panel wird von app.js automatisch befüllt -->
         <div id="interestPanel"></div>
 
       </div>
@@ -191,11 +198,7 @@
   </main>
 
   <script src="app.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if(typeof setCartBadge === "function") setCartBadge();
-    });
-  </script>
 </body>
 </html>
+
 
