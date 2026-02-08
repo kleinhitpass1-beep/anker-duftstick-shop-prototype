@@ -1158,6 +1158,13 @@ input:not([type="radio"]):not([type="checkbox"]){
   object-fit: contain !important;
   display: block !important;
 }
+/* FINAL: Calm Bild kompakt halten (nicht zu lang) */
+.shopCardRight .shopCardImage{
+  width: 82px !important;
+  height: 110px !important;     /* feste Höhe -> nicht mehr "zu lang" */
+  object-fit: contain !important;
+  display: block !important;
+}
 
 
 
