@@ -321,5 +321,3 @@ document.addEventListener("DOMContentLoaded", () => {
   renderInterestPanel();
 });
 
-});
-
