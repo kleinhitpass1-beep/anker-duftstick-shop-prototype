@@ -1,18 +1,12 @@
 /* =========================
    an:care Prototyp Logik
-   Warenkorb, Interesse, Podcast
+   Warenkorb, Interesse, Podcast Seeds
    Speichert alles lokal im Browser
 ========================= */
 
-"use strict";
-
-/* ---------- Keys ---------- */
 const CART_KEY = "ancare_cart_v1";
 const INTEREST_KEY = "ancare_interest_v1";
-
-// Podcast: wir unterstützen alt und neu, damit nichts bricht
-const PODCAST_KEY_NEW = "ancare_podcast_v1";
-const PODCAST_KEY_OLD = "anker_podcast_v1";
+const PODCAST_KEY = "anker_podcast_v1";
 
 /* ---------- Helpers ---------- */
 function euro(n) {
@@ -21,7 +15,11 @@ function euro(n) {
 }
 
 function safeJsonParse(str, fallback) {
-  try { return JSON.parse(str); } catch { return fallback; }
+  try {
+    return JSON.parse(str);
+  } catch {
+    return fallback;
+  }
 }
 
 function slugify(str) {
@@ -36,13 +34,7 @@ function slugify(str) {
     .replace(/^_+|_+$/g, "");
 }
 
-function qsa(sel, root) {
-  return Array.from((root || document).querySelectorAll(sel));
-}
-
-/* =========================
-   CART
-========================= */
+/* ---------- Cart ---------- */
 function loadCart() {
   return safeJsonParse(localStorage.getItem(CART_KEY), []);
 }
@@ -58,27 +50,6 @@ function clearCart() {
   renderMiniCart();
 }
 
-function cartCount() {
-  const cart = loadCart();
-  return cart.reduce((sum, x) => sum + (parseInt(x.qty || 0, 10) || 0), 0);
-}
-
-function cartTotal() {
-  const cart = loadCart();
-  return cart.reduce((sum, x) => sum + (Number(x.price || 0) * Number(x.qty || 0)), 0);
-}
-
-function setCartBadge() {
-  const el = document.getElementById("cartCount");
-  if (!el) return;
-  el.textContent = String(cartCount());
-}
-
-/**
- * addToCart kann:
- * addToCart("an:care Stick Calm")
- * addToCart({ id, name, note, price, qty })
- */
 function addToCart(itemOrName) {
   const cart = loadCart();
 
@@ -109,7 +80,9 @@ function addToCart(itemOrName) {
       id: itemOrName.id || ("ancare_" + slugify(name || "item")),
       name,
       note: String(itemOrName.note || "").trim(),
-      price: typeof itemOrName.price === "number" ? itemOrName.price : parseFloat(itemOrName.price || "0"),
+      price: typeof itemOrName.price === "number"
+        ? itemOrName.price
+        : parseFloat(itemOrName.price || "0"),
       qty: Math.max(1, parseInt(itemOrName.qty || "1", 10))
     };
 
@@ -128,8 +101,23 @@ function addToCart(itemOrName) {
 
   saveCart(cart);
   renderMiniCart();
-
   return item;
+}
+
+function cartCount() {
+  const cart = loadCart();
+  return cart.reduce((sum, x) => sum + (parseInt(x.qty || 0, 10) || 0), 0);
+}
+
+function cartTotal() {
+  const cart = loadCart();
+  return cart.reduce((sum, x) => sum + (Number(x.price || 0) * Number(x.qty || 0)), 0);
+}
+
+function setCartBadge() {
+  document.querySelectorAll("#cartCount").forEach((el) => {
+    el.textContent = String(cartCount());
+  });
 }
 
 function renderMiniCart() {
@@ -145,7 +133,7 @@ function renderMiniCart() {
     return;
   }
 
-  const rows = cart.map((x, idx) => {
+  host.innerHTML = cart.map((x, idx) => {
     const title = x.name || "an:care";
     const note = x.note ? `<div class="sub" style="margin-top:4px">${x.note}</div>` : "";
     return `
@@ -163,9 +151,7 @@ function renderMiniCart() {
     `;
   }).join("");
 
-  host.innerHTML = rows;
-
-  qsa("[data-remove-index]", host).forEach((btn) => {
+  host.querySelectorAll("[data-remove-index]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const i = parseInt(btn.getAttribute("data-remove-index"), 10);
       const next = loadCart();
@@ -178,9 +164,7 @@ function renderMiniCart() {
   if (totalEl) totalEl.textContent = euro(cartTotal());
 }
 
-/* =========================
-   INTEREST
-========================= */
+/* ---------- Interest Tracking ---------- */
 function loadInterest() {
   return safeJsonParse(localStorage.getItem(INTEREST_KEY), { events: [], totals: {} });
 }
@@ -252,119 +236,76 @@ function renderInterestPanel() {
   }
 }
 
-function wireInterestButtons() {
-  const buttons = qsa("[data-interest]");
-  if (!buttons.length) return;
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const variant = btn.getAttribute("data-interest") || "unknown";
-      const name = btn.getAttribute("data-name") || "an:care";
-      const source = btn.getAttribute("data-source") || "shop";
-      const note = btn.getAttribute("data-note") || "";
-
-      trackInterest({ variant, name, source, note });
-      renderInterestPanel();
-
-      btn.textContent = "Interesse gespeichert";
-      btn.disabled = true;
-    });
-  });
-}
-
-/* =========================
-   PODCAST
-   podcast.html erwartet:
-   loadPodcastEpisodes()
-   seedPodcastEpisodes()
-========================= */
-function _getPodcastKeyInUse() {
-  const hasNew = !!localStorage.getItem(PODCAST_KEY_NEW);
-  const hasOld = !!localStorage.getItem(PODCAST_KEY_OLD);
-  if (hasNew) return PODCAST_KEY_NEW;
-  if (hasOld) return PODCAST_KEY_OLD;
-  return PODCAST_KEY_NEW;
-}
-
+/* ---------- Podcast storage (damit podcast.html funktioniert) ---------- */
 function loadPodcastEpisodes() {
-  const key = _getPodcastKeyInUse();
-  const data = safeJsonParse(localStorage.getItem(key), { episodes: [] });
-  return Array.isArray(data.episodes) ? data.episodes : [];
+  return safeJsonParse(localStorage.getItem(PODCAST_KEY), []);
 }
 
-function savePodcastEpisodes(episodes) {
-  const key = PODCAST_KEY_NEW;
-  localStorage.setItem(key, JSON.stringify({ episodes: episodes || [] }));
+function savePodcastEpisodes(list) {
+  localStorage.setItem(PODCAST_KEY, JSON.stringify(list || []));
 }
 
 function seedPodcastEpisodes() {
-  const episodes = [
+  const eps = [
     {
       id: "ep_001",
       number: "01",
-      title: "Wer oder was steckt hinter an:care?",
-      teaser: "Idee, Team und Anwendung.",
-      description: "Wie du mit einem genialen Werkzeug wieder in den Körper kommst.",
-      duration: "12:10",
-      publishedAt: new Date(Date.now() - 86400000 * 7).toISOString(),
+      title: "Episode 01",
+      teaser: "Kurzer Impuls als Prototyp.",
+      description: "Prototyp Episode. Spaeter kannst du RSS oder Spotify anbinden.",
+      duration: "05:00",
+      publishedAt: new Date().toISOString(),
       audioUrl: "episode01.mp3",
-      spotifyUrl: "#",
-      appleUrl: "#",
-      webUrl: "#"
-    },
-    {
-      id: "ep_002",
-      number: "02",
-      title: "Uebergaenge statt Druck",
-      teaser: "Wie du zwischen Terminen nicht wieder in den Tunnel faellst.",
-      description: "Prototyp Episode. Kleine Rituale, klare Kanten, kein Perfektionismus.",
-      duration: "08:25",
-      publishedAt: new Date(Date.now() - 86400000 * 4).toISOString(),
-      audioUrl: "",
-      spotifyUrl: "#",
-      appleUrl: "#",
-      webUrl: "#"
-    },
-    {
-      id: "ep_003",
-      number: "03",
-      title: "Abend Routine, die wirklich machbar ist",
-      teaser: "Drei Minuten statt ein neues Leben.",
-      description: "Prototyp Episode. Weniger Input, mehr Ruhe, ein einfacher Abschluss.",
-      duration: "07:05",
-      publishedAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-      audioUrl: "",
       spotifyUrl: "#",
       appleUrl: "#",
       webUrl: "#"
     }
   ];
-
-  savePodcastEpisodes(episodes);
-  return episodes;
+  savePodcastEpisodes(eps);
+  return eps;
 }
 
-/* =========================
-   INIT
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  try {
-    setCartBadge();
-    renderMiniCart();
-    wireInterestButtons();
+/* ---------- Global click handling (WICHTIG) ---------- */
+function handleGlobalClicks(e) {
+  const cartBtn = e.target.closest("[data-add-to-cart]");
+  if (cartBtn) {
+    e.preventDefault();
+    const id = cartBtn.getAttribute("data-id") || ("ancare_" + slugify(cartBtn.getAttribute("data-name") || "item"));
+    const name = cartBtn.getAttribute("data-name") || "an:care";
+    const note = cartBtn.getAttribute("data-note") || "";
+    const price = parseFloat(cartBtn.getAttribute("data-price") || "0");
+    const qty = parseInt(cartBtn.getAttribute("data-qty") || "1", 10);
+
+    addToCart({ id, name, note, price, qty });
+    alert("Im Prototyp in den Warenkorb gelegt.");
+    return;
+  }
+
+  const interestBtn = e.target.closest("[data-interest]");
+  if (interestBtn) {
+    e.preventDefault();
+    const variant = interestBtn.getAttribute("data-interest") || "unknown";
+    const name = interestBtn.getAttribute("data-name") || "an:care";
+    const source = interestBtn.getAttribute("data-source") || "shop";
+    const note = interestBtn.getAttribute("data-note") || "";
+
+    trackInterest({ variant, name, source, note });
     renderInterestPanel();
 
-    // Debug, falls wieder etwas nicht reagiert
-    console.log("[an:care] app.js geladen", {
-      cartCount: cartCount(),
-      hasInterestButtons: qsa("[data-interest]").length
-    });
-  } catch (e) {
-    console.error("[an:care] app init error", e);
+    interestBtn.textContent = "Interesse gespeichert";
+    interestBtn.disabled = true;
   }
+}
+
+/* ---------- Init ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  setCartBadge();
+  renderMiniCart();
+  renderInterestPanel();
+  document.addEventListener("click", handleGlobalClicks);
 });
 
-/* ---------- Global exports (wichtig fuer inline onclick) ---------- */
+/* ---------- Export globals (falls inline onclick genutzt wird) ---------- */
 window.addToCart = addToCart;
 window.clearCart = clearCart;
 window.loadCart = loadCart;
@@ -375,5 +316,6 @@ window.trackInterest = trackInterest;
 window.renderInterestPanel = renderInterestPanel;
 
 window.loadPodcastEpisodes = loadPodcastEpisodes;
+window.savePodcastEpisodes = savePodcastEpisodes;
 window.seedPodcastEpisodes = seedPodcastEpisodes;
 
