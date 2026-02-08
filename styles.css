@@ -879,6 +879,7 @@ select, input{
   position: absolute;
   top: 18px;
   right: 18px;
+  bottom: 18px;
   width: 46px;
   height: 46px;
   border-radius: 14px;
