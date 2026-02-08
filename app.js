@@ -7,6 +7,34 @@
 const CART_KEY = "ancare_cart_v1";
 const INTEREST_KEY = "ancare_interest_v1";
 
+/* ---------- Storage (robust, auch im privaten Modus) ---------- */
+const __memoryStore = {};
+
+function storageGet(key) {
+  try {
+    const v = localStorage.getItem(key);
+    return v;
+  } catch (e) {
+    return Object.prototype.hasOwnProperty.call(__memoryStore, key) ? __memoryStore[key] : null;
+  }
+}
+
+function storageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (e) {
+    __memoryStore[key] = value;
+  }
+}
+
+function storageRemove(key) {
+  try {
+    localStorage.removeItem(key);
+  } catch (e) {
+    delete __memoryStore[key];
+  }
+}
+
 /* ---------- Helpers ---------- */
 function euro(n) {
   const val = typeof n === "number" ? n : parseFloat(n || "0");
@@ -14,7 +42,11 @@ function euro(n) {
 }
 
 function safeJsonParse(str, fallback) {
-  try { return JSON.parse(str); } catch { return fallback; }
+  try {
+    return JSON.parse(str);
+  } catch {
+    return fallback;
+  }
 }
 
 function slugify(str) {
@@ -31,28 +63,18 @@ function slugify(str) {
 
 /* ---------- Cart ---------- */
 function loadCart() {
-  return safeJsonParse(localStorage.getItem(CART_KEY), []);
+  return safeJsonParse(storageGet(CART_KEY), []);
 }
 
 function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  storageSet(CART_KEY, JSON.stringify(cart));
   setCartBadge();
 }
 
 function clearCart() {
-  localStorage.removeItem(CART_KEY);
+  storageRemove(CART_KEY);
   setCartBadge();
   renderMiniCart();
-}
-
-function cartCount() {
-  const cart = loadCart();
-  return cart.reduce((sum, x) => sum + (parseInt(x.qty || 0, 10) || 0), 0);
-}
-
-function cartTotal() {
-  const cart = loadCart();
-  return cart.reduce((sum, x) => sum + (Number(x.price || 0) * Number(x.qty || 0)), 0);
 }
 
 /**
@@ -114,16 +136,20 @@ function addToCart(itemOrName) {
   return item;
 }
 
+function cartCount() {
+  const cart = loadCart();
+  return cart.reduce((sum, x) => sum + (parseInt(x.qty || 0, 10) || 0), 0);
+}
+
+function cartTotal() {
+  const cart = loadCart();
+  return cart.reduce((sum, x) => sum + (Number(x.price || 0) * Number(x.qty || 0)), 0);
+}
+
 function setCartBadge() {
-  // unterstützt mehrere Badges, falls du später mehr willst
-  const count = String(cartCount());
-
-  const byId = document.getElementById("cartCount");
-  if (byId) byId.textContent = count;
-
-  document.querySelectorAll("[data-cart-count]").forEach((el) => {
-    el.textContent = count;
-  });
+  const el = document.getElementById("cartCount");
+  if (!el) return;
+  el.textContent = String(cartCount());
 }
 
 /* Mini Cart Rendering: optional auf product.html */
@@ -133,7 +159,8 @@ function renderMiniCart() {
   if (!host) return;
 
   const cart = loadCart();
-  if (cart.length === 0) {
+
+  if (!Array.isArray(cart) || cart.length === 0) {
     host.innerHTML = `<div class="sub">Dein Warenkorb ist aktuell leer.</div>`;
     if (totalEl) totalEl.textContent = euro(0);
     return;
@@ -142,6 +169,8 @@ function renderMiniCart() {
   const rows = cart.map((x, idx) => {
     const title = x.name || "an:care";
     const note = x.note ? `<div class="sub" style="margin-top:4px">${x.note}</div>` : "";
+    const lineTotal = Number(x.price || 0) * Number(x.qty || 0);
+
     return `
       <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line)">
         <div style="min-width:0">
@@ -150,7 +179,7 @@ function renderMiniCart() {
           <div class="sub" style="margin-top:6px">Menge: ${x.qty}</div>
         </div>
         <div style="text-align:right">
-          <div class="price">${euro(Number(x.price || 0) * Number(x.qty || 0))}</div>
+          <div class="price">${euro(lineTotal)}</div>
           <button class="btn btnSmall" type="button" data-remove-index="${idx}" style="margin-top:8px">Entfernen</button>
         </div>
       </div>
@@ -172,13 +201,13 @@ function renderMiniCart() {
   if (totalEl) totalEl.textContent = euro(cartTotal());
 }
 
-/* ---------- Interest ---------- */
+/* ---------- Interest Tracking ---------- */
 function loadInterest() {
-  return safeJsonParse(localStorage.getItem(INTEREST_KEY), { events: [], totals: {} });
+  return safeJsonParse(storageGet(INTEREST_KEY), { events: [], totals: {} });
 }
 
 function saveInterest(data) {
-  localStorage.setItem(INTEREST_KEY, JSON.stringify(data));
+  storageSet(INTEREST_KEY, JSON.stringify(data));
 }
 
 function trackInterest(payload) {
@@ -200,6 +229,7 @@ function trackInterest(payload) {
   return data;
 }
 
+/* Optional Panel auf shop.html (div id="interestPanel") */
 function renderInterestPanel() {
   const host = document.getElementById("interestPanel");
   if (!host) return;
@@ -238,25 +268,25 @@ function renderInterestPanel() {
   const clearBtn = document.getElementById("clearInterest");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
-      localStorage.removeItem(INTEREST_KEY);
+      storageRemove(INTEREST_KEY);
       renderInterestPanel();
       alert("Nachfrage im Prototyp zurueckgesetzt.");
     });
   }
 }
 
-/* ---------- Wiring: data Attribute Buttons ---------- */
+/* ---------- Auto wiring ---------- */
 function wireCartButtons() {
   const buttons = document.querySelectorAll("[data-add-to-cart]");
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const nameAttr = btn.getAttribute("data-name") || "an:care";
-      const id = btn.getAttribute("data-id") || ("ancare_" + slugify(nameAttr));
+      const id = btn.getAttribute("data-id") || ("ancare_" + slugify(btn.getAttribute("data-name") || "item"));
+      const name = btn.getAttribute("data-name") || "an:care";
       const note = btn.getAttribute("data-note") || "";
       const price = parseFloat(btn.getAttribute("data-price") || "0");
       const qty = parseInt(btn.getAttribute("data-qty") || "1", 10);
 
-      addToCart({ id, name: nameAttr, note, price, qty });
+      addToCart({ id, name, note, price, qty });
       alert("Im Prototyp in den Warenkorb gelegt.");
     });
   });
@@ -280,69 +310,21 @@ function wireInterestButtons() {
   });
 }
 
-/* ---------- Optional: Modal Support (falls vorhanden) ---------- */
-let __interestVariantName = "";
-function openInterest(variantName) {
-  __interestVariantName = variantName || "unknown";
-  const modal = document.getElementById("interestModal");
-  if (!modal) {
-    // Fallback ohne Modal
-    trackInterest({ variant: __interestVariantName, name: __interestVariantName, source: "shop", note: "" });
-    alert("Interesse gespeichert: " + __interestVariantName);
-    return;
-  }
-  const title = document.getElementById("interestTitle");
-  if (title) title.textContent = "Interesse: " + __interestVariantName;
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
-}
-
-function closeInterest() {
-  const modal = document.getElementById("interestModal");
-  if (!modal) return;
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
-}
-
-function submitInterest() {
-  const emailEl = document.getElementById("interestEmail");
-  const noteEl = document.getElementById("interestNote");
-  const email = emailEl ? (emailEl.value || "").trim() : "";
-  const note = noteEl ? (noteEl.value || "").trim() : "";
-
-  trackInterest({
-    variant: __interestVariantName || "unknown",
-    name: __interestVariantName || "an:care",
-    source: "shop",
-    note,
-    email
-  });
-
-  renderInterestPanel();
-  closeInterest();
-  alert("Danke. Interesse wurde gespeichert.");
-}
-
 /* ---------- Init ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   setCartBadge();
-  renderMiniCart();       // ok wenn nicht vorhanden
-  wireCartButtons();      // ok wenn keine Buttons
-  wireInterestButtons();  // ok wenn keine Buttons
-  renderInterestPanel();  // ok wenn nicht vorhanden
+  renderMiniCart();
+  wireCartButtons();
+  wireInterestButtons();
+  renderInterestPanel();
 });
 
-/* Global verfügbar (falls inline onclick genutzt wird) */
+/* Global verfügbar lassen (für inline onclick) */
 window.addToCart = addToCart;
 window.clearCart = clearCart;
 window.loadCart = loadCart;
 window.renderMiniCart = renderMiniCart;
 window.setCartBadge = setCartBadge;
-
 window.trackInterest = trackInterest;
 window.renderInterestPanel = renderInterestPanel;
-
-window.openInterest = openInterest;
-window.closeInterest = closeInterest;
-window.submitInterest = submitInterest;
 
