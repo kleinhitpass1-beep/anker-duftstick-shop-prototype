@@ -1142,38 +1142,17 @@ input:not([type="radio"]):not([type="checkbox"]){
 }
 
 .shopCardImage{
-  width: 78px;          /* deutlich kompakter */
-  height: auto;
-  display:block;
+  width: 120px;
+  height: 150px;          /* fix: verhindert "zu lang" */
   object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 10px 22px rgba(11,27,58,.08);
   pointer-events: none;
-}
-/* FORCE: Calm Bild im Shop wirklich kleiner machen */
-.shopCardRight .shopCardImage{
-  width: 78px !important;
-  height: auto !important;
-  max-height: 140px !important;   /* verhindert "zu lang" */
-  object-fit: contain !important;
-  display: block !important;
-}
-/* FINAL: Calm Bild kompakt halten (nicht zu lang) */
-.shopCardRight .shopCardImage{
-  width: 82px !important;
-  height: 110px !important;     /* feste Höhe -> nicht mehr "zu lang" */
-  object-fit: contain !important;
-  display: block !important;
-}
-.shopCardRight .shopCardImage{
-  width: 78px !important;
-  height: 96px !important;
-  object-fit: contain !important;
-  display: block !important;
+  display: block;
+  margin-left: auto;
 }
 .shopCard .pad{
-  padding-bottom: 70px !important;
+  padding-bottom: 18px;   /* wieder normal */
 }
+
 
 
 
