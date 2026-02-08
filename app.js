@@ -302,12 +302,12 @@ function seedPodcastEpisodes() {
     {
       id: "ep_001",
       number: "01",
-      title: "Der erste Reset in 60 Sekunden",
-      teaser: "Ein kurzer Impuls, wie du in Stress Momenten wieder in deinen Koerper kommst.",
-      description: "Prototyp Episode. Fokus auf Ausatmen, eine klare Mini Entscheidung und freundliche Selbstansprache.",
-      duration: "06:10",
+      title: "Wer oder was steckt hinter an:care?",
+      teaser: "Idee, Team und Anwendung.",
+      description: "Wie du mit einem genialen Werkzeug wieder in den Körper kommst.",
+      duration: "12:10",
       publishedAt: new Date(Date.now() - 86400000 * 7).toISOString(),
-      audioUrl: "",
+      audioUrl: "episode01.mp3",
       spotifyUrl: "#",
       appleUrl: "#",
       webUrl: "#"
