@@ -924,6 +924,53 @@ select, input{
   position: relative;
   overflow: visible;
 }
+.channelCard {
+  position: relative;
+  overflow: visible;
+}
+
+.channelBadge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+  z-index: 5;
+}
+
+.channelLogo {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.channelPreview {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 260px;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  border: 1px solid rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+.channelBadge:hover .channelPreview {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 
