@@ -1143,17 +1143,18 @@ input:not([type="radio"]):not([type="checkbox"]){
 }
 
 .shopCardImage{
-  position:absolute;
-  right: 18px;          /* weiter nach rechts */
-  top: 78px;            /* etwas nach oben */
+  margin-top: 6px;      /* leicht näher an den Preis */
+  margin-right: -12px;  /* weiter nach rechts */
   width: 105px;         /* etwas kleiner */
-  height: 150px;        /* etwas kleiner */
+  height: 150px;
   object-fit: contain;
+  display:block;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
   pointer-events:none;
 }
+
 
 /* Platz rechts reservieren, aber Buttons nebeneinander lassen */
 .shopCard .tagRow{
@@ -1184,6 +1185,21 @@ input:not([type="radio"]):not([type="checkbox"]){
   .shopCard .ctaRow{
     padding-right: 170px;
   }
+}
+/* Calm Buttons nebeneinander + Original Look */
+.shopCard .ctaRow{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.shopCard .ctaRow .btnPrimary{
+  width:auto;
+  padding:12px 22px;   /* entspricht deinem globalen Button Stil */
+  font-size:14px;
+  border-radius:999px;
+  white-space:nowrap;
 }
 
 
