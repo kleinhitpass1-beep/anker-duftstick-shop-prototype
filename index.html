@@ -11,37 +11,37 @@
   <meta name="description" content="Shop Prototyp für an:care. Ein Duftstick für mehr Ruhe im Alltag." />
   <link rel="stylesheet" href="styles.css" />
 </head>
-  
-<!-- Newsletter Modal -->
-<div class="nlOverlay" id="nlOverlay" aria-hidden="true">
-  <div class="nlModal" role="dialog" aria-modal="true" aria-labelledby="nlTitle">
-    <button class="nlClose" id="nlClose" aria-label="Schließen">×</button>
-
-    <div class="kicker"><span class="dot" aria-hidden="true"></span> Newsletter</div>
-    <h2 id="nlTitle" class="nlTitle">Neue Updates zu an:care</h2>
-    <p class="nlSub">Erhalte Launch Infos, Produkt Updates und neue Inhalte. Kein Spam, jederzeit abmeldbar.</p>
-
-    <form class="nlForm" id="nlForm">
-      <label for="nlEmail">E Mail</label>
-      <input id="nlEmail" name="email" type="email" placeholder="name@email.de" required />
-
-      <button class="btn btnPrimary" type="submit">Eintragen</button>
-      <button class="btn" type="button" id="nlLater">Später</button>
-
-      <div class="nlFine">Mit dem Eintragen stimmst du dem Erhalt des Newsletters zu. Abmeldung jederzeit möglich.</div>
-    </form>
-  </div>
-</div>
 
 <body>
+
+  <!-- Newsletter Modal (muss im BODY stehen) -->
+  <div class="nlOverlay" id="nlOverlay" aria-hidden="true">
+    <div class="nlModal" role="dialog" aria-modal="true" aria-labelledby="nlTitle">
+      <button class="nlClose" id="nlClose" aria-label="Schließen">×</button>
+
+      <div class="kicker"><span class="dot" aria-hidden="true"></span> Newsletter</div>
+      <h2 id="nlTitle" class="nlTitle">Neue Updates zu an:care</h2>
+      <p class="nlSub">Erhalte Launch Infos, Produkt Updates und neue Inhalte. Kein Spam, jederzeit abmeldbar.</p>
+
+      <form class="nlForm" id="nlForm">
+        <label for="nlEmail">E Mail</label>
+        <input id="nlEmail" name="email" type="email" placeholder="name@email.de" required />
+
+        <button class="btn btnPrimary" type="submit">Eintragen</button>
+        <button class="btn" type="button" id="nlLater">Später</button>
+
+        <div class="nlFine">Mit dem Eintragen stimmst du dem Erhalt des Newsletters zu. Abmeldung jederzeit möglich.</div>
+      </form>
+    </div>
+  </div>
+
   <header>
     <div class="container">
       <div class="nav">
         <a class="brand" href="index.html" aria-label="Start">
-  <img class="logo" src="logo-v2.jpg" alt="an:care Logo" />
-  <span>an:care</span>
-</a>
-
+          <img class="logo" src="logo-v2.jpg" alt="an:care Logo" />
+          <span>an:care</span>
+        </a>
 
         <nav class="links" aria-label="Navigation">
           <a class="link" href="shop.html">Shop</a>
@@ -73,7 +73,6 @@
             <div class="padLg">
               <div class="kicker"><span class="dot" aria-hidden="true"></span> an:care</div>
 
-              <!-- underline animation: add span around "an:care" -->
               <h1 class="heroTitle">
                 Dein <span class="underlineOnLoad">an:care</span> in stürmischen Zeiten
               </h1>
@@ -105,18 +104,15 @@
             </div>
 
             <div class="mediaGrid">
-              <!-- Bild 1: Produkt -->
               <a href="product.html" class="productLink" aria-label="Zum Produkt an:care">
                 <img class="img heroProduct" src="anker8-v2.jpg" alt="an:care Duftstick in Holzoptik" />
               </a>
 
-              <!-- Bild 2: Verpackung -->
               <div class="packShot" aria-label="an:care Verpackung">
                 <img src="verpackung-v2.jpg" alt="an:care Verpackung" loading="lazy" />
               </div>
             </div>
 
-            <!-- CTA: use clean placement class from new CSS -->
             <div class="rightCta">
               <a class="btn btnPrimary" href="product.html">Jetzt an:care bestellen</a>
               <a class="btn" href="shop.html">Zum Shop</a>
@@ -126,7 +122,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="so-funktionierts">
       <div class="container">
         <div class="sectionHeader">
           <div>
@@ -199,88 +195,72 @@
       </div>
     </section>
 
-<footer>
-  <div class="container">
-    <div class="foot">
-      <div>
-        <strong style="color:var(--text)">an:care</strong><br />
-        <span>Prototyp für Konzepttests und Feedback</span>
-      </div>
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <strong style="color:var(--text)">an:care</strong><br />
+            <span>Prototyp für Konzepttests und Feedback</span>
+          </div>
 
-      <div style="display:flex; gap:16px; flex-wrap:wrap;">
-        <a class="link" href="FAQ.html">FAQ</a>
-        <a class="link" href="#">Impressum</a>
-        <a class="link" href="#">Datenschutz</a>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <a class="link" href="FAQ.html">FAQ</a>
+            <a class="link" href="impressum.html">Impressum</a>
+            <a class="link" href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</footer>
-
+    </footer>
 
   </main>
 
+  <!-- Cache Bust Tipp: wenn du willst, hänge ?v=1 an -->
   <script src="app.js"></script>
+
   <script>
-    // Falls du keinen Button mit id="quickAdd" auf der Seite hast:
-    // Dieser Block verhindert einen Fehler in der Konsole.
-    const quickAddBtn = document.getElementById("quickAdd");
-    if (quickAddBtn) {
-      quickAddBtn.addEventListener("click", () => {
-        addToCart({
-          id: "an:care Stick_calm",
-          name: "an:care Stick Calm",
-          note: "Lavendel Bergamotte Vetiver",
-          price: 19.90,
-          qty: 1
-        });
-        alert("Im Prototyp hinzugefügt. Öffne jetzt die Produktseite für Details.");
-      });
-    }
     // Newsletter Pop up (bei jedem Besuch)
-(function(){
-  const overlay = document.getElementById("nlOverlay");
-  const closeBtn = document.getElementById("nlClose");
-  const laterBtn = document.getElementById("nlLater");
-  const form = document.getElementById("nlForm");
+    (function(){
+      const overlay = document.getElementById("nlOverlay");
+      const closeBtn = document.getElementById("nlClose");
+      const laterBtn = document.getElementById("nlLater");
+      const form = document.getElementById("nlForm");
 
-  if(!overlay) return;
+      if(!overlay || !closeBtn || !laterBtn || !form) return;
 
-  function open(){
-    overlay.classList.add("isOpen");
-    overlay.setAttribute("aria-hidden","false");
-    const email = document.getElementById("nlEmail");
-    if(email) setTimeout(() => email.focus(), 150);
-  }
-  function close(){
-    overlay.classList.remove("isOpen");
-    overlay.setAttribute("aria-hidden","true");
-  }
+      function open(){
+        overlay.classList.add("isOpen");
+        overlay.setAttribute("aria-hidden","false");
+        const email = document.getElementById("nlEmail");
+        if(email) setTimeout(() => email.focus(), 150);
+      }
+      function close(){
+        overlay.classList.remove("isOpen");
+        overlay.setAttribute("aria-hidden","true");
+      }
 
-  // leicht verzögert öffnen
-  setTimeout(open, 1200);
+      setTimeout(open, 1200);
 
-  closeBtn.addEventListener("click", close);
-  laterBtn.addEventListener("click", close);
+      closeBtn.addEventListener("click", close);
+      laterBtn.addEventListener("click", close);
 
-  // Klick auf Hintergrund schließt
-  overlay.addEventListener("click", (e) => {
-    if(e.target === overlay) close();
-  });
+      overlay.addEventListener("click", (e) => {
+        if(e.target === overlay) close();
+      });
 
-  // ESC schließt
-  document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape" && overlay.classList.contains("isOpen")) close();
-  });
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape" && overlay.classList.contains("isOpen")) close();
+      });
 
-  // Submit: im Prototyp nur bestätigen und schließen
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    close();
-    alert("Danke. Du bist im Prototyp eingetragen.");
-  });
-})();
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        close();
+        alert("Danke. Du bist im Prototyp eingetragen.");
+      });
+    })();
   </script>
+
 </body>
 </html>
+
 
 
