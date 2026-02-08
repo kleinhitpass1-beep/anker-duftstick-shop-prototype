@@ -1110,41 +1110,48 @@ input:not([type="radio"]):not([type="checkbox"]){
 .blogCard .pad {
   padding-right: 110px;   /* schafft Platz für Bild */
 }
-/* Shop: Calm Produktbild unten rechts, größer und sauber */
+/* Shop: Calm Produktbild unter dem Preis (ohne Overlap, ohne Absolut) */
 .shopCard{
   position: relative;
   overflow: hidden;
 }
 
-/* Wir reservieren unten rechts Platz, damit Bild nicht "untergeht" und nichts überlappt */
+/* KEIN Extra Platz unten reservieren, sonst wirkt alles "leer" */
 .shopCard .pad{
-  padding-bottom: 98px;  /* schafft Raum für das Bild */
+  padding-bottom: 18px; /* Standard bleibt clean */
 }
 
 .shopCardTop{
   display:flex;
   justify-content:space-between;
-  gap:12px;
+  gap:18px;
   align-items:flex-start;
 }
 
 .shopCardLeft{
   flex:1;
+  min-width: 0;
 }
 
 .shopCardRight{
   display:flex;
   flex-direction:column;
   align-items:flex-end;
-  gap:14px; /* Abstand zwischen Preis und Bild */
+  gap:12px;
+  min-width: 140px;
 }
 
 .shopCardImage{
-  width: 90px;
+  width: 120px;         /* sichtbar, aber nicht riesig */
   height: auto;
-  object-fit: contain;
+  display:block;
+  object-fit: contain;  /* keine Verzerrung */
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: 0 14px 34px rgba(11,27,58,.10);
   pointer-events: none;
 }
+
 
 
 
