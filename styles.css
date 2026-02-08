@@ -1164,8 +1164,8 @@ input:not([type="radio"]):not([type="checkbox"]){
 
 /* Produktbild: etwas kleiner, etwas weiter rechts und leicht nach oben */
 .shopCardImage{
-  width: 102px;          /* kleiner */
-  height: 100px;        /* deutlich kompakter */
+  width: 90px;          /* kleiner */
+  height: 80px;        /* deutlich kompakter */
   object-fit: contain;
   display: block;
 
