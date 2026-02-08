@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>an:care Community</title>
-  <meta name="description" content="Community Bereich mit Kalender und Meetings. Prototyp, lokal im Browser gespeichert." />
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <title>Ankerstick Podcast | Prototype</title>
+  <meta name="description" content="Podcast Bereich für Ankerstick. Episoden Übersicht, Player, Links. Prototype." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -15,21 +13,20 @@
     <div class="container">
       <div class="nav">
         <a class="brand" href="index.html" aria-label="Start">
-          <img class="logo" src="logo.png" alt="an:care Logo" />
+          <span class="mark" aria-hidden="true"></span>
           <span>
-            an:care
-            <small>Community</small>
+            Ankerstick
+            <small>Podcast</small>
           </span>
         </a>
 
         <nav class="links" aria-label="Navigation">
-          <a class="link" href="shop.html">Shop</a>
-          <a class="link" href="community.html">Community</a>
+          <a class="link" href="index.html">Shop</a>
+          <a class="link" href="product.html">Produkt</a>
           <a class="link" href="marketing.html">Marketing</a>
-          <a class="link" href="podcast.html">Podcast</a>
-          <a class="link" href="blog.html">Blog</a>
-          <a class="btn btnPrimary" href="product.html">
-            Zum Produkt <span class="badge" id="cartCount">0</span>
+          <a class="link" href="community.html">Community</a>
+          <a class="btn btnPrimary" href="podcast.html">
+            Podcast <span class="badge" id="cartCount">0</span>
           </a>
         </nav>
       </div>
@@ -39,108 +36,68 @@
   <main>
     <section class="section">
       <div class="container">
-
         <div class="card shadowBig">
           <div class="padLg">
-            <div class="kicker"><span class="dot" aria-hidden="true"></span> Community</div>
-            <h1 style="margin:10px 0">Kalender und Meetings</h1>
-            <p class="lead" style="margin:0">
-              Prototyp: Plane Community Sessions, kleine Rituale und Austausch. Alles wird lokal im Browser gespeichert.
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Prototype, Episoden als Platzhalter</div>
+            <h1 style="margin-bottom:10px">Podcast</h1>
+            <p class="lead" style="margin-bottom:0">
+              Kurze Impulse für Ruhe, Selbstwahrnehmung und klare nächste Schritte. Professionell, respektvoll und ohne leere Versprechen.
             </p>
-            <div class="ctaRow" style="margin-top:14px">
-              <button class="btn btnPrimary" type="button" id="loadExamples">Beispiele laden</button>
-              <button class="btn" type="button" id="clearMeetings">Alle löschen</button>
-            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div style="height:18px"></div>
-
-        <div class="grid2">
-          <!-- Kalender -->
+    <section class="section">
+      <div class="container">
+        <div class="productGrid">
+          <!-- Left: Episodes -->
           <div class="card shadowBig">
             <div class="mediaTop">
               <div>
-                <strong>Kalender</strong><br />
-                <span id="monthLabel">Monat</span>
+                <strong>Episoden</strong><br />
+                <span>Wähle eine Episode aus</span>
               </div>
-              <div class="ctaRow" style="margin:0">
-                <button class="btn btnSmall" type="button" id="prevMonth">Zurück</button>
-                <button class="btn btnSmall" type="button" id="nextMonth">Weiter</button>
+
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end">
+                <button class="btn btnSmall" type="button" id="seed">Beispiele laden</button>
+                <button class="btn btnSmall btnGhost" type="button" id="resetPodcast">Reset</button>
               </div>
             </div>
 
-            <div class="pad">
-              <div class="calendarGrid" aria-label="Kalender">
-                <div class="calHead">Mo</div><div class="calHead">Di</div><div class="calHead">Mi</div><div class="calHead">Do</div><div class="calHead">Fr</div><div class="calHead">Sa</div><div class="calHead">So</div>
-                <div id="calendarCells" class="calCells"></div>
-              </div>
-
-              <div class="fineprint">
-                Tipp: Klicke einen Tag an, um das Formular automatisch zu füllen.
-              </div>
-            </div>
+            <div class="pad" id="episodeList"></div>
           </div>
 
-          <!-- Meetings -->
-          <div class="card shadowBig">
-            <div class="mediaTop">
-              <div>
-                <strong>Meetings</strong><br />
-                <span>Demnächst geplante Sessions</span>
-              </div>
-              <span class="kicker" style="margin:0">Prototyp</span>
-            </div>
+          <!-- Right: Player -->
+          <aside class="card shadowBig">
+            <div class="padLg">
+              <div class="kicker"><span class="dot" aria-hidden="true"></span> Jetzt abspielen</div>
 
-            <div class="pad">
-              <div id="meetingsList"></div>
-              <div style="height:14px"></div>
-
-              <div class="card" style="background:rgba(255,255,255,.7)">
-                <div class="pad">
-                  <div style="font-weight:900; font-size:16px">Meeting hinzufügen</div>
-
-                  <div class="field">
-                    <label for="mTitle">Titel</label>
-                    <input id="mTitle" type="text" placeholder="Zum Beispiel: 10 Minuten Reset Session" />
-                  </div>
-
-                  <div class="field">
-                    <label for="mDate">Datum</label>
-                    <input id="mDate" type="date" />
-                  </div>
-
-                  <div class="field" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px">
-                    <div>
-                      <label for="mTime">Uhrzeit</label>
-                      <input id="mTime" type="time" />
-                    </div>
-                    <div>
-                      <label for="mDuration">Dauer Minuten</label>
-                      <input id="mDuration" type="number" min="5" value="30" />
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <label for="mPlace">Ort oder Link</label>
-                    <input id="mPlace" type="text" placeholder="Zoom Link oder Ort" />
-                  </div>
-
-                  <div class="ctaRow" style="margin-top:14px">
-                    <button class="btn btnPrimary" type="button" id="addMeeting">Meeting speichern</button>
-                    <button class="btn" type="button" id="resetForm">Zurücksetzen</button>
-                  </div>
-
-                  <div class="fineprint" style="margin-top:12px">
-                    Hinweis: Das ist ein Prototyp. In der echten Version kann das an Google Calendar oder Calendly angebunden werden.
-                  </div>
-                </div>
+              <div style="font-weight:900; font-size:18px; margin-top:12px" id="epTitle">
+                Keine Episode ausgewählt
               </div>
 
+              <div style="color:var(--muted); margin-top:8px" id="epMeta">
+                Wähle links eine Episode.
+              </div>
+
+              <div style="margin-top:14px">
+                <audio id="player" controls style="width:100%"></audio>
+              </div>
+
+              <div class="fineprint" id="epDesc" style="margin-top:14px">
+                Hinweis: Im Prototyp sind Audio Dateien optional. Später kannst du Spotify, Apple Podcasts oder eine RSS Quelle anbinden.
+              </div>
+
+              <div class="ctaRow" style="justify-content:flex-start">
+                <a class="btn btnSmall" id="linkSpotify" href="#" target="_blank" rel="noreferrer">Spotify</a>
+                <a class="btn btnSmall" id="linkApple" href="#" target="_blank" rel="noreferrer">Apple Podcasts</a>
+                <a class="btn btnSmall" id="linkWeb" href="#" target="_blank" rel="noreferrer">Web</a>
+              </div>
             </div>
-          </div>
+          </aside>
+
         </div>
-
       </div>
     </section>
 
@@ -148,213 +105,103 @@
       <div class="container">
         <div class="foot">
           <div>
-            <strong style="color:var(--text)">an:care Community</strong><br />
-            <span>Kalender und Meetings im Prototyp</span>
+            <strong style="color:var(--text)">Ankerstick Podcast</strong><br />
+            <span>Prototype Bereich für Content und Markenaufbau</span>
           </div>
           <div>
-            <a class="link" href="index.html">Zur Startseite</a>
+            <a class="link" href="community.html">Zur Community</a>
           </div>
         </div>
       </div>
     </footer>
   </main>
 
+  <!-- App logic -->
   <script src="app.js"></script>
+
+  <!-- Page logic -->
   <script>
-    // Badge aus app.js
-    document.addEventListener("DOMContentLoaded", () => {
-      if (typeof setCartBadge === "function") setCartBadge();
-    });
-
-    /* =========================
-       Community Kalender Logik
-    ========================= */
-    const MEETINGS_KEY = "ancare_meetings_v1";
-
-    function loadMeetings() {
-      try { return JSON.parse(localStorage.getItem(MEETINGS_KEY) || "[]"); }
-      catch { return []; }
-    }
-    function saveMeetings(list) {
-      localStorage.setItem(MEETINGS_KEY, JSON.stringify(list));
+    function escapeHtml(s){
+      return String(s || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
     }
 
-    function pad2(n){ return String(n).padStart(2, "0"); }
-    function toISODate(d){
-      return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate());
-    }
+    function renderEpisodes(){
+      const list = document.getElementById("episodeList");
+      const eps = (typeof loadPodcastEpisodes === "function") ? loadPodcastEpisodes() : [];
 
-    let viewDate = new Date(); // current month
+      if(!list) return;
 
-    function renderMonth() {
-      const year = viewDate.getFullYear();
-      const month = viewDate.getMonth();
-
-      const label = new Intl.DateTimeFormat("de-DE", { month: "long", year: "numeric" }).format(new Date(year, month, 1));
-      document.getElementById("monthLabel").textContent = label;
-
-      const cellsHost = document.getElementById("calendarCells");
-      cellsHost.innerHTML = "";
-
-      const first = new Date(year, month, 1);
-      // Monday-first index: (Sun=0) -> (Mon=0)
-      const weekday = (first.getDay() + 6) % 7;
-
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      // previous month trailing days
-      for (let i = 0; i < weekday; i++) {
-        const empty = document.createElement("button");
-        empty.className = "calCell calMuted";
-        empty.type = "button";
-        empty.disabled = true;
-        empty.textContent = "";
-        cellsHost.appendChild(empty);
-      }
-
-      const meetings = loadMeetings();
-      const todayISO = toISODate(new Date());
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const d = new Date(year, month, day);
-        const iso = toISODate(d);
-
-        const count = meetings.filter(m => m.date === iso).length;
-
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "calCell";
-        if (iso === todayISO) btn.classList.add("calToday");
-        if (count > 0) btn.classList.add("calHas");
-
-        btn.innerHTML = `
-          <div class="calNum">${day}</div>
-          ${count > 0 ? `<div class="calBadge">${count}</div>` : ``}
-        `;
-
-        btn.addEventListener("click", () => {
-          // Formular Datum füllen + sanft scrollen
-          document.getElementById("mDate").value = iso;
-          document.getElementById("mTitle").focus();
-        });
-
-        cellsHost.appendChild(btn);
-      }
-    }
-
-    function renderMeetings() {
-      const host = document.getElementById("meetingsList");
-      const list = loadMeetings();
-
-      // Sort by date/time
-      list.sort((a,b) => (a.date + (a.time||"")) .localeCompare(b.date + (b.time||"")));
-
-      if (list.length === 0) {
-        host.innerHTML = `<div class="sub">Noch keine Meetings geplant.</div>`;
+      if(eps.length === 0){
+        list.innerHTML = `<div style="color:var(--muted)">Noch keine Episoden. Klicke auf Beispiele laden.</div>`;
         return;
       }
 
-      host.innerHTML = list.map((m, idx) => {
-        const when = `${m.date}${m.time ? " · " + m.time : ""}`;
-        const dur = m.duration ? ` · ${m.duration} min` : "";
-        const place = m.place ? `<div class="sub" style="margin-top:6px">${m.place}</div>` : "";
-        return `
-          <div class="meetingItem">
-            <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
-              <div style="min-width:0">
-                <div style="font-weight:900">${m.title || "Meeting"}</div>
-                <div class="sub" style="margin-top:4px">${when}${dur}</div>
-                ${place}
+      list.innerHTML = eps.map(ep => `
+        <div class="card" style="margin-bottom:12px">
+          <div class="pad">
+            <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap">
+              <div>
+                <div class="kicker" style="margin-bottom:10px"><span class="dot" aria-hidden="true"></span> Episode ${escapeHtml(ep.number)}</div>
+                <div style="font-weight:900; font-size:16px">${escapeHtml(ep.title)}</div>
+                <div style="color:var(--muted); font-size:13.5px; margin-top:6px; line-height:1.55">
+                  ${escapeHtml(ep.teaser || "")}
+                </div>
               </div>
-              <button class="btn btnSmall" type="button" data-del="${idx}">Löschen</button>
+              <div style="display:flex; gap:10px; align-items:center">
+                <button class="btn btnPrimary btnSmall" type="button" onclick="selectEpisode('${ep.id}')">Abspielen</button>
+              </div>
             </div>
           </div>
-        `;
-      }).join("");
-
-      host.querySelectorAll("[data-del]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const i = parseInt(btn.getAttribute("data-del"), 10);
-          const next = loadMeetings();
-          next.splice(i, 1);
-          saveMeetings(next);
-          renderMeetings();
-          renderMonth();
-        });
-      });
+        </div>
+      `).join("");
     }
 
-    function resetForm() {
-      document.getElementById("mTitle").value = "";
-      document.getElementById("mDate").value = "";
-      document.getElementById("mTime").value = "";
-      document.getElementById("mDuration").value = "30";
-      document.getElementById("mPlace").value = "";
+    function selectEpisode(id){
+      const eps = (typeof loadPodcastEpisodes === "function") ? loadPodcastEpisodes() : [];
+      const ep = eps.find(e => e.id === id);
+      if(!ep) return;
+
+      document.getElementById("epTitle").textContent = ep.title || "Episode";
+      document.getElementById("epMeta").textContent =
+        `Episode ${ep.number || ""} · ${ep.duration || ""} · ${ep.publishedAt ? new Date(ep.publishedAt).toLocaleDateString("de-DE") : ""}`;
+
+      document.getElementById("epDesc").textContent = ep.description || "";
+
+      const player = document.getElementById("player");
+      player.src = ep.audioUrl || "";
+
+      if(ep.audioUrl){
+        player.play().catch(() => {});
+      }
+
+      document.getElementById("linkSpotify").href = ep.spotifyUrl || "#";
+      document.getElementById("linkApple").href = ep.appleUrl || "#";
+      document.getElementById("linkWeb").href = ep.webUrl || "#";
     }
 
-    document.getElementById("prevMonth").addEventListener("click", () => {
-      viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
-      renderMonth();
-    });
-    document.getElementById("nextMonth").addEventListener("click", () => {
-      viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1);
-      renderMonth();
-    });
-
-    document.getElementById("addMeeting").addEventListener("click", () => {
-      const title = (document.getElementById("mTitle").value || "").trim();
-      const date = document.getElementById("mDate").value;
-      const time = document.getElementById("mTime").value;
-      const duration = parseInt(document.getElementById("mDuration").value || "30", 10);
-      const place = (document.getElementById("mPlace").value || "").trim();
-
-      if (!date) { alert("Bitte Datum wählen."); return; }
-      if (!title) { alert("Bitte Titel eingeben."); return; }
-
-      const list = loadMeetings();
-      list.push({
-        id: "m_" + Date.now(),
-        title,
-        date,
-        time,
-        duration: Math.max(5, isNaN(duration) ? 30 : duration),
-        place
-      });
-      saveMeetings(list);
-
-      renderMeetings();
-      renderMonth();
-      resetForm();
-      alert("Meeting gespeichert (Prototyp).");
+    // Buttons
+    document.getElementById("seed").addEventListener("click", () => {
+      if(typeof seedPodcastEpisodes === "function"){
+        seedPodcastEpisodes();
+      }
+      renderEpisodes();
     });
 
-    document.getElementById("resetForm").addEventListener("click", resetForm);
-
-    document.getElementById("clearMeetings").addEventListener("click", () => {
-      localStorage.removeItem(MEETINGS_KEY);
-      renderMeetings();
-      renderMonth();
-      alert("Alle Meetings gelöscht (Prototyp).");
+    document.getElementById("resetPodcast").addEventListener("click", () => {
+      localStorage.removeItem("anker_podcast_v1");
+      alert("Podcast Daten zurückgesetzt. Jetzt bitte auf „Beispiele laden“ klicken.");
+      location.reload();
     });
 
-    document.getElementById("loadExamples").addEventListener("click", () => {
-      const now = new Date();
-      const y = now.getFullYear();
-      const m = now.getMonth();
-      const examples = [
-        { id:"m1", title:"Community Reset Session", date: toISODate(new Date(y,m, Math.min(28, now.getDate()+2))), time:"19:00", duration:30, place:"Online · Zoom Link" },
-        { id:"m2", title:"Austausch Runde: Stress reduzieren", date: toISODate(new Date(y,m, Math.min(28, now.getDate()+5))), time:"18:30", duration:45, place:"Online · Zoom Link" },
-        { id:"m3", title:"Mini Ritual Workshop", date: toISODate(new Date(y,m, Math.min(28, now.getDate()+9))), time:"20:00", duration:40, place:"Online · Zoom Link" },
-      ];
-      saveMeetings(examples);
-      renderMeetings();
-      renderMonth();
-      alert("Beispiele geladen.");
+    document.addEventListener("DOMContentLoaded", () => {
+      if(typeof setCartBadge === "function") setCartBadge();
+      renderEpisodes();
     });
-
-    // initial
-    renderMonth();
-    renderMeetings();
   </script>
 </body>
 </html>
