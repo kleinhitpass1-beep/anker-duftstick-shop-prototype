@@ -35,7 +35,7 @@
     </div>
   </header>
 
- <main>
+  <main>
     <section class="section">
       <div class="container">
 
@@ -55,17 +55,22 @@
           <!-- EXISTIERT: Calm -->
           <div class="card shopCard">
             <div class="pad">
+
+              <!-- kleines Produktbild: sitzt unten rechts, verschiebt nichts -->
+              <img class="shopCardImage" src="ankerprodukt.jpg" alt="an:care Stick Calm Produkt" />
+
               <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start">
                 <div>
-                 <div class="nameHover">
-  <span class="nameText">an:care Stick Calm</span>
-  <img class="namePreview" src="anker8-v2.jpg" alt="an:care Stick Calm Vorschau" />
-                   <img src="ankerprodukt.jpg" 
-     alt="an:care Stick Calm Produkt" 
-     class="shopCardImage">
-</div>
-                  <div class="sub" style="margin-top:6px">Weich und ruhig. Für Übergänge und Reset Momente.</div>
+                  <div class="nameHover">
+                    <span class="nameText">an:care Stick Calm</span>
+                    <img class="namePreview" src="anker8-v2.jpg" alt="an:care Stick Calm Vorschau" />
+                  </div>
+
+                  <div class="sub" style="margin-top:6px">
+                    Weich und ruhig. Für Übergänge und Reset Momente.
+                  </div>
                 </div>
+
                 <div class="price">13,99 EUR</div>
               </div>
 
@@ -76,16 +81,19 @@
 
               <div class="ctaRow" style="margin-top:14px">
                 <a class="btn" href="product.html">Details</a>
-               <button class="btn btnPrimary" type="button"
-  data-add-to-cart
-  data-id="ancare_stick_calm"
-  data-name="an:care Stick Calm"
-  data-note="Neroli, Kokosöl"
-  data-price="13.99"
-  data-qty="1"
->
-  In den Warenkorb
-</button>
+
+                <button
+                  class="btn btnPrimary"
+                  type="button"
+                  data-add-to-cart
+                  data-id="ancare_stick_calm"
+                  data-name="an:care Stick Calm"
+                  data-note="Neroli, Kokosöl"
+                  data-price="13.99"
+                  data-qty="1"
+                >
+                  In den Warenkorb
+                </button>
               </div>
             </div>
           </div>
@@ -197,12 +205,8 @@
 
       </div>
     </section>
-  </main>
 
-  <script src="app.js"></script>
-</body>
-</html>
-  <footer>
+    <footer>
       <div class="container">
         <div class="foot">
           <div>
@@ -218,4 +222,9 @@
       </div>
     </footer>
   </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
 
