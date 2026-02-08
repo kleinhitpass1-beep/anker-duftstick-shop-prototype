@@ -1165,11 +1165,11 @@ input:not([type="radio"]):not([type="checkbox"]){
 /* Produktbild: etwas kleiner, etwas weiter rechts und leicht nach oben */
 .shopCardImage{
   width: 74px;          /* kleiner */
-  height: 84px;        /* deutlich kompakter */
+  height: 76px;        /* deutlich kompakter */
   object-fit: contain;
   display: block;
 
-  margin-top: 18px;     /* Abstand zum Preis */
+  margin-top: 14px;     /* Abstand zum Preis */
   margin-right: -18px;  /* weiter nach rechts */
   
   background: transparent;
