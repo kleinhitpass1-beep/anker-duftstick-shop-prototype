@@ -334,8 +334,8 @@
       {
         id: "ep_01",
         number: "01",
-        title: "an:care im Detail",
-        teaser: "Wer oder was steckt hinter an:care?.",
+        title: "An:care im Detail",
+        teaser: "Wer oder was steckt hinter an:care?",
         description: "Ein neues Werkzeug mit ganz viel Potenzial",
         duration: "12:10",
         publishedAt: new Date(Date.now() - 86400000 * 7).toISOString(),
