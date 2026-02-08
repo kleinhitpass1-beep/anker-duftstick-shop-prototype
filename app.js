@@ -1,8 +1,10 @@
 /* =========================
    an:care Prototyp Logik
-   Warenkorb, Interesse, Podcast Seeds
+   Warenkorb, Interesse, Podcast
    Speichert alles lokal im Browser
 ========================= */
+
+"use strict";
 
 const CART_KEY = "ancare_cart_v1";
 const INTEREST_KEY = "ancare_interest_v1";
@@ -15,11 +17,7 @@ function euro(n) {
 }
 
 function safeJsonParse(str, fallback) {
-  try {
-    return JSON.parse(str);
-  } catch {
-    return fallback;
-  }
+  try { return JSON.parse(str); } catch { return fallback; }
 }
 
 function slugify(str) {
@@ -34,17 +32,33 @@ function slugify(str) {
     .replace(/^_+|_+$/g, "");
 }
 
-/* ---------- Cart ---------- */
+function storageOk() {
+  try {
+    const k = "__ancare_test__";
+    localStorage.setItem(k, "1");
+    localStorage.removeItem(k);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/* =========================
+   Cart
+========================= */
 function loadCart() {
+  if (!storageOk()) return [];
   return safeJsonParse(localStorage.getItem(CART_KEY), []);
 }
 
 function saveCart(cart) {
+  if (!storageOk()) return;
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
   setCartBadge();
 }
 
 function clearCart() {
+  if (!storageOk()) return;
   localStorage.removeItem(CART_KEY);
   setCartBadge();
   renderMiniCart();
@@ -56,7 +70,7 @@ function addToCart(itemOrName) {
   const isString = typeof itemOrName === "string";
   const isObject = itemOrName && typeof itemOrName === "object";
 
-  let item;
+  let item = null;
 
   if (isString) {
     const name = itemOrName.trim();
@@ -67,13 +81,6 @@ function addToCart(itemOrName) {
       price: 13.99,
       qty: 1
     };
-
-    if (name.toLowerCase().includes("calm")) {
-      item.id = "ancare_stick_calm";
-      item.name = "an:care Stick Calm";
-      item.note = "Lavendel Bergamotte Vetiver";
-      item.price = 13.99;
-    }
   } else if (isObject) {
     const name = String(itemOrName.name || "an:care").trim();
     item = {
@@ -85,22 +92,19 @@ function addToCart(itemOrName) {
         : parseFloat(itemOrName.price || "0"),
       qty: Math.max(1, parseInt(itemOrName.qty || "1", 10))
     };
-
     if (!Number.isFinite(item.price) || item.price <= 0) item.price = 13.99;
   } else {
     console.warn("[an:care] addToCart: ungueltiger Parameter", itemOrName);
     return null;
   }
 
-  const existing = cart.find((x) => x.id === item.id);
-  if (existing) {
-    existing.qty = (parseInt(existing.qty || 0, 10) || 0) + item.qty;
-  } else {
-    cart.push({ ...item });
-  }
+  const existing = cart.find(x => x.id === item.id);
+  if (existing) existing.qty = (parseInt(existing.qty || 0, 10) || 0) + item.qty;
+  else cart.push({ ...item });
 
   saveCart(cart);
   renderMiniCart();
+  console.log("[an:care] addToCart OK", item);
   return item;
 }
 
@@ -115,9 +119,9 @@ function cartTotal() {
 }
 
 function setCartBadge() {
-  document.querySelectorAll("#cartCount").forEach((el) => {
-    el.textContent = String(cartCount());
-  });
+  const el = document.getElementById("cartCount");
+  if (!el) return;
+  el.textContent = String(cartCount());
 }
 
 function renderMiniCart() {
@@ -126,7 +130,6 @@ function renderMiniCart() {
   if (!host) return;
 
   const cart = loadCart();
-
   if (cart.length === 0) {
     host.innerHTML = `<div class="sub">Dein Warenkorb ist aktuell leer.</div>`;
     if (totalEl) totalEl.textContent = euro(0);
@@ -151,7 +154,7 @@ function renderMiniCart() {
     `;
   }).join("");
 
-  host.querySelectorAll("[data-remove-index]").forEach((btn) => {
+  host.querySelectorAll("[data-remove-index]").forEach(btn => {
     btn.addEventListener("click", () => {
       const i = parseInt(btn.getAttribute("data-remove-index"), 10);
       const next = loadCart();
@@ -164,18 +167,21 @@ function renderMiniCart() {
   if (totalEl) totalEl.textContent = euro(cartTotal());
 }
 
-/* ---------- Interest Tracking ---------- */
+/* =========================
+   Interest
+========================= */
 function loadInterest() {
+  if (!storageOk()) return { events: [], totals: {} };
   return safeJsonParse(localStorage.getItem(INTEREST_KEY), { events: [], totals: {} });
 }
 
 function saveInterest(data) {
+  if (!storageOk()) return;
   localStorage.setItem(INTEREST_KEY, JSON.stringify(data));
 }
 
 function trackInterest(payload) {
   const data = loadInterest();
-
   const event = {
     ts: new Date().toISOString(),
     variant: payload.variant || "unknown",
@@ -183,11 +189,10 @@ function trackInterest(payload) {
     source: payload.source || "shop",
     note: payload.note || ""
   };
-
   data.events.push(event);
   data.totals[event.variant] = (data.totals[event.variant] || 0) + 1;
-
   saveInterest(data);
+  console.log("[an:care] Interesse gespeichert", event);
   return data;
 }
 
@@ -200,13 +205,12 @@ function renderInterestPanel() {
 
   const items = Object.keys(totals)
     .sort((a, b) => totals[b] - totals[a])
-    .map((k) => `
+    .map(k => `
       <div style="display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid var(--line)">
         <div style="font-weight:800">${k}</div>
         <div class="price">${totals[k]}</div>
       </div>
-    `)
-    .join("");
+    `).join("");
 
   host.innerHTML = `
     <div class="card shadowBig" style="margin-top:18px">
@@ -229,83 +233,139 @@ function renderInterestPanel() {
   const clearBtn = document.getElementById("clearInterest");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
-      localStorage.removeItem(INTEREST_KEY);
+      if (storageOk()) localStorage.removeItem(INTEREST_KEY);
       renderInterestPanel();
       alert("Nachfrage im Prototyp zurueckgesetzt.");
     });
   }
 }
 
-/* ---------- Podcast storage (damit podcast.html funktioniert) ---------- */
+function wireInterestButtons() {
+  document.querySelectorAll("[data-interest]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const variant = btn.getAttribute("data-interest") || "unknown";
+      const name = btn.getAttribute("data-name") || "an:care";
+      const source = btn.getAttribute("data-source") || "shop";
+      const note = btn.getAttribute("data-note") || "";
+
+      trackInterest({ variant, name, source, note });
+      renderInterestPanel();
+
+      btn.textContent = "Interesse gespeichert";
+      btn.disabled = true;
+    });
+  });
+}
+
+/* =========================
+   Podcast
+========================= */
 function loadPodcastEpisodes() {
+  if (!storageOk()) return [];
   return safeJsonParse(localStorage.getItem(PODCAST_KEY), []);
 }
 
 function savePodcastEpisodes(list) {
-  localStorage.setItem(PODCAST_KEY, JSON.stringify(list || []));
+  if (!storageOk()) return;
+  localStorage.setItem(PODCAST_KEY, JSON.stringify(list));
 }
 
 function seedPodcastEpisodes() {
+  const existing = loadPodcastEpisodes();
+  if (existing.length > 0) return;
+
+  const now = Date.now();
   const eps = [
     {
-      id: "ep_001",
-      number: "01",
-      title: "Episode 01",
-      teaser: "Kurzer Impuls als Prototyp.",
-      description: "Prototyp Episode. Spaeter kannst du RSS oder Spotify anbinden.",
-      duration: "05:00",
-      publishedAt: new Date().toISOString(),
+      id: "ep_01",
+      number: 1,
+      title: "An:care im Detail",
+      teaser: "Wer oder was steckt hinter an:care?",
+      description: "Wie dieses Werkzeug neue Maßstäbe setzen kann",
+      duration: "12:10",
+      publishedAt: new Date(now - 86400000 * 10).toISOString(),
       audioUrl: "episode01.mp3",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    },
+    {
+      id: "ep_02",
+      number: 2,
+      title: "Atemfokus für Stressmomente",
+      teaser: "Ein einfacher Fokus: Ausatmen verlaengern.",
+      description: "Fiktive Episode im Prototyp. Audio kann spaeter ergänzt werden.",
+      duration: "05:40",
+      publishedAt: new Date(now - 86400000 * 8).toISOString(),
+      audioUrl: "",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    },
+    {
+      id: "ep_03",
+      number: 3,
+      title: "Mini Ritual vor Terminen",
+      teaser: "Ein schneller Anker, bevor du reingehst.",
+      description: "Fiktive Episode im Prototyp.",
+      duration: "04:10",
+      publishedAt: new Date(now - 86400000 * 6).toISOString(),
+      audioUrl: "",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    },
+    {
+      id: "ep_04",
+      number: 4,
+      title: "Abendroutine ohne Perfektion",
+      teaser: "Zwei Minuten, die den Tag sauber schliessen.",
+      description: "Fiktive Episode im Prototyp.",
+      duration: "06:05",
+      publishedAt: new Date(now - 86400000 * 4).toISOString(),
+      audioUrl: "",
+      spotifyUrl: "#",
+      appleUrl: "#",
+      webUrl: "#"
+    },
+    {
+      id: "ep_05",
+      number: 5,
+      title: "Fokus statt Overthinking",
+      teaser: "Ein Schritt, der dich aus dem Kopf holt.",
+      description: "Fiktive Episode im Prototyp.",
+      duration: "04:55",
+      publishedAt: new Date(now - 86400000 * 2).toISOString(),
+      audioUrl: "",
       spotifyUrl: "#",
       appleUrl: "#",
       webUrl: "#"
     }
   ];
+
   savePodcastEpisodes(eps);
-  return eps;
 }
 
-/* ---------- Global click handling (WICHTIG) ---------- */
-function handleGlobalClicks(e) {
-  const cartBtn = e.target.closest("[data-add-to-cart]");
-  if (cartBtn) {
-    e.preventDefault();
-    const id = cartBtn.getAttribute("data-id") || ("ancare_" + slugify(cartBtn.getAttribute("data-name") || "item"));
-    const name = cartBtn.getAttribute("data-name") || "an:care";
-    const note = cartBtn.getAttribute("data-note") || "";
-    const price = parseFloat(cartBtn.getAttribute("data-price") || "0");
-    const qty = parseInt(cartBtn.getAttribute("data-qty") || "1", 10);
-
-    addToCart({ id, name, note, price, qty });
-    alert("Im Prototyp in den Warenkorb gelegt.");
-    return;
-  }
-
-  const interestBtn = e.target.closest("[data-interest]");
-  if (interestBtn) {
-    e.preventDefault();
-    const variant = interestBtn.getAttribute("data-interest") || "unknown";
-    const name = interestBtn.getAttribute("data-name") || "an:care";
-    const source = interestBtn.getAttribute("data-source") || "shop";
-    const note = interestBtn.getAttribute("data-note") || "";
-
-    trackInterest({ variant, name, source, note });
-    renderInterestPanel();
-
-    interestBtn.textContent = "Interesse gespeichert";
-    interestBtn.disabled = true;
-  }
-}
-
-/* ---------- Init ---------- */
+/* =========================
+   Init
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  setCartBadge();
-  renderMiniCart();
-  renderInterestPanel();
-  document.addEventListener("click", handleGlobalClicks);
+  try {
+    console.log("[an:care] app.js gestartet");
+
+    setCartBadge();
+    renderMiniCart();
+    renderInterestPanel();
+    wireInterestButtons();
+
+    seedPodcastEpisodes();
+  } catch (e) {
+    console.error("[an:care] Fehler in app.js", e);
+    alert("Fehler in app.js. Bitte Konsole oeffnen.");
+  }
 });
 
-/* ---------- Export globals (falls inline onclick genutzt wird) ---------- */
+/* Global Exports, damit inline onclick sicher funktioniert */
 window.addToCart = addToCart;
 window.clearCart = clearCart;
 window.loadCart = loadCart;
@@ -316,6 +376,5 @@ window.trackInterest = trackInterest;
 window.renderInterestPanel = renderInterestPanel;
 
 window.loadPodcastEpisodes = loadPodcastEpisodes;
-window.savePodcastEpisodes = savePodcastEpisodes;
 window.seedPodcastEpisodes = seedPodcastEpisodes;
 
