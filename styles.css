@@ -1110,6 +1110,21 @@ input:not([type="radio"]):not([type="checkbox"]){
 .blogCard .pad {
   padding-right: 110px;   /* schafft Platz für Bild */
 }
+.shopCard {
+  position: relative;
+}
+
+.shopCardImage {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  width: 70px;        /* bewusst klein */
+  height: 70px;
+  object-fit: contain;  /* NICHT cover -> keine Verzerrung */
+  border-radius: 14px;
+  opacity: 0.95;
+  pointer-events: none;
+}
 
 
 
