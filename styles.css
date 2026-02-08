@@ -1090,6 +1090,23 @@ input:not([type="radio"]):not([type="checkbox"]){
 .productGrid .padLg{
   flex: 1;
 }
+.blogCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.blogCardImage {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(11,27,58,.15);
+  opacity: 0.95;
+  pointer-events: none;
+}
 
 
 
