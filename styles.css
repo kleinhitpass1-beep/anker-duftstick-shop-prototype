@@ -1121,25 +1121,31 @@ input:not([type="radio"]):not([type="checkbox"]){
   padding-bottom: 98px;  /* schafft Raum für das Bild */
 }
 
-/* Bild styling */
-.shopCardImage{
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-
-  width: 98px;
-  height: 98px;
-
-  object-fit: contain;
-  background: rgba(255,255,255,.75);
-  border: 1px solid rgba(11,27,58,.10);
-  border-radius: 18px;
-  padding: 10px;
-
-  box-shadow: 0 14px 30px rgba(11,27,58,.10);
-  pointer-events: none;
-  opacity: 0.98;
+.shopCardTop{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
 }
+
+.shopCardLeft{
+  flex:1;
+}
+
+.shopCardRight{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:14px; /* Abstand zwischen Preis und Bild */
+}
+
+.shopCardImage{
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
 
 
 
