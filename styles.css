@@ -1110,64 +1110,66 @@ input:not([type="radio"]):not([type="checkbox"]){
 .blogCard .pad {
   padding-right: 110px;   /* schafft Platz für Bild */
 }
-/* Shop: Calm Produktbild unter dem Preis (ohne Overlap, ohne Absolut) */
+/* Shop: Calm Karte sauber wie im Referenz Screenshot */
 .shopCard{
   position: relative;
   overflow: hidden;
 }
 
-/* Shop Karte kompakter machen */
-.shopCard .pad{
-  padding-bottom: 18px;
-}
-
-/* Abstand bei Tags und CTA reduzieren */
-.shopCard .tagRow{
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
-}
-.shopCard .ctaRow{
-  margin-top: 10px !important;
-}
-
-/* Layout für Kopfbereich in der Calm Karte */
+/* Top Bereich: links Text, rechts Preis plus Bild */
 .shopCardTop{
-  display:flex;
-  justify-content:space-between;
-  gap:16px;
-  align-items:flex-start;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  column-gap: 18px;
+  align-items: start;
 }
 
 .shopCardLeft{
-  flex:1;
-  min-width:0;
+  min-width: 0;
 }
 
-/* rechte Spalte: Preis oben, Bild darunter, rechts ausgerichtet */
 .shopCardRight{
-  min-width:160px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-/* Produktbild: kompakt, nicht zu lang */
+/* Fest integriertes Produktbild unter dem Preis */
 .shopCardImage{
-  margin-top: 8px;
-  width: 100px;
-  height: 140px;
+  margin-top: 12px;
+  width: 120px;
+  height: 170px;
   object-fit: contain;
-  display:block;
-
+  display: block;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
   pointer-events: none;
 }
 
+/* Wichtig: keine extra Hoehe erzwingen */
+.shopCard .pad{
+  padding-bottom: 0;
+}
 
+/* Responsive: auf kleinen Screens sauber untereinander */
+@media (max-width: 720px){
+  .shopCardTop{
+    grid-template-columns: 1fr;
+  }
 
+  .shopCardRight{
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 10px;
+  }
 
+  .shopCardImage{
+    width: 120px;
+    height: 160px;
+  }
+}
 
 
 
