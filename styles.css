@@ -1099,11 +1099,11 @@ input:not([type="radio"]):not([type="checkbox"]){
   position: absolute;
   bottom: 18px;
   right: 18px;
-  width: 70px;        /* kleiner */
-  height: 70px;       /* kleiner */
+  width: 100px;        /* kleiner */
+  height: 100px;       /* kleiner */
   object-fit: cover;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(11,27,58,.12);
+  box-shadow: 0 12px 30px rgba(11,27,58,.15);
   opacity: 0.95;
   pointer-events: none;
 }
