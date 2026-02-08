@@ -1201,6 +1201,19 @@ input:not([type="radio"]):not([type="checkbox"]){
   border-radius:999px;
   white-space:nowrap;
 }
+/* Calm Karte: Tags und Buttons garantiert in einer Zeile (solange Platz da ist) */
+.shopCard .tagRow{
+  display:flex;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+
+.shopCard .ctaRow{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:nowrap;
+}
 
 
 
