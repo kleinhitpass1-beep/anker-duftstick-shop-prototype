@@ -116,88 +116,89 @@
       </div>
     </section>
 
-    <!-- Warenkorb -->
-    <section class="section" id="warenkorb">
-      <div class="container">
-        <div class="sectionHeader">
-          <div>
-            <h2>Warenkorb</h2>
-            <p>Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.</p>
+ <section class="section" id="warenkorb">
+  <div class="container">
+    <div class="sectionHeader">
+      <div>
+        <h2>Warenkorb</h2>
+        <p>Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.</p>
+      </div>
+    </div>
+
+    <div class="card shadowBig">
+      <div class="pad cartLayout">
+
+        <!-- Links: Cart -->
+        <div class="cartMain">
+          <div id="miniCart"></div>
+
+          <div class="cartRow" style="margin-top:12px">
+            <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
+            <div class="price" id="miniCartTotal">0,00 EUR</div>
+          </div>
+
+          <div class="ctaRow" style="margin-top:12px">
+            <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
+            <button class="btn" type="button" id="clear">Warenkorb leeren</button>
+          </div>
+
+          <div class="fineprint" id="success" style="display:none">
+            Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
           </div>
         </div>
 
-        <div class="card shadowBig">
-          <div class="pad cartLayout">
+        <!-- Rechts: Versand und Zahlung -->
+        <aside class="cartSide">
+          <div class="card shadowBig">
+            <div class="padLg">
+              <div style="font-weight:900; margin-bottom:10px">Versand und Zahlung</div>
 
-            <!-- Links -->
-            <div class="cartMain">
-              <div id="miniCart"></div>
-
-              <div class="cartRow" style="margin-top:12px">
-                <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
-                <div class="price" id="miniCartTotal">0,00 EUR</div>
+              <div class="field">
+                <label for="shippingSelect">Versand</label>
+                <select id="shippingSelect">
+                  <option value="3.99">DHL Versand 3,99 EUR</option>
+                  <option value="0">Abholung 0,00 EUR</option>
+                </select>
               </div>
 
-              <div class="ctaRow" style="margin-top:12px">
-                <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
-                <button class="btn" type="button" id="clear">Warenkorb leeren</button>
-              </div>
+              <div class="field" style="margin-top:14px">
+                <label>Zahlungsart</label>
 
-              <div class="fineprint" id="success" style="display:none">
-                Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
-              </div>
-            </div>
+                <div class="payList" id="payList">
+                  <label class="payOption" data-pay="paypal">
+                    <input type="radio" name="paymentMethod" value="paypal" checked />
+                    <span class="payRight">PayPal</span>
+                  </label>
 
-            <!-- Rechts -->
-            <aside class="cartSide">
-              <div class="card shadowBig">
-                <div class="padLg">
-                  <div style="font-weight:900; margin-bottom:10px">Versand und Zahlung</div>
+                  <label class="payOption" data-pay="rechnung">
+                    <input type="radio" name="paymentMethod" value="rechnung" />
+                    <span class="payRight">Rechnung</span>
+                  </label>
 
-                  <div class="field">
-                    <label for="shippingSelect">Versand</label>
-                    <select id="shippingSelect">
-                      <option value="3.99">DHL Versand 3,99 EUR</option>
-                      <option value="0">Abholung 0,00 EUR</option>
-                    </select>
-                  </div>
-
-                  <div class="field" style="margin-top:14px">
-                    <label>Zahlungsart</label>
-                    <div style="display:grid; gap:10px">
-                      <label style="display:flex; gap:10px; align-items:center; margin:0">
-                        <input type="radio" name="paymentMethod" value="paypal" checked />
-                        PayPal
-                      </label>
-
-                      <label style="display:flex; gap:10px; align-items:center; margin:0">
-                        <input type="radio" name="paymentMethod" value="rechnung" />
-                        Rechnung
-                      </label>
-
-                      <label style="display:flex; gap:10px; align-items:center; margin:0">
-                        <input type="radio" name="paymentMethod" value="kreditkarte" />
-                        Kreditkarte
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="cartRow" style="margin-top:14px">
-                    <div style="color:var(--muted); font-size:13.5px">Gesamtsumme inkl Versand</div>
-                    <div class="price" id="grandTotal">0,00 EUR</div>
-                  </div>
-
-                  <div class="fineprint" style="margin-top:12px">
-                    Hinweis: Prototyp. Auswahl wird lokal im Browser gespeichert.
-                  </div>
+                  <label class="payOption" data-pay="kreditkarte">
+                    <input type="radio" name="paymentMethod" value="kreditkarte" />
+                    <span class="payRight">Kreditkarte</span>
+                  </label>
                 </div>
               </div>
-            </aside>
 
+              <div class="cartRow" style="margin-top:14px">
+                <div style="color:var(--muted); font-size:13.5px">Gesamtsumme inkl Versand</div>
+                <div class="price" id="grandTotal">0,00 EUR</div>
+              </div>
+
+              <div class="fineprint" style="margin-top:12px">
+                Hinweis: Prototyp. Auswahl wird lokal im Browser gespeichert.
+              </div>
+            </div>
           </div>
-        </div>
+        </aside>
+
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <footer>
       <div class="container">
