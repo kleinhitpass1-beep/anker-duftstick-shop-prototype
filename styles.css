@@ -1125,9 +1125,10 @@ input:not([type="radio"]):not([type="checkbox"]){
 .shopCardTop{
   display:flex;
   justify-content:space-between;
-  gap:18px;
+  gap:24px;            /* mehr Luft zwischen Text und rechter Spalte */
   align-items:flex-start;
 }
+
 
 .shopCardLeft{
   flex:1;
@@ -1135,7 +1136,7 @@ input:not([type="radio"]):not([type="checkbox"]){
 }
 
 .shopCardRight{
-  min-width:140px;
+  min-width:180px;
   text-align:right;
   display:flex;
   flex-direction:column;
@@ -1143,77 +1144,55 @@ input:not([type="radio"]):not([type="checkbox"]){
 }
 
 .shopCardImage{
-  margin-top: 6px;      /* leicht näher an den Preis */
-  margin-right: -12px;  /* weiter nach rechts */
-  width: 105px;         /* etwas kleiner */
-  height: 150px;
+  margin-top: 4px;      /* etwas höher */
+  margin-right: -10px;  /* leicht nach rechts schieben */
+  width: 110px;         /* minimal kleiner */
+  height: 155px;        /* proportional kleiner */
   object-fit: contain;
-  display:block;
+  display: block;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  pointer-events:none;
+  pointer-events: none;
 }
 
 
-/* Platz rechts reservieren, aber Buttons nebeneinander lassen */
-.shopCard .tagRow{
-  padding-right: 170px;
-}
 
+/* Platz rechts reservieren, damit Bild nicht in Text/Buttons drueckt */
+.shopCard .tagRow,
 .shopCard .ctaRow{
   padding-right: 170px;
-  flex-wrap: nowrap;      /* damit Details + Warenkorb nebeneinander bleiben */
-  align-items: center;
-}
-@media (max-width: 520px){
-  .shopCard .ctaRow{ flex-wrap: wrap; } /* mobil darf es umbrechen */
 }
 
-
-/* Mobile: Bild normal im Flow unter Preis, kein reservierter Platz */
-@media (max-width: 720px){
-  .shopCardImage{
-    position: static;
-    width: 120px;
-    height: 160px;
-    display:block;
-    margin: 12px 0 0 auto;
-  }
-
-  .shopCard .tagRow,
-  .shopCard .ctaRow{
-    padding-right: 170px;
-  }
-}
-/* Calm Buttons nebeneinander + Original Look */
-.shopCard .ctaRow{
-  display:flex;
-  gap:14px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.shopCard .ctaRow .btnPrimary{
-  width:auto;
-  padding:12px 22px;   /* entspricht deinem globalen Button Stil */
-  font-size:14px;
-  border-radius:999px;
-  white-space:nowrap;
-}
-/* Calm Karte: Tags und Buttons garantiert in einer Zeile (solange Platz da ist) */
+/* Tags: nebeneinander in einer Zeile */
 .shopCard .tagRow{
   display:flex;
   gap:8px;
   flex-wrap:nowrap;
 }
 
+/* Buttons: nebeneinander in einer Zeile */
 .shopCard .ctaRow{
   display:flex;
-  gap:12px;
+  gap:14px;
   align-items:center;
   flex-wrap:nowrap;
 }
+
+/* Button "In den Warenkorb" bleibt optisch wie dein Standard */
+.shopCard .ctaRow .btnPrimary{
+  white-space:nowrap;
+}
+
+/* Mobile: darf umbrechen und braucht keinen rechten Reservierungspuffer */
+@media (max-width: 720px){
+  .shopCard .tagRow,
+  .shopCard .ctaRow{
+    padding-right: 0;
+    flex-wrap:wrap;
+  }
+}
+
 
 
 
