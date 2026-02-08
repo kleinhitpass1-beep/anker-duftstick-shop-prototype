@@ -1142,15 +1142,15 @@ input:not([type="radio"]):not([type="checkbox"]){
 }
 
 .shopCardImage{
-  width: 120px;         /* sichtbar, aber nicht riesig */
+  width: 78px;          /* deutlich kompakter */
   height: auto;
   display:block;
-  object-fit: contain;  /* keine Verzerrung */
-  border-radius: 14px;
-  background: transparent;
-  box-shadow: 0 14px 34px rgba(11,27,58,.10);
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 22px rgba(11,27,58,.08);
   pointer-events: none;
 }
+
 
 
 
