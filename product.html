@@ -22,13 +22,13 @@
           </span>
         </a>
 
-       <nav class="links" aria-label="Navigation">
+        <nav class="links" aria-label="Navigation">
           <a class="link" href="shop.html">Shop</a>
           <a class="link" href="community.html">Community</a>
           <a class="link" href="marketing.html">Marketing</a>
           <a class="link" href="podcast.html">Podcast</a>
           <a class="link" href="blog.html">Blog</a>
-          <a class="btn btnPrimary" href="product.html">
+          <a class="btn btnPrimary" href="#warenkorb">
             Warenkorb <span class="badge" id="cartCount">0</span>
           </a>
         </nav>
@@ -37,9 +37,11 @@
   </header>
 
   <main>
+    <!-- Produktbereich -->
     <section class="section">
       <div class="container">
         <div class="productGrid">
+          <!-- Galerie -->
           <div class="card shadowBig">
             <div class="mediaTop">
               <div>
@@ -65,6 +67,7 @@
             </div>
           </div>
 
+          <!-- Details -->
           <aside class="card shadowBig" id="details">
             <div class="padLg">
               <div class="kicker"><span class="dot" aria-hidden="true"></span> an:care Stick Calm</div>
@@ -113,187 +116,90 @@
       </div>
     </section>
 
-  <section class="section" id="warenkorb">
-  <div class="container">
-    <div class="sectionHeader">
-      <div>
-        <h2>Warenkorb</h2>
-        <p>Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.</p>
-      </div>
-    </div>
-
-    <div class="card shadowBig">
-      <div class="pad cartLayout">
-
-        <!-- Links: Warenkorb -->
-        <div class="cartMain">
-          <div id="miniCart"></div>
-
-          <div class="cartRow" style="margin-top:12px">
-            <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
-            <div class="price" id="miniCartTotal">0,00 EUR</div>
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px">
-            <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
-            <button class="btn" type="button" id="clear">Warenkorb leeren</button>
-          </div>
-
-          <div class="fineprint" id="success" style="display:none">
-            Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
+    <!-- Warenkorb -->
+    <section class="section" id="warenkorb">
+      <div class="container">
+        <div class="sectionHeader">
+          <div>
+            <h2>Warenkorb</h2>
+            <p>Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.</p>
           </div>
         </div>
 
-        <!-- Rechts: Versand und Zahlung -->
-        <aside class="cartSide">
-          <div class="card shadowBig">
-            <div class="padLg">
-              <div style="font-weight:900; margin-bottom:10px">Versand und Zahlung</div>
+        <div class="card shadowBig">
+          <div class="pad cartLayout">
 
-              <div class="field">
-                <label for="shippingSelect">Versand</label>
-                <select id="shippingSelect">
-                  <option value="3.99">DHL Versand 3,99 EUR</option>
-                  <option value="0">Abholung 0,00 EUR</option>
-                </select>
+            <!-- Links -->
+            <div class="cartMain">
+              <div id="miniCart"></div>
+
+              <div class="cartRow" style="margin-top:12px">
+                <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
+                <div class="price" id="miniCartTotal">0,00 EUR</div>
               </div>
 
-              <div class="field" style="margin-top:14px">
-                <label>Zahlungsart</label>
-                <div style="display:grid; gap:10px">
-                  <label style="display:flex; gap:10px; align-items:center; margin:0">
-                    <input type="radio" name="paymentMethod" value="paypal" checked />
-                    PayPal
-                  </label>
+              <div class="ctaRow" style="margin-top:12px">
+                <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
+                <button class="btn" type="button" id="clear">Warenkorb leeren</button>
+              </div>
 
-                  <label style="display:flex; gap:10px; align-items:center; margin:0">
-                    <input type="radio" name="paymentMethod" value="rechnung" />
-                    Rechnung
-                  </label>
+              <div class="fineprint" id="success" style="display:none">
+                Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
+              </div>
+            </div>
 
-                  <label style="display:flex; gap:10px; align-items:center; margin:0">
-                    <input type="radio" name="paymentMethod" value="kreditkarte" />
-                    Kreditkarte
-                  </label>
+            <!-- Rechts -->
+            <aside class="cartSide">
+              <div class="card shadowBig">
+                <div class="padLg">
+                  <div style="font-weight:900; margin-bottom:10px">Versand und Zahlung</div>
+
+                  <div class="field">
+                    <label for="shippingSelect">Versand</label>
+                    <select id="shippingSelect">
+                      <option value="3.99">DHL Versand 3,99 EUR</option>
+                      <option value="0">Abholung 0,00 EUR</option>
+                    </select>
+                  </div>
+
+                  <div class="field" style="margin-top:14px">
+                    <label>Zahlungsart</label>
+                    <div style="display:grid; gap:10px">
+                      <label style="display:flex; gap:10px; align-items:center; margin:0">
+                        <input type="radio" name="paymentMethod" value="paypal" checked />
+                        PayPal
+                      </label>
+
+                      <label style="display:flex; gap:10px; align-items:center; margin:0">
+                        <input type="radio" name="paymentMethod" value="rechnung" />
+                        Rechnung
+                      </label>
+
+                      <label style="display:flex; gap:10px; align-items:center; margin:0">
+                        <input type="radio" name="paymentMethod" value="kreditkarte" />
+                        Kreditkarte
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="cartRow" style="margin-top:14px">
+                    <div style="color:var(--muted); font-size:13.5px">Gesamtsumme inkl Versand</div>
+                    <div class="price" id="grandTotal">0,00 EUR</div>
+                  </div>
+
+                  <div class="fineprint" style="margin-top:12px">
+                    Hinweis: Prototyp. Auswahl wird lokal im Browser gespeichert.
+                  </div>
                 </div>
               </div>
+            </aside>
 
-              <div class="cartRow" style="margin-top:14px">
-                <div style="color:var(--muted); font-size:13.5px">Gesamtsumme inkl Versand</div>
-                <div class="price" id="grandTotal">0,00 EUR</div>
-              </div>
-
-              <div class="fineprint" style="margin-top:12px">
-                Hinweis: Prototyp. Auswahl wird lokal im Browser gespeichert.
-              </div>
-            </div>
-          </div>
-        </aside>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-            </div>
-
-            <div class="ctaRow" style="margin-top:12px">
-              <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
-              <button class="btn" type="button" id="clear">Warenkorb leeren</button>
-            </div>
-
-            <div class="fineprint" id="success" style="display:none">
-              Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-<script src="app.js"></script>
-<script>
-  const product = { id:"ancare_stick_calm", name:"an:care Stick Calm", note:"Neroli Kokosöl", price:13.99 };
-
-  // Thumbnails
-  document.querySelectorAll(".thumb").forEach((t) => {
-    t.addEventListener("click", () => {
-      const src = t.getAttribute("data-src");
-      const main = document.getElementById("mainImage");
-      if (main && src) main.src = src;
-    });
-  });
-
-  // Safe helper (falls app.js nicht geladen wurde)
-  function ensure(fnName){
-    return (typeof window[fnName] === "function");
-  }
-
-  document.getElementById("addBtn")?.addEventListener("click", () => {
-    if(!ensure("addToCart")){
-      alert("Fehler: app.js wurde nicht geladen. Bitte Seite neu laden (Ctrl+F5).");
-      return;
-    }
-
-    const qty = Math.max(1, parseInt(document.getElementById("qty")?.value || "1", 10));
-
-    window.addToCart({
-      id: product.id,
-      name: product.name,
-      note: product.note,
-      price: product.price,
-      qty
-    });
-
-    window.renderMiniCart?.();
-    window.setCartBadge?.();
-    alert("Im Prototyp hinzugefügt.");
-  });
-
-  document.getElementById("buyBtn")?.addEventListener("click", () => {
-    document.getElementById("warenkorb")?.scrollIntoView({ behavior: "smooth" });
-  });
-
-  document.getElementById("fakePay")?.addEventListener("click", () => {
-    if(!ensure("loadCart") || !ensure("clearCart")){
-      alert("Fehler: app.js wurde nicht geladen. Bitte Seite neu laden (Ctrl+F5).");
-      return;
-    }
-
-    const cart = window.loadCart();
-    if(cart.length === 0){
-      alert("Warenkorb ist leer.");
-      return;
-    }
-
-    window.clearCart();
-    window.renderMiniCart?.();
-    window.setCartBadge?.();
-    const success = document.getElementById("success");
-    if(success) success.style.display = "block";
-  });
-
-  document.getElementById("clear")?.addEventListener("click", () => {
-    if(!ensure("clearCart")){
-      alert("Fehler: app.js wurde nicht geladen. Bitte Seite neu laden (Ctrl+F5).");
-      return;
-    }
-    window.clearCart();
-    window.renderMiniCart?.();
-    window.setCartBadge?.();
-    const success = document.getElementById("success");
-    if(success) success.style.display = "none";
-  });
-
-  // Initial UI
-  document.addEventListener("DOMContentLoaded", () => {
-    window.renderMiniCart?.();
-    window.setCartBadge?.();
-  });
-</script>
-</body>
-</html>
- <footer>
+    <footer>
       <div class="container">
         <div class="foot">
           <div>
@@ -309,3 +215,135 @@
       </div>
     </footer>
   </main>
+
+  <script src="app.js"></script>
+  <script>
+    const product = { id:"ancare_stick_calm", name:"an:care Stick Calm", note:"Neroli Kokosöl", price:13.99 };
+
+    // Thumbnails
+    document.querySelectorAll(".thumb").forEach((t) => {
+      t.addEventListener("click", () => {
+        const src = t.getAttribute("data-src");
+        const main = document.getElementById("mainImage");
+        if (main && src) main.src = src;
+      });
+    });
+
+    function ensure(fnName){
+      return (typeof window[fnName] === "function");
+    }
+
+    function parseEUR(text){
+      const s = String(text || "0").replace(/\s/g, "");
+      const m = s.match(/[\d.,]+/);
+      if(!m) return 0;
+      return parseFloat(m[0].replace(".", "").replace(",", "."));
+    }
+
+    function formatEUR(n){
+      return (Number(n || 0)).toFixed(2).replace(".", ",") + " EUR";
+    }
+
+    function updateGrandTotal(){
+      const subtotal = parseEUR(document.getElementById("miniCartTotal")?.textContent);
+      const ship = parseFloat(document.getElementById("shippingSelect")?.value || "0");
+      const out = document.getElementById("grandTotal");
+      if(out) out.textContent = formatEUR(subtotal + ship);
+    }
+
+    function syncShippingAndPaymentFromStorage(){
+      const ship = localStorage.getItem("ancare_shipping_v1");
+      const sel = document.getElementById("shippingSelect");
+      if(ship && sel) sel.value = ship;
+
+      const pay = localStorage.getItem("ancare_payment_v1");
+      if(pay){
+        const r = document.querySelector(`input[name="paymentMethod"][value="${pay}"]`);
+        if(r) r.checked = true;
+      }
+    }
+
+    document.getElementById("shippingSelect")?.addEventListener("change", (e) => {
+      localStorage.setItem("ancare_shipping_v1", e.target.value);
+      updateGrandTotal();
+    });
+
+    document.querySelectorAll('input[name="paymentMethod"]').forEach(r => {
+      r.addEventListener("change", () => {
+        localStorage.setItem("ancare_payment_v1", r.value);
+      });
+    });
+
+    document.getElementById("addBtn")?.addEventListener("click", () => {
+      if(!ensure("addToCart")){
+        alert("Fehler: app.js wurde nicht geladen. Bitte Seite neu laden (Ctrl+F5).");
+        return;
+      }
+
+      const qty = Math.max(1, parseInt(document.getElementById("qty")?.value || "1", 10));
+
+      window.addToCart({
+        id: product.id,
+        name: product.name,
+        note: product.note,
+        price: product.price,
+        qty
+      });
+
+      window.renderMiniCart?.();
+      window.setCartBadge?.();
+      updateGrandTotal();
+      alert("Im Prototyp hinzugefügt.");
+    });
+
+    document.getElementById("buyBtn")?.addEventListener("click", () => {
+      document.getElementById("warenkorb")?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("fakePay")?.addEventListener("click", () => {
+      if(!ensure("loadCart") || !ensure("clearCart")){
+        alert("Fehler: app.js wurde nicht geladen. Bitte Seite neu laden (Ctrl+F5).");
+        return;
+      }
+
+      const cart = window.loadCart();
+      if(cart.length === 0){
+        alert("Warenkorb ist leer.");
+        return;
+      }
+
+      window.clearCart();
+      window.renderMiniCart?.();
+      window.setCartBadge?.();
+      updateGrandTotal();
+
+      const success = document.getElementById("success");
+      if(success) success.style.display = "block";
+    });
+
+    document.getElementById("clear")?.addEventListener("click", () => {
+      if(!ensure("clearCart")){
+        alert("Fehler: app.js wurde nicht geladen. Bitte Seite neu laden (Ctrl+F5).");
+        return;
+      }
+
+      window.clearCart();
+      window.renderMiniCart?.();
+      window.setCartBadge?.();
+      updateGrandTotal();
+
+      const success = document.getElementById("success");
+      if(success) success.style.display = "none";
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      syncShippingAndPaymentFromStorage();
+
+      window.renderMiniCart?.();
+      window.setCartBadge?.();
+
+      updateGrandTotal();
+    });
+  </script>
+</body>
+</html>
