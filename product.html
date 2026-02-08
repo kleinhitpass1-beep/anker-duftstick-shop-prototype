@@ -117,85 +117,106 @@
     </section>
 
     <!-- Warenkorbbereich -->
-    <section class="section" id="warenkorb">
-      <div class="container">
-        <div class="sectionHeader">
-          <div>
-            <h2>Warenkorb</h2>
-            <p>Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.</p>
-          </div>
-        </div>
+<section class="section" id="warenkorb">
+  <div class="container">
 
-        <div class="card shadowBig">
-          <div class="pad cartLayout">
-            <!-- Links: Cart -->
-            <div class="cartMain">
-              <div id="miniCart"></div>
+    <div class="card shadowBig">
+      <div class="pad cartLayout">
 
-              <div class="cartRow" style="margin-top:12px">
-                <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
-                <div class="price" id="miniCartTotal">0,00 EUR</div>
-              </div>
+        <!-- LINKS: WARENKORB -->
+        <div class="cartMain">
+          <div style="width:100%">
 
-              <div class="ctaRow" style="margin-top:12px">
-                <button class="btn btnPrimary" type="button" id="fakePay">Fiktive Bestellung auslösen</button>
-                <button class="btn" type="button" id="clear">Warenkorb leeren</button>
-              </div>
-
-              <div class="fineprint" id="success" style="display:none">
-                Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
-              </div>
+            <!-- Überschrift jetzt IN der Box -->
+            <div style="margin-bottom:6px">
+              <h2 style="margin:0">Warenkorb</h2>
             </div>
 
-            <!-- Rechts: Versand und Zahlung -->
-            <aside class="cartSide">
-              <div class="card shadowBig">
-                <div class="padLg">
-                  <div style="font-weight:900; margin-bottom:10px">Versand und Zahlung</div>
+            <div class="fineprint" style="margin-top:6px">
+              Im Prototyp speichern wir nur lokal im Browser, kein echter Kauf.
+            </div>
 
-                  <div class="field">
-                    <label for="shippingSelect">Versand</label>
-                    <select id="shippingSelect">
-                      <option value="dhl_399">DHL Versand 3,99 EUR</option>
-                      <option value="pickup_0">Abholung 0,00 EUR</option>
-                    </select>
-                  </div>
+            <div id="miniCart" style="margin-top:18px"></div>
 
-                  <div class="field" style="margin-top:14px">
-                    <label>Zahlungsart</label>
+            <div class="cartRow" style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap">
+              <div style="color:var(--muted); font-size:13.5px">Zwischensumme</div>
+              <div class="price" id="miniCartTotal">0,00 EUR</div>
+            </div>
 
-                    <label class="payOption">
-                      <input type="radio" name="paymentMethod" value="paypal" />
-                      <span>PayPal</span>
-                    </label>
+            <div class="ctaRow" style="margin-top:14px">
+              <button class="btn btnPrimary" type="button" id="fakePay">
+                Fiktive Bestellung auslösen
+              </button>
 
-                    <label class="payOption">
-                      <input type="radio" name="paymentMethod" value="rechnung" />
-                      <span>Rechnung</span>
-                    </label>
+              <button class="btn" type="button" id="clear">
+                Warenkorb leeren
+              </button>
+            </div>
 
-                    <label class="payOption">
-                      <input type="radio" name="paymentMethod" value="kreditkarte" />
-                      <span>Kreditkarte</span>
-                    </label>
-                  </div>
-
-                  <div class="cartRow" style="margin-top:14px">
-                    <div style="color:var(--muted); font-size:13.5px">Gesamtsumme inkl Versand</div>
-                    <div class="price" id="grandTotal">0,00 EUR</div>
-                  </div>
-
-                  <div class="fineprint" style="margin-top:12px">
-                    Hinweis: Prototyp. Auswahl wird lokal im Browser gespeichert.
-                  </div>
-                </div>
-              </div>
-            </aside>
+            <div class="fineprint" id="success" style="display:none; margin-top:12px">
+              Erfolg im Prototyp. Bestellung ausgelöst. Es wurde keine echte Zahlung ausgeführt.
+            </div>
 
           </div>
         </div>
+
+        <!-- RECHTS: VERSAND UND ZAHLUNG -->
+        <aside class="cartSide">
+          <div class="card shadowBig" style="width:100%">
+            <div class="padLg">
+
+              <div style="font-weight:900; margin-bottom:10px">
+                Versand und Zahlung
+              </div>
+
+              <div class="field">
+                <label for="shippingSelect">Versand</label>
+                <select id="shippingSelect">
+                  <option value="dhl_399">DHL Versand 3,99 EUR</option>
+                  <option value="pickup_0">Abholung 0,00 EUR</option>
+                </select>
+              </div>
+
+              <div class="field" style="margin-top:14px">
+                <label>Zahlungsart</label>
+
+                <label class="payOption" style="display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:16px; margin-top:10px; cursor:pointer">
+                  <input type="radio" name="paymentMethod" value="paypal">
+                  <span style="font-weight:800">PayPal</span>
+                </label>
+
+                <label class="payOption" style="display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:16px; margin-top:10px; cursor:pointer">
+                  <input type="radio" name="paymentMethod" value="rechnung">
+                  <span style="font-weight:800">Rechnung</span>
+                </label>
+
+                <label class="payOption" style="display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:16px; margin-top:10px; cursor:pointer">
+                  <input type="radio" name="paymentMethod" value="kreditkarte">
+                  <span style="font-weight:800">Kreditkarte</span>
+                </label>
+              </div>
+
+              <div class="cartRow" style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap">
+                <div style="color:var(--muted); font-size:13.5px">
+                  Gesamtsumme inkl Versand
+                </div>
+                <div class="price" id="grandTotal">0,00 EUR</div>
+              </div>
+
+              <div class="fineprint" style="margin-top:12px">
+                Hinweis: Prototyp. Auswahl wird lokal im Browser gespeichert.
+              </div>
+
+            </div>
+          </div>
+        </aside>
+
       </div>
-    </section>
+    </div>
+
+  </div>
+</section>
+
 
     <footer>
       <div class="container">
