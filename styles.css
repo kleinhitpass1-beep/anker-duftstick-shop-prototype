@@ -1221,13 +1221,13 @@ input:not([type="radio"]):not([type="checkbox"]){
   min-width: 240px;
   justify-content:center;
 }
-/* Vision Bereich sauber im weissen Streifen, ohne Einfluss auf So funktioniert Bereich */
+/* Vision: sitzt sauber im weissen Streifen, ohne Ueberschneidung */
 .visionSection{
   background: var(--white);
-  padding: 10px 0 12px;   /* etwas hoeher im weissen Kasten */
+  padding: 8px 0 14px;
 }
 
-/* Vision Inhalt zentriert und begrenzt */
+/* Zentriert, aber bleibt im weissen Bereich */
 .visionGrid{
   max-width: var(--max);
   margin: 0 auto;
@@ -1238,7 +1238,7 @@ input:not([type="radio"]):not([type="checkbox"]){
   align-items: center;
   text-align: center;
 
-  gap: 8px;
+  gap: 10px;
 }
 
 /* Ueberschrift */
@@ -1259,22 +1259,25 @@ input:not([type="radio"]):not([type="checkbox"]){
   transition: opacity .35s ease, transform .35s ease;
 }
 
-/* Wrap ist exakt so breit wie der Text */
+/* Wrap MUSS exakt Textbreite haben, nicht volle Breite */
 .visionTextWrap{
-  position: relative;
-  display: inline-block;
+  position: relative !important;
+  display: inline-block !important;
+  width: fit-content !important;
+  max-width: 100%;
 }
 
 /* Satz */
 .visionText{
+  position: relative;
+  z-index: 2;
   margin: 0;
-  padding-bottom: 8px;     /* Platz fuer die Linie, damit sie nah drunter sitzt */
+  padding-bottom: 12px;          /* Platz fuer Linie unter dem Text */
   font-weight: 900;
   letter-spacing: -0.3px;
   line-height: 1.12;
   font-size: clamp(20px, 2.2vw, 36px);
   color: var(--text);
-
   display: inline-block;
 }
 
@@ -1295,30 +1298,33 @@ input:not([type="radio"]):not([type="checkbox"]){
   to{ opacity: 1; transform: translateY(0); }
 }
 
-/* Linie: exakt unter dem Text, kein Versatz nach rechts */
+/* Linie: immer unter dem Text, nie durch den Text */
 .visionUnderline{
-  position: absolute;
-  left: 0;
-  right: 0;
+  position: absolute !important;
+  left: 0 !important;
+  width: 100% !important;
 
-  bottom: 2px;             /* ganz nah am Text */
-  height: 4px;
+  bottom: 4px !important;        /* nah am Text, aber klar darunter */
+  height: 4px !important;
   border-radius: 999px;
-  background: rgba(11,95,255,.90);
+  background: rgba(11,95,255,.92) !important;
 
+  z-index: 1 !important;         /* hinter dem Text */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1.05s ease;
+  pointer-events: none;
 }
 
 .visionUnderline.isVisible{
   transform: scaleX(1);
 }
 
-/* Mobil */
+/* Mobile */
 @media (max-width: 720px){
-  .visionSection{ padding: 10px 0 12px; }
+  .visionSection{ padding: 8px 0 14px; }
   .visionText span{ margin: 0 6px; }
-  .visionUnderline{ height: 4px; bottom: 2px; }
+  .visionUnderline{ height: 4px; bottom: 4px; }
 }
+
 
