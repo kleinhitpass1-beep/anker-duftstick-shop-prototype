@@ -1221,54 +1221,96 @@ input:not([type="radio"]):not([type="checkbox"]){
   min-width: 240px;
   justify-content:center;
 }
-/* Vision Bereich */
+/* Vision: 2 Spalten, groß, mittig, Underline läuft Wort für Wort */
 .visionSection{
-  padding: 34px 0 46px;
+  padding: 46px 0 56px;
   display:flex;
   justify-content:center;
 }
 
-.visionTitle{
-  margin: 0;
-  text-align:center;
-  font-size: clamp(34px, 3.4vw, 48px); /* größer */
-  line-height: 1.15;
-  letter-spacing: -0.6px;
-  color: var(--text); /* schwarz */
-  max-width: 22ch; /* optisch mittig, nicht zu breit */
-  position: relative;
+.visionGrid{
+  width: min(1160px, 100%);
+  padding: 0 18px;
+  display:grid;
+  grid-template-columns: auto 1fr; /* 2 Spalten */
+  column-gap: 26px;
+  align-items: center;
+  justify-content:center;
+  margin: 0 auto;
 }
 
-/* dünne blaue Unterlegung */
-.visionTitle:after{
-  content:"";
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  bottom: 6px;
-  width: 0%;
-  height: 4px; /* viel dünner */
-  background: rgba(47,140,255,.35);
-  border-radius: 999px;
-  transition: width 1.4s ease;
-  z-index: -1; /* Unterlegung hinter Text */
-}
-
-/* Wort für Wort Animation */
-.visionWords span{
+/* links: "Unsere Vision:" */
+.visionLabel{
+  font-weight: 900;
+  letter-spacing: -.6px;
+  color: var(--text);
+  font-size: clamp(34px, 3.6vw, 54px); /* deutlich größer */
   opacity: 0;
   transform: translateY(10px);
-  display:inline-block;
-  transition: opacity .6s ease, transform .6s ease;
-  margin-right: 8px;
+  transition: opacity .55s ease, transform .55s ease;
 }
 
-/* Sichtbar State (kommt per JS) */
-.visionWords.isVisible span{
+/* rechts: Text + Underline */
+.visionTextWrap{
+  position: relative;
+  display: inline-block;
+  justify-self: start;
+}
+
+.visionText{
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -.8px;
+  color: var(--text);
+  font-size: clamp(36px, 3.8vw, 56px); /* deutlich größer */
+  line-height: 1.15;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Wörter kommen nacheinander */
+.visionText span{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .55s ease, transform .55s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Underline Layer (wird per JS verschoben) */
+.visionUnderline{
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  height: 6px;                 /* dünn, aber sichtbar */
+  width: 0px;                  /* JS setzt Breite */
+  background: rgba(47,140,255,.32);
+  border-radius: 999px;
+  z-index: 1;
+  transition: width .35s ease, transform .35s ease;
+}
+
+/* Sichtbar States */
+.visionGrid.isVisible .visionLabel{
   opacity: 1;
   transform: translateY(0);
 }
 
-.visionWords.isVisible:after{
-  width: 100%;
+@media (max-width: 900px){
+  .visionGrid{
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+    text-align: center;
+  }
+  .visionTextWrap{
+    justify-self: center;
+  }
+  .visionText{
+    justify-content: center;
+  }
+  .visionUnderline{
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
