@@ -264,7 +264,15 @@
         overlay.setAttribute("aria-hidden","true");
       }
 
-      setTimeout(open, 10000);
+      // Sicherstellen, dass es beim Laden wirklich zu ist
+overlay.classList.remove("isOpen");
+overlay.setAttribute("aria-hidden", "true");
+
+// Erst nach 10 Sekunden öffnen
+setTimeout(() => {
+  open();
+}, 10000);
+
 
       closeBtn.addEventListener("click", close);
       laterBtn.addEventListener("click", close);
