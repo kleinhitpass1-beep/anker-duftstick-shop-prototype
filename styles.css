@@ -1221,188 +1221,100 @@ input:not([type="radio"]):not([type="checkbox"]){
   min-width: 240px;
   justify-content:center;
 }
-/* Vision: 2 Spalten, groß, mittig, Underline läuft Wort für Wort */
+/* Vision: ohne eigenen Kasten, mittig im weißen Bereich unter dem Video */
 .visionSection{
-  padding: 46px 0 56px;
-  display:flex;
-  justify-content:center;
-}
-
-..visionGrid{
-  width: 100%;
-  display:grid;
-  grid-template-columns: 1fr;
-  row-gap: 12px;
-  align-items: center;
-  justify-items: center;
-  text-align:center;
-
-  /* höher im Kasten */
-  transform: translateY(-10px);
-}
-
-
-
-/* links: "Unsere Vision:" */
-.visionLabel{
-  font-weight: 900;
-  letter-spacing: -.6px;
-  color: var(--text);
-  font-size: clamp(34px, 3.6vw, 54px); /* deutlich größer */
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .55s ease, transform .55s ease;
-}
-
-/* rechts: Text + Underline */
-.visionTextWrap{
-  position: relative;
-  display: inline-block;
-  justify-self: start;
-}
-
-.visionText{
+  padding: 22px 0 8px;     /* sitzt im weißen Streifen */
   margin: 0;
-  font-weight: 900;
-  letter-spacing: -.8px;
-  color: var(--text);
-  font-size: clamp(40px, 4.4vw, 64px); /* größer als vorher */
-  line-height: 1.15;
-  display:flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content:center;
+  background: transparent;  /* kein eigener Kasten */
 }
 
-
-/* Wörter kommen nacheinander */
-.visionText span{
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .55s ease, transform .55s ease;
-  position: relative;
-  z-index: 2;
-}
-
-/* Underline Layer (wird per JS verschoben) */
-.visionUnderline{
-  position: absolute;
-  left: 0;
-  bottom: -8px;                 /* unter dem Text */
-  height: 4px;                  /* kleiner/dünner */
-  width: 0px;                   /* JS setzt Breite */
-  background: rgba(11,95,255,.55); /* kräftiger blau */
-  border-radius: 999px;
-  z-index: 1;
-  transition: width .35s ease, transform .35s ease;
-}
-
-
-/* Sichtbar States */
-.visionGrid.isVisible .visionLabel{
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 900px){
-  .visionGrid{
-    grid-template-columns: 1fr;
-    row-gap: 10px;
-    text-align: center;
-  }
-  .visionTextWrap{
-    justify-self: center;
-  }
-  .visionText{
-    justify-content: center;
-  }
-  .visionUnderline{
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-/* Vision: sitzt als eigener weißer Kasten zentriert */
-.visionWrap{
-  margin: 0 auto;
-  max-width: var(--max);
-  padding: 18px 18px 0;   /* oben etwas Luft, unten weniger */
-}
-
-.visionBox{
-  background: var(--white);
-  border-radius: var(--radius2);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow2);
-  padding: 28px 22px;
-  
-  /* wichtig: wirklich mittig */
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-/* Vision: eigener weißer Kasten, mittig im Bereich */
-.visionSection{
-  padding: 10px 0 18px;  /* weniger Abstand nach unten */
-}
-
-.visionWrap{
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 18px;
-}
-
-.visionBox{
-  background: var(--white);
-  border-radius: var(--radius2);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow2);
-  padding: 26px 22px;
-
-  display:flex;
-  justify-content:center;
-}
-
-/* Inhalt im Kasten: wirklich mittig und höher */
 .visionGrid{
-  width: 100%;
-  max-width: 980px;        /* verhindert zu breite Zeilen */
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
-
-  transform: translateY(-6px); /* schiebt alles höher in den weißen Kasten */
+  gap: 10px;
 }
 
-/* Label oben */
+/* "Unsere Vision:" etwas dünner, damit es sicher reinpasst */
 .visionLabel{
-  font-weight: 900;
-  letter-spacing: -.3px;
-  margin: 0 0 12px;
+  font-weight: 850;
+  letter-spacing: -0.6px;
+  line-height: 1.05;
+  font-size: clamp(34px, 4.4vw, 64px);
+  opacity: 0;
+  transform: translateY(8px);
 }
 
-/* Text + Unterstreichung: Unterstreichung unter dem Text */
-.visionTextWrap{
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px; /* Platz für den Strich unter dem Text */
+.visionLabel.isVisible{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .35s ease, transform .35s ease;
 }
 
-.visionUnderline{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:2px;           /* unter dem Text, nicht durch den Text */
-  height:4px;           /* dünner, aber sichtbar */
-  border-radius:999px;
-  background: rgba(11,95,255,.55); /* kräftigeres Blau */
-  transform-origin:left center;
-}
-
-/* Text größer */
+/* Hauptsatz größer, Wörter erscheinen nacheinander */
 .visionText{
   margin: 0;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.2;
   font-weight: 900;
+  letter-spacing: -0.3px;
+  line-height: 1.12;
+  font-size: clamp(22px, 2.4vw, 40px);
+  color: var(--text);
+  max-width: 980px;
 }
+
+/* Wort Animation */
+.visionText span{
+  position:relative;
+  display:inline-block;
+  margin: 0 8px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Dünner, kräftiger blauer Strich unter jedem Wort (nicht durch den Text) */
+.visionText span::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  height: 4px;                 /* dünn */
+  bottom: -7px;                /* klar unter dem Text */
+  border-radius: 999px;
+  background: rgba(11,95,255,.55);  /* kräftiger blau Ton */
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Aktiv (wird per JS gesetzt) */
+.visionText.isVisible span{
+  animation: visionWordIn .45s ease forwards;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+.visionText.isVisible span::after{
+  animation: visionUnderlineIn .45s ease forwards;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+@keyframes visionWordIn{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes visionUnderlineIn{
+  to{
+    transform: scaleX(1);
+  }
+}
+
+/* Mobile: weniger Abstand und sauber */
+@media (max-width: 720px){
+  .visionSection{ padding: 18px 0 6px; }
+  .visionText{ max-width: 92vw; }
+  .visionText span{ margin: 0 6px; }
+  .visionText span::after{ height: 4px; bottom: -6px; }
+}
+
