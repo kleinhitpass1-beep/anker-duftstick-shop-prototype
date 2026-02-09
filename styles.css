@@ -1451,6 +1451,10 @@ input:not([type="radio"]):not([type="checkbox"]){
 .visionSection:not(#vision){
   display: none !important;
 }
+/* Falls irgendwo noch eine zweite visionCard existiert: ausblenden */
+.visionCard:not(#visionCardMain){
+  display: none !important;
+}
 
 
 
