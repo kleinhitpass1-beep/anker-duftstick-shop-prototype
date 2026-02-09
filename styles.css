@@ -1340,3 +1340,69 @@ input:not([type="radio"]):not([type="checkbox"]){
   justify-content:center;
   align-items:center;
 }
+/* Vision: eigener weißer Kasten, mittig im Bereich */
+.visionSection{
+  padding: 10px 0 18px;  /* weniger Abstand nach unten */
+}
+
+.visionWrap{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+.visionBox{
+  background: var(--white);
+  border-radius: var(--radius2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow2);
+  padding: 26px 22px;
+
+  display:flex;
+  justify-content:center;
+}
+
+/* Inhalt im Kasten: wirklich mittig und höher */
+.visionGrid{
+  width: 100%;
+  max-width: 980px;        /* verhindert zu breite Zeilen */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+
+  transform: translateY(-6px); /* schiebt alles höher in den weißen Kasten */
+}
+
+/* Label oben */
+.visionLabel{
+  font-weight: 900;
+  letter-spacing: -.3px;
+  margin: 0 0 12px;
+}
+
+/* Text + Unterstreichung: Unterstreichung unter dem Text */
+.visionTextWrap{
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px; /* Platz für den Strich unter dem Text */
+}
+
+.visionUnderline{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:2px;           /* unter dem Text, nicht durch den Text */
+  height:4px;           /* dünner, aber sichtbar */
+  border-radius:999px;
+  background: rgba(11,95,255,.55); /* kräftigeres Blau */
+  transform-origin:left center;
+}
+
+/* Text größer */
+.visionText{
+  margin: 0;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.2;
+  font-weight: 900;
+}
