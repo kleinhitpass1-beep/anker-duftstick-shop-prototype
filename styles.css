@@ -1286,19 +1286,6 @@ input:not([type="radio"]):not([type="checkbox"]){
   to{ opacity: 1; transform: translateY(0); }
 }
 
-/* Durchgehende Linie unter dem ganzen Satz (nicht gestrichelt) */
-.visionUnderline{
-  height: 2px;                 /* dünn */
-  border-radius: 800px;
-  background: rgba(11,95,255,.75); /* kräftiger blau Ton */
-  width: 0;
-  margin: 1px auto 0;         /* unter den Text, mittig */
-  transition: width 1.1s ease;
-}
-
-.visionUnderline.isVisible{
-  width: 100%;
-}
 
 /* Mobile fein */
 @media (max-width: 720px){
