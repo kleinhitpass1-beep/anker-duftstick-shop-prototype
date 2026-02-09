@@ -1221,11 +1221,10 @@ input:not([type="radio"]):not([type="checkbox"]){
   min-width: 240px;
   justify-content:center;
 }
-/* Vision Bereich sauber im weissen Streifen, ohne Ueberschneidung */
+/* Vision: sitzt sauber im weißen Streifen, keine Überschneidung */
 .visionSection{
-  background: var(--white);
-  padding: 18px 0 8px;
-  margin: 0;
+  padding: -20px 0 -20px;     /* kompakter -> passt in den weißen Streifen */
+  background: transparent;
 }
 
 .visionGrid{
@@ -1236,7 +1235,7 @@ input:not([type="radio"]):not([type="checkbox"]){
   gap: 10px;
 }
 
-/* Unsere Vision */
+/* "Unsere Vision" kleiner damit es sicher passt */
 .visionLabel{
   font-weight: 900;
   letter-spacing: -0.6px;
@@ -1247,28 +1246,19 @@ input:not([type="radio"]):not([type="checkbox"]){
   opacity: 0;
   transform: translateY(8px);
 }
-
 .visionLabel.isVisible{
   opacity: 1;
   transform: translateY(0);
   transition: opacity .35s ease, transform .35s ease;
 }
 
-/* Wrap begrenzt und zentriert, aber ohne Einfluss auf den Bereich darunter */
+/* Wrap begrenzt die Breite -> bleibt im weißen Bereich */
 .visionLineWrap{
   width: min(980px, 92vw);
-  display:flex;
-  justify-content:center;
-}
-
-/* Wichtig: das ist der Container, der die Textbreite bestimmt */
-.visionTextWrap{
   position: relative;
-  display: inline-block; /* sorgt: Unterstrich laeuft exakt unter dem Satz */
-  padding-bottom: 4px;   /* kleiner Abstand, damit der Strich nicht klebt */
 }
 
-/* Satz */
+/* Satz etwas größer, aber kontrolliert */
 .visionText{
   margin: 0;
   font-weight: 900;
@@ -1278,7 +1268,7 @@ input:not([type="radio"]):not([type="checkbox"]){
   color: var(--text);
 }
 
-/* Woerter kommen nacheinander */
+/* Wörter kommen nacheinander */
 .visionText span{
   display:inline-block;
   margin: 0 8px;
@@ -1295,29 +1285,24 @@ input:not([type="radio"]):not([type="checkbox"]){
   to{ opacity: 1; transform: translateY(0); }
 }
 
-/* Unterstrich: direkt unter dem Satz und exakt Satzbreite */
+/* Durchgehende Linie unter dem ganzen Satz (nicht gestrichelt) */
 .visionUnderline{
-  position:absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;                  /* direkt unter dem Text */
-  height: 2px;
+  height: 2px;                 /* dünn */
   border-radius: 999px;
-  background: rgba(11,95,255,.78);
-
-  transform-origin: left center;
-  transform: scaleX(0);
-  transition: transform 1.1s ease;
+  background: rgba(11,95,255,.75); /* kräftiger blau Ton */
+  width: 0;
+  margin: 30px auto 0;         /* unter den Text, mittig */
+  transition: width 1.1s ease;
 }
 
 .visionUnderline.isVisible{
-  transform: scaleX(1);
+  width: 100%;
 }
 
-/* Mobile */
+/* Mobile fein */
 @media (max-width: 720px){
-  .visionSection{ padding: 16px 0 8px; }
+  .visionSection{ padding: 16px 0 12px; }
   .visionText span{ margin: 0 6px; }
-  .visionTextWrap{ padding-bottom: 3px; }
-  .visionUnderline{ height: 2px; }
+  .visionUnderline{ height: 4px; margin-top: 8px; }
 }
+
