@@ -1254,12 +1254,9 @@ input:not([type="radio"]):not([type="checkbox"]){
 
 /* Wrap begrenzt die Breite -> bleibt im weißen Bereich */
 .visionLineWrap{
-  width: fit-content;      /* Breite = Textbreite */
-  max-width: 92vw;         /* verhindert overflow */
+  width: min(980px, 92vw);
   position: relative;
-  margin: 0 auto;          /* mittig */
 }
-
 
 /* Satz etwas größer, aber kontrolliert */
 .visionText{
