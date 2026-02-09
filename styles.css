@@ -1293,6 +1293,52 @@ input:not([type="radio"]):not([type="checkbox"]){
   .visionText span{ margin: 0 6px; }
   .visionUnderline{ height: 4px; margin-top: 8px; }
 }
+/* Lagerstatus Anzeige */
+.stockStatus{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.stockDot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  display:inline-block;
+}
+
+/* Grün = vorrätig */
+.inStock{
+  color:#1f7a3f;
+}
+
+.inStock .stockDot{
+  background:#22c55e;
+  box-shadow:0 0 0 4px rgba(34,197,94,.15);
+}
+
+/* Optional für später */
+.lowStock{
+  color:#b45309;
+}
+
+.lowStock .stockDot{
+  background:#f59e0b;
+  box-shadow:0 0 0 4px rgba(245,158,11,.15);
+}
+
+.outOfStock{
+  color:#b91c1c;
+}
+
+.outOfStock .stockDot{
+  background:#ef4444;
+  box-shadow:0 0 0 4px rgba(239,68,68,.15);
+}
 
 
 
