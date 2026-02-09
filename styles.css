@@ -595,7 +595,11 @@ input:not([type="radio"]):not([type="checkbox"]){
   z-index: 9999;
 }
 
-.nlOverlay.isOpen{ display:flex; }
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    nlOverlay.classList.add("isOpen");
+  }, 10000); // 10 Sekunden
+});
 
 .nlModal{
   width: min(560px, 100%);
