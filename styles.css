@@ -1221,6 +1221,40 @@ input:not([type="radio"]):not([type="checkbox"]){
   min-width: 240px;
   justify-content:center;
 }
+/* Vision Bereich */
+.visionSection{
+  padding: 30px 0 40px;
+}
+
+.visionTitle{
+  margin: 0 0 20px;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  color: rgba(47,140,255,.95); /* hellblau */
+  max-width: 65ch;
+}
+
+/* Scroll Animation */
+.revealOnScroll{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+
+.revealOnScroll.isVisible{
+  opacity: 1;
+  transform: translateY(0);
+  background-image: linear-gradient(transparent 72%, rgba(255,0,0,.18) 0);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  animation: visionUnderline 1.8s ease-out .4s forwards;
+}
+
+@keyframes visionUnderline{
+  to{ background-size: 100% 100%; }
+}
 
 
 
