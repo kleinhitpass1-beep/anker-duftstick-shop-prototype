@@ -556,5 +556,56 @@
 
   observer.observe(el);
 })();
+// Vision: erst Label poppt auf, dann Wörter nacheinander + Underline läuft mit
+(() => {
+  const block = document.getElementById("visionBlock");
+  const label = document.getElementById("visionLabel");
+  const text = document.getElementById("visionText");
+  const underline = document.getElementById("visionUnderline");
+  if (!block || !label || !text || !underline) return;
+
+  const spans = Array.from(text.querySelectorAll("span"));
+
+  const moveUnderlineTo = (fromSpan, toSpan) => {
+    const wrapRect = text.getBoundingClientRect();
+    const a = fromSpan.getBoundingClientRect();
+    const b = toSpan.getBoundingClientRect();
+
+    const left = a.left - wrapRect.left;
+    const right = b.right - wrapRect.left;
+
+    underline.style.transform = `translateX(${left}px)`;
+    underline.style.width = `${Math.max(0, right - left)}px`;
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(async (entry) => {
+      if (!entry.isIntersecting) return;
+
+      block.classList.add("isVisible");
+
+      // 1) Label zuerst kurz aufploppen
+      await new Promise(r => setTimeout(r, 450));
+
+      // 2) Underline startet beim ersten Wort (wenn vorhanden)
+      if (spans.length > 0) {
+        moveUnderlineTo(spans[0], spans[0]);
+      }
+
+      // 3) Wörter nacheinander + Underline wächst mit
+      spans.forEach((span, i) => {
+        setTimeout(() => {
+          span.style.opacity = "1";
+          span.style.transform = "translateY(0)";
+          moveUnderlineTo(spans[0], span);
+        }, 250 + i * 180);
+      });
+
+      observer.disconnect();
+    });
+  }, { threshold: 0.45 });
+
+  observer.observe(block);
+})();
 
 
