@@ -637,6 +637,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   io.observe(block);
 });
-
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    nlOverlay.classList.add("isOpen");
+  }, 10000); // 10 Sekunden
+});
 
 
