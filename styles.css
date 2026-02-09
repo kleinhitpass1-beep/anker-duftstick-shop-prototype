@@ -1375,6 +1375,35 @@ input:not([type="radio"]):not([type="checkbox"]){
 .visionSection ~ .section{
   padding-top: 34px;
 }
+/* VISION KASTEN: greift sicher, auch wenn visionCard fehlt */
+.visionSection{
+  padding: 18px 0 10px !important;
+}
+
+.visionSection .visionCard,
+.visionSection .visionGrid{
+  width: min(980px, 92vw) !important;
+  margin: 0 auto !important;
+  padding: 18px 20px 16px !important;
+  border-radius: 22px !important;
+  background: rgba(255,255,255,.92) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 18px 55px rgba(11,27,58,.08) !important;
+}
+
+/* Innenlayout mittig */
+.visionSection .visionGrid{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap: 10px !important;
+}
+
+/* ABSTAND: Bereich danach weiter runter (greift auch wenn Container dazwischen liegt) */
+.visionSection ~ .section{
+  padding-top: 34px !important;
+}
 
 
 
