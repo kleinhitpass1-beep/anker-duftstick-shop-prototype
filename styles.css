@@ -1228,17 +1228,19 @@ input:not([type="radio"]):not([type="checkbox"]){
   justify-content:center;
 }
 
-.visionGrid{
-  width: min(1160px, 100%);
-  padding: 0 18px;
+..visionGrid{
+  width: 100%;
   display:grid;
-  grid-template-columns: 1fr;  /* untereinander */
-  row-gap: 14px;
+  grid-template-columns: 1fr;
+  row-gap: 12px;
   align-items: center;
-  justify-items: center;       /* mittig */
+  justify-items: center;
   text-align:center;
-  margin: 0 auto;
+
+  /* höher im Kasten */
+  transform: translateY(-10px);
 }
+
 
 
 /* links: "Unsere Vision:" */
