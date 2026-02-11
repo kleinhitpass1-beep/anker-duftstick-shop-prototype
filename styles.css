@@ -1822,6 +1822,69 @@ html {
   transform:translateY(-1px);
 }
 html{ scroll-behavior:smooth; }
+/* Podcast Buttons mit Logo und Hover Preview */
+.podcastCtas{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.podcastLink{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.85);
+  color: var(--text);
+  font-weight:800;
+  font-size:14px;
+  box-shadow: 0 6px 16px rgba(11,27,58,.06);
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.podcastLink:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(11,27,58,.10);
+  border-color: rgba(11,95,255,.25);
+}
+
+.podcastLogo{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+  border-radius:6px;
+  display:block;
+}
+
+/* Vorschau Bild wie bei Social Preview */
+.podcastPreview{
+  position:absolute;
+  left:50%;
+  top:-12px;
+  transform: translate(-50%, -100%) translateY(8px);
+  width:260px;
+  max-width: 70vw;
+  height:auto;
+  border-radius:18px;
+  border:1px solid rgba(11,27,58,.12);
+  box-shadow: 0 20px 45px rgba(11,27,58,.18);
+  background:#fff;
+
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index:40;
+}
+
+.podcastLink:hover .podcastPreview{
+  opacity:1;
+  transform: translate(-50%, -100%) translateY(0);
+}
 
 
 
