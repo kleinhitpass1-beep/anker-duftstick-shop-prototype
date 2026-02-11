@@ -1778,6 +1778,50 @@ input:not([type="radio"]):not([type="checkbox"]){
 html {
   scroll-behavior: smooth;
 }
+.productRatingLink{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--text);
+  font-family:var(--sans);
+  cursor:pointer;
+  user-select:none;
+}
+
+.productStars{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  line-height:1;
+}
+
+.pStar{
+  font-size:18px;
+  color:#e0e0e0; /* aus */
+}
+
+.pStar.isOn{
+  color:#f3c319; /* gold */
+}
+
+.productRatingValue{
+  font-weight:900;
+  font-size:22px;
+  line-height:1;
+}
+
+.productRatingCount{
+  font-weight:800;
+  font-size:18px;
+  color:var(--muted);
+  line-height:1;
+}
+
+.productRatingLink:hover .pStar{
+  transform:translateY(-1px);
+}
+html{ scroll-behavior:smooth; }
 
 
 
