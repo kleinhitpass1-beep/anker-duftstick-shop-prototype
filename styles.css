@@ -1425,6 +1425,11 @@ input:not([type="radio"]):not([type="checkbox"]){
   max-width: 999px;   /* hier steuerst du die Breite */
   margin: 0 auto;
 }
+.visionSection{
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
 
 
 
