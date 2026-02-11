@@ -1923,7 +1923,17 @@ html{ scroll-behavior:smooth; }
   opacity:1;
   transform: translateX(-50%) translateY(0);
 }
+.productStarsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+.productStarsLink:hover .star {
+  transform: scale(1.05);
+}
 
 
 
