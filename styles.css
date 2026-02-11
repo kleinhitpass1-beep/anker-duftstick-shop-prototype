@@ -1778,6 +1778,17 @@ input:not([type="radio"]):not([type="checkbox"]){
 html {
   scroll-behavior: smooth;
 }
+.productStarsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.productStarsLink:hover .star {
+  transform: scale(1.05);
+}
 
 
 
