@@ -1566,6 +1566,31 @@ input:not([type="radio"]):not([type="checkbox"]){
 .reviewsListWrap{
   width: 100%;
 }
+/* Gesamter Rezensionen Bereich kompakter & zentriert */
+.reviewsSection{
+  max-width: 980px;   /* gleiche Breite wie Vision & Produkt */
+  margin: 60px auto;  /* oben/unten Abstand + mittig */
+  padding: 0 20px;
+}
+
+/* Bewertungsblock */
+.reviewsSummary{
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px 28px;
+  box-shadow: 0 20px 60px rgba(11,27,58,.06);
+}
+
+/* Kommentare Block */
+.reviewsListWrap{
+  margin-top: 28px;
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px 28px;
+  box-shadow: 0 20px 60px rgba(11,27,58,.06);
+}
 
 
 
