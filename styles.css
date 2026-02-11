@@ -1935,6 +1935,12 @@ html{ scroll-behavior:smooth; }
 .productStarsLink:hover .star {
   transform: scale(1.05);
 }
+/* SHOP RESET – überschreibt fremde Hover Effekte */
+.shopSection,
+.shopSection * {
+  transform: none !important;
+  transition: none !important;
+}
 
 
 
