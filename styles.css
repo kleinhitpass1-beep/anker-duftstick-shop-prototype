@@ -1775,6 +1775,9 @@ input:not([type="radio"]):not([type="checkbox"]){
   .reviewItem{ grid-template-columns: 1fr; }
   .reviewLeft{ flex-direction:row; justify-content:space-between; align-items:center; }
 }
+html {
+  scroll-behavior: smooth;
+}
 
 
 
