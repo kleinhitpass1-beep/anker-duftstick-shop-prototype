@@ -1422,7 +1422,7 @@ input:not([type="radio"]):not([type="checkbox"]){
 
 .visionCard{
   width: 100%;
-  max-width: 980px;   /* hier steuerst du die Breite */
+  max-width: 240px;   /* hier steuerst du die Breite */
   margin: 0 auto;
 }
 
