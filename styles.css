@@ -1551,6 +1551,21 @@ input:not([type="radio"]):not([type="checkbox"]){
   font-size: 13.5px;
   line-height: 1.65;
 }
+/* Rezensionen: Bewertung oben, Kommentare darunter */
+.reviewsGrid{
+  display: grid;
+  grid-template-columns: 1fr; /* nur eine Spalte */
+  gap: 14px;
+  align-items: start;
+}
+
+.reviewsSummary{
+  width: 100%;
+}
+
+.reviewsListWrap{
+  width: 100%;
+}
 
 
 
