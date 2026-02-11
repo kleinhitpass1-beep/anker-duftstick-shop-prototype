@@ -1926,3 +1926,14 @@ html{ scroll-behavior:smooth; }
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+/* Sanfter Hover Lift wie im Podcast Bereich */
+.influencerMedia,
+.influencerMedia video,
+.influencerMedia img{
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.influencerMedia:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(11,27,58,.14);
+}
