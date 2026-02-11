@@ -1430,6 +1430,127 @@ input:not([type="radio"]):not([type="checkbox"]){
   margin-left: 50%;
   transform: translateX(-70%);
 }
+/* Rezensionen und Sterne */
+.ratingRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin: 10px 0 12px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.3;
+}
+
+.stars{
+  display:inline-flex;
+  gap:4px;
+  transform: translateY(1px);
+}
+.star{
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(11,27,58,.18);
+}
+.star.isOn{
+  color: rgba(11,95,255,.95);
+}
+
+.ratingMeta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color: var(--muted);
+}
+.ratingValue{
+  font-weight: 900;
+  color: var(--text);
+}
+
+.reviewsGrid{
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap: 14px;
+  align-items:start;
+}
+@media (max-width: 980px){
+  .reviewsGrid{ grid-template-columns: 1fr; }
+}
+
+.reviewsSummary h3{
+  margin: 0 0 10px;
+  font-size: 16px;
+  letter-spacing: -.2px;
+}
+
+.avgRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 10px;
+}
+.avgBig{
+  font-size: 34px;
+  font-weight: 950;
+  letter-spacing: -0.6px;
+  color: var(--text);
+}
+.countSmall{
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+.dist{
+  display:grid;
+  gap:8px;
+  margin-top: 8px;
+}
+.distRow{
+  display:grid;
+  grid-template-columns: 54px 1fr 44px;
+  gap:10px;
+  align-items:center;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.distBar{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(11,27,58,.08);
+  overflow:hidden;
+}
+.distFill{
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: rgba(11,95,255,.55);
+}
+
+.reviewItem{
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+.reviewHead{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.reviewName{
+  font-weight: 900;
+  color: var(--text);
+}
+.reviewDate{
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.reviewText{
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
 
 
 
