@@ -1476,3 +1476,20 @@ html { scroll-behavior: smooth; }
     align-items: flex-start;
   }
 }
+/* --- FIX: Podcast Hover Preview darf nicht abgeschnitten werden --- */
+#podcast .card,
+#podcast .pad,
+#podcast .padLg,
+#podcast .ctaRow{
+  overflow: visible !important;
+}
+
+#podcast .podcastLink{
+  position: relative;
+  overflow: visible !important;
+  z-index: 5;
+}
+
+#podcast .podcastPreview{
+  z-index: 99999;
+}
