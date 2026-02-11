@@ -1264,18 +1264,18 @@ html { scroll-behavior: smooth; }
   line-height:1;
 }
 .pStar{
-  font-size:15px;
+  font-size:13px;
   color:#e0e0e0;
 }
 .pStar.isOn{ color:#f3c319; }
 .productRatingValue{
   font-weight:900;
-  font-size:18px;
+  font-size:17px;
   line-height:1;
 }
 .productRatingCount{
   font-weight:800;
-  font-size:18px;
+  font-size:13px;
   color:var(--muted);
   line-height:1;
 }
