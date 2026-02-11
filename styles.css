@@ -1466,18 +1466,17 @@ input:not([type="radio"]):not([type="checkbox"]){
   display: flex;
   justify-content: center;
 }
-
 .visionCard{
-  width: 100%;
-  max-width: 900px;   /* leicht kompakter, wirkt zentrierter */
+  max-width: var(--max);
   margin: 0 auto;
-}
-.visionCard{
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-}
+  padding: 28px 32px;
 
+  border-radius: 28px;
+  background: rgba(255,255,255,.75);
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 80px rgba(11,27,58,.08);
+  backdrop-filter: blur(6px);
+}
 
 
 
