@@ -683,9 +683,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Prototyp Daten
   const reviews = [
     { name: "Laura", date: "2025 08 01", rating: 5, text: "Sehr beruhigend. Ich nutze ihn vor Terminen und abends. Unauffällig und schnell." },
-    { name: "Timo", date: "2025 07 28", rating: 4, text: "Gutes Ritual für Übergänge. Für mich hilft es vor allem nach viel Input und Social Media." },
+    { name: "Timo", date: "2025 07 28", rating: 5, text: "Gutes Ritual für Übergänge. Für mich hilft es vor allem nach viel Input und Social Media." },
     { name: "Mara", date: "2025 07 20", rating: 5, text: "Einfach, klar, angenehm. Genau das, was ich in stressigen Momenten brauche." },
-    { name: "Jonas", date: "2025 07 12", rating: 4, text: "Schönes Produktgefühl. Wirkung ist subtil, aber der Reset Moment ist da." }
+    { name: "Jonas", date: "2025 07 12", rating: 5, text: "Schönes Produktgefühl. Wirkung ist subtil, aber der Reset Moment ist da." }
   ];
 
   function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
