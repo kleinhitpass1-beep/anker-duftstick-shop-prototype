@@ -1797,7 +1797,7 @@ html {
 }
 
 .pStar{
-  font-size:15px;
+  font-size:12px;
   color:#e0e0e0; /* aus */
 }
 
@@ -1807,13 +1807,13 @@ html {
 
 .productRatingValue{
   font-weight:900;
-  font-size:18px;
+  font-size:15px;
   line-height:1;
 }
 
 .productRatingCount{
   font-weight:800;
-  font-size:18px;
+  font-size:15px;
   color:var(--muted);
   line-height:1;
 }
