@@ -1797,7 +1797,7 @@ html {
 }
 
 .pStar{
-  font-size:12px;
+  font-size:15px;
   color:#e0e0e0; /* aus */
 }
 
@@ -1807,13 +1807,13 @@ html {
 
 .productRatingValue{
   font-weight:900;
-  font-size:15px;
+  font-size:18px;
   line-height:1;
 }
 
 .productRatingCount{
   font-weight:800;
-  font-size:15px;
+  font-size:18px;
   color:var(--muted);
   line-height:1;
 }
@@ -1900,84 +1900,32 @@ html{ scroll-behavior:smooth; }
 .padLg{
   overflow: visible;
 }
-.podcastBtn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.podcastPreview {
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
+.podcastPreview{
+  position:absolute;
+  left:50%;
+  bottom: calc(100% + 12px);
   transform: translateX(-50%) translateY(10px);
 
-  width: 220px;          /* bewusst moderat */
-  border-radius: 18px;
-  box-shadow: 0 25px 60px rgba(0,0,0,.25);
+  width:260px;
+  max-width:70vw;
+  border-radius:16px;
+  box-shadow: 0 20px 45px rgba(11,27,58,.18);
+  border:1px solid rgba(11,27,58,.12);
+  background:#fff;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: all .35s ease;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index:99999;
 }
 
-.podcastBtn:hover .podcastPreview {
-  opacity: 1;
+.podcastLink:hover .podcastPreview{
+  opacity:1;
   transform: translateX(-50%) translateY(0);
 }
-/* Sanfter Hover Lift wie im Podcast Bereich */
-.influencerMedia,
-.influencerMedia video,
-.influencerMedia img{
-  transition: transform .18s ease, box-shadow .18s ease;
-}
 
-.influencerMedia:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 22px 55px rgba(11,27,58,.14);
-}
-/* SHOP MUSS STATISCH BLEIBEN */
-.shopSection *,
-.shopSection *::before,
-.shopSection *::after {
-  transform: none !important;
-  transition: none !important;
-}
-.shopGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  align-items: stretch;
-}
 
-.shopCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-/* Vision sauber zentrieren ohne 100vw Shift */
-.visionSection{
-  width: 100%;
-  margin: 0;
-  transform: none;
 
-  display: flex;
-  justify-content: center;
-}
 
-/* Karte bleibt wie gehabt zentriert */
-.visionCard{
-  width: min(980px, 92vw);
-  margin: 0 auto;
-}
-.marketingCard,
-.podcastCard {
-  transition: transform .35s ease, box-shadow .35s ease;
-}
 
-.marketingCard:hover,
-.podcastCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.12);
-}
+
