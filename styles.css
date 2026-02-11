@@ -1937,3 +1937,47 @@ html{ scroll-behavior:smooth; }
   transform: translateY(-6px);
   box-shadow: 0 22px 55px rgba(11,27,58,.14);
 }
+/* SHOP MUSS STATISCH BLEIBEN */
+.shopSection *,
+.shopSection *::before,
+.shopSection *::after {
+  transform: none !important;
+  transition: none !important;
+}
+.shopGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.shopCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* Vision sauber zentrieren ohne 100vw Shift */
+.visionSection{
+  width: 100%;
+  margin: 0;
+  transform: none;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* Karte bleibt wie gehabt zentriert */
+.visionCard{
+  width: min(980px, 92vw);
+  margin: 0 auto;
+}
+.marketingCard,
+.podcastCard {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.marketingCard:hover,
+.podcastCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.12);
+}
