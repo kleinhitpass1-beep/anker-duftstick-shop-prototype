@@ -1,222 +1,226 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>an:care Podcast</title>
-  <meta name="description" content="Podcast Bereich für an:care. Episoden Übersicht, Player, Links." />
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>an:care Podcast</title>
+<meta name="description" content="Podcast Bereich für an:care. Episoden Übersicht, Player, Links." />
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="index.html" aria-label="Start">
-          <img class="logo" src="logo-v2.jpg" alt="an:care Logo" />
-          <span>
-            an:care
-            <small>Podcast</small>
-          </span>
-        </a>
-
-        <nav class="links" aria-label="Navigation">
-          <a class="link" href="shop.html">Shop</a>
-          <a class="link" href="community.html">Community</a>
-          <a class="link" href="marketing.html">Marketing</a>
-          <a class="link" href="podcast.html">Podcast</a>
-          <a class="link" href="blog.html">Blog</a>
-          <a class="btn btnPrimary" href="product.html">
-            Zum Produkt <span class="badge" id="cartCount">0</span>
-          </a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="section">
-      <div class="container">
-        <div class="card shadowBig">
-          <div class="padLg">
-            <div class="kicker"><span class="dot" aria-hidden="true"></span> Podcast</div>
-            <h1 style="margin-bottom:10px">Podcast</h1>
-            <p class="lead" style="margin-bottom:0">
-              Kurze Impulse für Ruhe, Selbstwahrnehmung und klare nächste Schritte. Klar, professionell und ohne leere Versprechen.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="productGrid">
-
-          <div class="card shadowBig">
-            <div class="mediaTop">
-              <div>
-                <strong>Episoden</strong><br />
-                <span>Wähle eine Episode aus</span>
-              </div>
-
-              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end">
-                <button class="btn btnSmall" type="button" id="seed">Beispiele laden</button>
-                <button class="btn btnSmall btnGhost" type="button" id="resetPodcast">Reset</button>
-              </div>
-            </div>
-
-            <div class="pad" id="episodeList"></div>
-          </div>
-
-          <aside class="card shadowBig">
-            <div class="padLg">
-              <div class="kicker"><span class="dot" aria-hidden="true"></span> Jetzt abspielen</div>
-
-              <div style="font-weight:900; font-size:18px; margin-top:12px" id="epTitle">
-                Keine Episode ausgewählt
-              </div>
-
-              <div style="color:var(--muted); margin-top:8px" id="epMeta">
-                Wähle links eine Episode.
-              </div>
-
-              <div style="margin-top:14px">
-                <audio id="player" controls style="width:100%"></audio>
-              </div>
-
-              <div class="fineprint" id="epDesc" style="margin-top:14px">
-                Hinweis: Im Prototyp sind Audio Dateien optional. Später kannst du Spotify, Apple Podcasts oder eine RSS Quelle anbinden.
-             <div class="ctaRow" style="justify-content:flex-start">
-
-<a class="podcastLink" href="https://open.spotify.com/" target="_blank" rel="noreferrer">
-  <span>Spotify</span>
-
-  <span class="podcastBadge">
-    <img class="podcastLogo" src="spotify-logo.jpg" alt="Spotify" />
-    <img class="podcastPreview" src="spotify-account.jpg" alt="Spotify Vorschau" />
-  </span>
+<header>
+<div class="container">
+<div class="nav">
+<a class="brand" href="index.html" aria-label="Start">
+<img class="logo" src="logo-v2.jpg" alt="an:care Logo" />
+<span>
+an:care
+<small>Podcast</small>
+</span>
 </a>
 
-
- <a class="podcastLink" href="https://podcasts.apple.com/" target="_blank" rel="noreferrer">
-  <span>Apple Podcasts</span>
-
-  <span class="podcastBadge">
-    <img class="podcastLogo" src="applepodcast-logo.jpg" alt="Apple Podcasts" />
-    <img class="podcastPreview" src="applepodcast-account.jpg" alt="Apple Podcasts Vorschau" />
-  </span>
+<nav class="links" aria-label="Navigation">
+<a class="link" href="shop.html">Shop</a>
+<a class="link" href="community.html">Community</a>
+<a class="link" href="marketing.html">Marketing</a>
+<a class="link" href="podcast.html">Podcast</a>
+<a class="link" href="blog.html">Blog</a>
+<a class="btn btnPrimary" href="product.html">
+Zum Produkt <span class="badge" id="cartCount">0</span>
 </a>
+</nav>
+</div>
+</div>
+</header>
 
+<main id="podcastPage">
+<section class="section">
+<div class="container">
+<div class="card shadowBig">
+<div class="padLg">
+<div class="kicker"><span class="dot" aria-hidden="true"></span> Podcast</div>
+<h1 style="margin-bottom:10px">Podcast</h1>
+<p class="lead" style="margin-bottom:0">
+Kurze Impulse für Ruhe, Selbstwahrnehmung und klare nächste Schritte. Klar, professionell und ohne leere Versprechen.
+</p>
+</div>
+</div>
+</div>
+</section>
 
+<section class="section">
+<div class="container">
+<div class="productGrid">
+
+<div class="card shadowBig">
+<div class="mediaTop">
+<div>
+<strong>Episoden</strong><br />
+<span>Wähle eine Episode aus</span>
 </div>
 
-</main>
+<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end">
+<button class="btn btnSmall" type="button" id="seed">Beispiele laden</button>
+<button class="btn btnSmall btnGhost" type="button" id="resetPodcast">Reset</button>
+</div>
+</div>
+
+<div class="pad" id="episodeList"></div>
+</div>
+
+<aside class="card shadowBig">
+<div class="padLg">
+<div class="kicker"><span class="dot" aria-hidden="true"></span> Jetzt abspielen</div>
+
+<div style="font-weight:900; font-size:18px; margin-top:12px" id="epTitle">
+Keine Episode ausgewählt
+</div>
+
+<div style="color:var(--muted); margin-top:8px" id="epMeta">
+Wähle links eine Episode.
+</div>
+
+<div style="margin-top:14px">
+<audio id="player" controls style="width:100%"></audio>
+</div>
+
+<!-- Nur Text: wird vom JS überschrieben -->
+<div class="fineprint" id="epDesc" style="margin-top:14px">
+Hinweis: Im Prototyp sind Audio Dateien optional. Später kannst du Spotify, Apple Podcasts oder eine RSS Quelle anbinden.
+</div>
+
+<!-- Buttons bleiben IMMER sichtbar -->
+<div class="ctaRow podcastCtasRow" style="justify-content:flex-start; margin-top:14px">
+<a class="podcastLink" id="linkSpotify" href="https://open.spotify.com/" target="_blank" rel="noreferrer">
+<span>Spotify</span>
+<span class="podcastBadge">
+<img class="podcastLogo" src="spotify-logo.jpg" alt="Spotify" />
+<img class="podcastPreview" src="spotify-account.jpg" alt="Spotify Vorschau" />
+</span>
+</a>
+
+<a class="podcastLink" id="linkApple" href="https://podcasts.apple.com/" target="_blank" rel="noreferrer">
+<span>Apple Podcasts</span>
+<span class="podcastBadge">
+<img class="podcastLogo" src="applepodcast-logo.jpg" alt="Apple Podcasts" />
+<img class="podcastPreview" src="applepodcast-account.jpg" alt="Apple Podcasts Vorschau" />
+</span>
+</a>
+</div>
+
+</div>
+</aside>
+
+</div>
+</div>
+</section>
 
 <footer>
-  <div class="container">
-    <div class="foot">
-      <div>
-        <strong style="color:var(--text)">an:care GmbH</strong><br />
-      </div>
+<div class="container">
+<div class="foot">
+<div>
+<strong style="color:var(--text)">an:care GmbH</strong><br />
+</div>
 
-      <div style="display:flex; gap:16px; flex-wrap:wrap;">
-        <a class="link" href="FAQ.html">FAQ</a>
-        <a class="link" href="impressum.html">Impressum</a>
-        <a class="link" href="datenschutz.html">Datenschutz</a>
-      </div>
-    </div>
-  </div>
+<div style="display:flex; gap:16px; flex-wrap:wrap;">
+<a class="link" href="FAQ.html">FAQ</a>
+<a class="link" href="impressum.html">Impressum</a>
+<a class="link" href="datenschutz.html">Datenschutz</a>
+</div>
+</div>
+</div>
 </footer>
+</main>
 
+<script src="app.js"></script>
 
-  <script src="app.js"></script>
+<script>
+function escapeHtml(s){
+return String(s || "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+}
 
-  <script>
-    function escapeHtml(s){
-      return String(s || "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
+function renderEpisodes(){
+const list = document.getElementById("episodeList");
+const eps = (typeof loadPodcastEpisodes === "function") ? loadPodcastEpisodes() : [];
 
-    function renderEpisodes(){
-      const list = document.getElementById("episodeList");
-      const eps = (typeof loadPodcastEpisodes === "function") ? loadPodcastEpisodes() : [];
+if(!list) return;
 
-      if(!list) return;
+if(eps.length === 0){
+list.innerHTML = `<div style="color:var(--muted)">Noch keine Episoden. Klicke auf Beispiele laden.</div>`;
+return;
+}
 
-      if(eps.length === 0){
-        list.innerHTML = `<div style="color:var(--muted)">Noch keine Episoden. Klicke auf Beispiele laden.</div>`;
-        return;
-      }
+list.innerHTML = eps.map(ep => `
+<div class="card" style="margin-bottom:12px">
+<div class="pad">
+<div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap">
+<div>
+<div class="kicker" style="margin-bottom:10px"><span class="dot" aria-hidden="true"></span> Episode ${escapeHtml(ep.number)}</div>
+<div style="font-weight:900; font-size:16px">${escapeHtml(ep.title)}</div>
+<div style="color:var(--muted); font-size:13.5px; margin-top:6px; line-height:1.55">
+${escapeHtml(ep.teaser || "")}
+</div>
+</div>
+<div style="display:flex; gap:10px; align-items:center">
+<button class="btn btnPrimary btnSmall" type="button" onclick="selectEpisode('${ep.id}')">Abspielen</button>
+</div>
+</div>
+</div>
+</div>
+`).join("");
+}
 
-      list.innerHTML = eps.map(ep => `
-        <div class="card" style="margin-bottom:12px">
-          <div class="pad">
-            <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap">
-              <div>
-                <div class="kicker" style="margin-bottom:10px"><span class="dot" aria-hidden="true"></span> Episode ${escapeHtml(ep.number)}</div>
-                <div style="font-weight:900; font-size:16px">${escapeHtml(ep.title)}</div>
-                <div style="color:var(--muted); font-size:13.5px; margin-top:6px; line-height:1.55">
-                  ${escapeHtml(ep.teaser || "")}
-                </div>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center">
-                <button class="btn btnPrimary btnSmall" type="button" onclick="selectEpisode('${ep.id}')">Abspielen</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
+function selectEpisode(id){
+const eps = (typeof loadPodcastEpisodes === "function") ? loadPodcastEpisodes() : [];
+const ep = eps.find(e => e.id === id);
+if(!ep) return;
 
-    function selectEpisode(id){
-      const eps = (typeof loadPodcastEpisodes === "function") ? loadPodcastEpisodes() : [];
-      const ep = eps.find(e => e.id === id);
-      if(!ep) return;
+document.getElementById("epTitle").textContent = ep.title || "Episode";
+document.getElementById("epMeta").textContent =
+`Episode ${ep.number || ""} · ${ep.duration || ""} · ${ep.publishedAt ? new Date(ep.publishedAt).toLocaleDateString("de-DE") : ""}`;
 
-      document.getElementById("epTitle").textContent = ep.title || "Episode";
-      document.getElementById("epMeta").textContent =
-        `Episode ${ep.number || ""} · ${ep.duration || ""} · ${ep.publishedAt ? new Date(ep.publishedAt).toLocaleDateString("de-DE") : ""}`;
+// Nur Text überschreiben (Buttons bleiben erhalten)
+document.getElementById("epDesc").textContent = ep.description || "";
 
-      document.getElementById("epDesc").textContent = ep.description || "";
+const player = document.getElementById("player");
+player.src = ep.audioUrl || "";
 
-      const player = document.getElementById("player");
-      player.src = ep.audioUrl || "";
+if(ep.audioUrl){
+player.play().catch(() => {});
+}
 
-      if(ep.audioUrl){
-        player.play().catch(() => {});
-      }
+// Optional: wenn du später Episoden Links pflegst
+const s = document.getElementById("linkSpotify");
+const a = document.getElementById("linkApple");
+if(s) s.href = ep.spotifyUrl || "https://open.spotify.com/";
+if(a) a.href = ep.appleUrl || "https://podcasts.apple.com/";
+}
 
-      document.getElementById("linkSpotify").href = ep.spotifyUrl || "#";
-      document.getElementById("linkApple").href = ep.appleUrl || "#";
-      document.getElementById("linkWeb").href = ep.webUrl || "#";
-    }
+document.getElementById("seed").addEventListener("click", () => {
+if(typeof seedPodcastEpisodes === "function"){
+seedPodcastEpisodes();
+}
+renderEpisodes();
+});
 
-    document.getElementById("seed").addEventListener("click", () => {
-      if(typeof seedPodcastEpisodes === "function"){
-        seedPodcastEpisodes();
-      }
-      renderEpisodes();
-    });
+document.getElementById("resetPodcast").addEventListener("click", () => {
+try { localStorage.removeItem("anker_podcast_v1"); } catch(e) {}
+alert("Podcast Daten zurückgesetzt. Jetzt bitte auf Beispiele laden klicken.");
+location.reload();
+});
 
-    document.getElementById("resetPodcast").addEventListener("click", () => {
-      try { localStorage.removeItem("anker_podcast_v1"); } catch(e) {}
-      alert("Podcast Daten zurückgesetzt. Jetzt bitte auf Beispiele laden klicken.");
-      location.reload();
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      if(typeof setCartBadge === "function") setCartBadge();
-      renderEpisodes();
-    });
-  </script>
+document.addEventListener("DOMContentLoaded", () => {
+if(typeof setCartBadge === "function") setCartBadge();
+renderEpisodes();
+});
+</script>
 </body>
 </html>
-
-
