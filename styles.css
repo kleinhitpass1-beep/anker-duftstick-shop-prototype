@@ -1384,3 +1384,19 @@ width: 100% !important;
 min-width: 0 !important;
 }
 }
+/* SHOP DESKTOP FIX: grid3 immer 3 spaltig, keine Card darf volle Breite spannen */
+@media (min-width: 981px){
+.grid3{
+display: grid !important;
+grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+gap: 14px;
+align-items: stretch;
+}
+
+.grid3 > .card{
+grid-column: auto / span 1 !important;
+width: 100% !important;
+min-width: 0 !important;
+max-width: 100% !important;
+}
+}
