@@ -1316,24 +1316,7 @@ html { scroll-behavior: smooth; }
   border-radius:6px;
   display:block;
 }
-.podcastPreview{
-  position: absolute;
-  top: auto;
-  bottom: 58px;
-  right: 0;
-  width: 260px;
-  max-width: 75vw;
-  height: auto;
-  border-radius: 18px;
-  border: 1px solid rgba(11,27,58,.12);
-  box-shadow: 0 20px 45px rgba(11,27,58,.18);
-  background:#fff;
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-  transition: opacity .2s ease, transform .2s ease;
-  z-index: 30;
-}
+
 .podcastLink:hover .podcastPreview{
   opacity:1;
   transform: translateX(-50%) translateY(0);
@@ -1358,6 +1341,23 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
   transition: opacity .2s ease, transform .2s ease;
   z-index: 30;
+}
+/* Shop Calm: kleines Logo neben dem Titel, ohne Layout Verzerrung */
+.shopTitleRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.shopMiniLogo{
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
+  border-radius:10px;
+  object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow: 0 8px 18px rgba(11,27,58,.08);
+  background: rgba(255,255,255,.85);
 }
 
 
