@@ -1503,7 +1503,7 @@ input:not([type="radio"]):not([type="checkbox"]){
 
 .visionCard{
   width: 100%;
-  max-width: 300px;   /* leicht kompakter, wirkt zentrierter */
+  max-width: 100px;   /* leicht kompakter, wirkt zentrierter */
   margin: 0 auto;
 }
 
