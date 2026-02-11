@@ -122,20 +122,7 @@
         </div>
       </div>
     </section>
-<section class="section" id="reviewsSection">
-  <div class="sectionHeader">
-    <h2>Rezensionen</h2>
-    <p>Echte Stimmen aus dem Prototyp.</p>
-  </div>
 
-  <div class="reviewsGrid">
-    <div class="reviewsSummary card pad" id="reviewsSummary"></div>
-
-    <div class="reviewsListWrap card pad">
-      <div id="reviewsList"></div>
-    </div>
-  </div>
-</section>
     <!-- Warenkorbbereich -->
 <section class="section" id="warenkorb">
   <div class="container">
@@ -236,98 +223,6 @@
 
   </div>
 </section>
-
-
-    <footer>
-      <div class="container">
-        <div class="foot">
-          <div>
-            <strong style="color:var(--text)">an:care GmbH</strong><br />
-          </div>
-
-          <div style="display:flex; gap:16px; flex-wrap:wrap;">
-            <a class="link" href="FAQ.html">FAQ</a>
-            <a class="link" href="impressum.html">Impressum</a>
-            <a class="link" href="datenschutz.html">Datenschutz</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script src="app.js"></script>
-  <script>
-    // Produktdaten
-    const product = { id:"ancare_stick_calm", name:"an:care Stick Calm", note:"Neroli Kokosöl", price:13.99 };
-
-    // Thumbnails
-    document.querySelectorAll(".thumb").forEach((t) => {
-      t.addEventListener("click", () => {
-        const src = t.getAttribute("data-src");
-        const main = document.getElementById("mainImage");
-        if (main && src) main.src = src;
-      });
-    });
-
-    // Buttons
-    document.getElementById("addBtn").addEventListener("click", () => {
-      if (typeof window.addToCart !== "function") {
-        alert("app.js wurde nicht geladen. Bitte hart neu laden (Strg plus F5).");
-        return;
-      }
-
-      const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
-
-      window.addToCart({
-        id: product.id,
-        name: product.name,
-        note: product.note,
-        price: product.price,
-        qty
-      });
-
-      window.renderMiniCart && window.renderMiniCart();
-      window.setCartBadge && window.setCartBadge();
-      document.getElementById("warenkorb").scrollIntoView({ behavior: "smooth" });
-    });
-
-    document.getElementById("buyBtn").addEventListener("click", () => {
-      document.getElementById("warenkorb").scrollIntoView({ behavior: "smooth" });
-    });
-
-    document.getElementById("fakePay").addEventListener("click", () => {
-      if (typeof window.loadCart !== "function" || typeof window.clearCart !== "function") return;
-
-      const cart = window.loadCart();
-      if (!cart || cart.length === 0) {
-        alert("Warenkorb ist leer.");
-        return;
-      }
-
-      window.clearCart();
-      window.renderMiniCart && window.renderMiniCart();
-      window.setCartBadge && window.setCartBadge();
-
-      document.getElementById("success").style.display = "block";
-    });
-
-    document.getElementById("clear").addEventListener("click", () => {
-      if (typeof window.clearCart !== "function") return;
-
-      window.clearCart();
-      window.renderMiniCart && window.renderMiniCart();
-      window.setCartBadge && window.setCartBadge();
-
-      document.getElementById("success").style.display = "none";
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      window.renderMiniCart && window.renderMiniCart();
-      window.setCartBadge && window.setCartBadge();
-    });
-  </script>
-</body>
-</html>
 <section class="reviewsWrap section" id="rezensionen">
   <div class="container">
     <div class="reviewsBox card padLg">
@@ -484,4 +379,97 @@
     </div>
   </div>
 </section>
+
+
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <strong style="color:var(--text)">an:care GmbH</strong><br />
+          </div>
+
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <a class="link" href="FAQ.html">FAQ</a>
+            <a class="link" href="impressum.html">Impressum</a>
+            <a class="link" href="datenschutz.html">Datenschutz</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    // Produktdaten
+    const product = { id:"ancare_stick_calm", name:"an:care Stick Calm", note:"Neroli Kokosöl", price:13.99 };
+
+    // Thumbnails
+    document.querySelectorAll(".thumb").forEach((t) => {
+      t.addEventListener("click", () => {
+        const src = t.getAttribute("data-src");
+        const main = document.getElementById("mainImage");
+        if (main && src) main.src = src;
+      });
+    });
+
+    // Buttons
+    document.getElementById("addBtn").addEventListener("click", () => {
+      if (typeof window.addToCart !== "function") {
+        alert("app.js wurde nicht geladen. Bitte hart neu laden (Strg plus F5).");
+        return;
+      }
+
+      const qty = Math.max(1, parseInt(document.getElementById("qty").value || "1", 10));
+
+      window.addToCart({
+        id: product.id,
+        name: product.name,
+        note: product.note,
+        price: product.price,
+        qty
+      });
+
+      window.renderMiniCart && window.renderMiniCart();
+      window.setCartBadge && window.setCartBadge();
+      document.getElementById("warenkorb").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("buyBtn").addEventListener("click", () => {
+      document.getElementById("warenkorb").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("fakePay").addEventListener("click", () => {
+      if (typeof window.loadCart !== "function" || typeof window.clearCart !== "function") return;
+
+      const cart = window.loadCart();
+      if (!cart || cart.length === 0) {
+        alert("Warenkorb ist leer.");
+        return;
+      }
+
+      window.clearCart();
+      window.renderMiniCart && window.renderMiniCart();
+      window.setCartBadge && window.setCartBadge();
+
+      document.getElementById("success").style.display = "block";
+    });
+
+    document.getElementById("clear").addEventListener("click", () => {
+      if (typeof window.clearCart !== "function") return;
+
+      window.clearCart();
+      window.renderMiniCart && window.renderMiniCart();
+      window.setCartBadge && window.setCartBadge();
+
+      document.getElementById("success").style.display = "none";
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      window.renderMiniCart && window.renderMiniCart();
+      window.setCartBadge && window.setCartBadge();
+    });
+  </script>
+</body>
+</html>
+
 
