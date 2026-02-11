@@ -1515,6 +1515,17 @@ input:not([type="radio"]):not([type="checkbox"]){
 .visionSection { outline: 3px solid red !important; }
 .visionCard { outline: 3px solid green !important; }
 .visionGrid { outline: 3px solid blue !important; }
+.visionSection {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.visionGrid {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
 
 
 
